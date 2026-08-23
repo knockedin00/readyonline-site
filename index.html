@@ -1,273 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>ReadyOnline</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Flip Cards -->
+<div class="section">
+  <h2>What You’ll Learn</h2>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #ffffff;
-      color: #333;
-    }
+  <div class="cards">
 
-    :root {
-      --mint: #9FE8D8;
-      --charcoal: #2E2E2E;
-      --accent-blue: #4DA3FF;
-      --accent-purple: #B88CFF;
-      --accent-yellow: #FFE27A;
-      --light-gray: #f5f5f5;
-    }
-
-    /* Work in Progress Banner */
-    .wip-banner {
-      background-color: #fff3cd;
-      color: #856404;
-      padding: 10px;
-      text-align: center;
-      font-size: 0.9rem;
-      border-bottom: 1px solid #ffeeba;
-    }
-
-    /* Hero Section */
-    header {
-      background-color: var(--mint);
-      padding: 60px 20px;
-      text-align: center;
-      color: var(--charcoal);
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 2.8rem;
-      font-weight: bold;
-    }
-
-    header p {
-      margin: 15px 0 25px;
-      font-size: 1.3rem;
-    }
-
-    .cta-button {
-      background-color: var(--charcoal);
-      color: white;
-      padding: 14px 28px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 1rem;
-      display: inline-block;
-    }
-
-    /* Section Styling */
-    .section {
-      padding: 50px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .section h2 {
-      font-size: 2.2rem;
-      margin-bottom: 15px;
-      color: var(--charcoal);
-      text-align: center;
-    }
-
-    .section p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      text-align: center;
-    }
-
-    /* Quote Block */
-    .quote {
-      font-style: italic;
-      background-color: var(--light-gray);
-      padding: 25px;
-      border-left: 6px solid var(--mint);
-      margin: 30px auto;
-      max-width: 800px;
-      font-size: 1.1rem;
-    }
-
-    /* Flip Cards */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 25px;
-      margin-top: 40px;
-    }
-
-    .flip-card {
-      background-color: transparent;
-      width: 100%;
-      height: 220px;
-      perspective: 1000px;
-    }
-
-    .flip-card-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      text-align: center;
-      transition: transform 0.8s;
-      transform-style: preserve-3d;
-    }
-
-    .flip-card:hover .flip-card-inner {
-      transform: rotateX(180deg);
-    }
-
-    .flip-card-front, .flip-card-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border-radius: 10px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.1rem;
-    }
-
-    .flip-card-front {
-      background-color: var(--accent-blue);
-      color: white;
-    }
-
-    .flip-card-back {
-      background-color: var(--charcoal);
-      color: var(--mint);
-      transform: rotateX(180deg);
-      padding: 20px;
-      font-size: 1rem;
-    }
-
-    /* Footer */
-    footer {
-      background-color: var(--charcoal);
-      color: white;
-      padding: 40px 20px;
-      text-align: center;
-      margin-top: 40px;
-    }
-
-    footer a {
-      color: var(--mint);
-      text-decoration: none;
-      font-weight: bold;
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- Work in Progress Banner -->
-  <div class="wip-banner">
-    🚧 This site is a work in progress — new content added daily.
-  </div>
-
-  <!-- Hero Section -->
-  <header>
-    <h1>Digital independence starts with awareness.</h1>
-    <p>Build the reflexes to stay safe online — confidently, calmly, and without shame.</p>
-    <a class="cta-button" href="https://forms.cloud.microsoft/r/kf91Zvp4Du" target="_blank">
-      Join Early Access
-    </a>
-  </header>
-
-  <!-- Mission -->
-  <div class="section">
-    <h2>Our Mission</h2>
-    <p>
-      <strong>ReadyOnline empowers youth and families with digital reflexes — the “that was a close call”
-      awareness that keeps you safe online.</strong><br><br>
-      We teach confidence, awareness, and shame‑free support so you can navigate your digital world with clarity and calm.
-    </p>
-  </div>
-
-  <!-- Vision -->
-  <div class="section">
-    <h2>Our Vision</h2>
-    <p>
-      ReadyOnline is growing into a full digital‑resilience platform — a place where youth, families, and schools learn online safety the same way we learn to drive: with training, awareness, and support at every stage.<br><br>
-      Our future app will include interactive modules, real‑time guidance, and a dashboard that helps you build and track your digital reflexes over time.
-    </p>
-  </div>
-
-  <!-- Quote -->
-  <div class="section">
-    <div class="quote">
-      “Being online is like learning to drive — exciting and full of possibilities, but it still requires real skills to stay safe. You can rely on new technology and monitoring tools, but they miss things. Awareness doesn’t. Pausing, checking your mirrors, and noticing what tech might overlook keeps you in control. We help you build those ‘close call’ reflexes without making you afraid of the journey.”
-      <br><br>
-      — <strong>Charlie Kropf, Co‑Founder</strong>
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front" style="background-color:#4DA3FF;">
+          🧠<br>Spot Red Flags
+        </div>
+        <div class="flip-card-back">
+          Recognize manipulation, pressure, scams, and risky situations early.
+        </div>
+      </div>
     </div>
-  </div>
 
-  <!-- Flip Cards -->
-  <div class="section">
-    <h2>What You’ll Learn</h2>
-
-    <div class="cards">
-
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            🧠<br>Spot Red Flags
-          </div>
-          <div class="flip-card-back">
-            Recognize manipulation, pressure, scams, and risky situations early.
-          </div>
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front" style="background-color:#B88CFF;">
+          🔒<br>Stay in Control
+        </div>
+        <div class="flip-card-back">
+          Build habits that keep your accounts, identity, and privacy safe.
         </div>
       </div>
-
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front" style="background-color: var(--accent-purple);">
-            🔒<br>Stay in Control
-          </div>
-          <div class="flip-card-back">
-            Build habits that keep your accounts, identity, and privacy safe.
-          </div>
-        </div>
-      </div>
-
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front" style="background-color: var(--accent-yellow); color: #333;">
-            🆘<br>Course‑Correct Anytime
-          </div>
-          <div class="flip-card-back">
-            Know what to do — and who to call — when something feels off.
-          </div>
-        </div>
-      </div>
-
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front" style="background-color: var(--accent-blue);">
-            🤝<br>Support Friends
-          </div>
-          <div class="flip-card-back">
-            Learn how to help someone who’s struggling online.
-          </div>
-        </div>
-      </div>
-
     </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front" style="background-color:#FFE27A; color:#333;">
+          🆘<br>Course‑Correct Anytime
+        </div>
+        <div class="flip-card-back">
+          Know what to do — and who to call — when something feels off.
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front" style="background-color:#9FE8D8; color:#333;">
+          🤝<br>Support Friends
+        </div>
+        <div class="flip-card-back">
+          Learn how to help someone who’s struggling online.
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front" style="background-color:#FFB6B9;">
+          💬<br>Ask for Help Early
+        </div>
+        <div class="flip-card-back">
+          Build confidence to reach out before harm escalates — no shame, just support.
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front" style="background-color:#A0E7E5; color:#333;">
+          🌱<br>Keep Growing
+        </div>
+        <div class="flip-card-back">
+          Digital skills evolve — keep learning, adapting, and staying aware.
+        </div>
+      </div>
+    </div>
+
   </div>
-
-  <!-- Footer -->
-  <footer>
-    <p><strong>About:</strong> ReadyOnline empowers youth and families with continuous digital safety training. We teach awareness, reflexes, and confidence to navigate online life responsibly — without fear or shame.</p>
-    <p><strong>Contact:</strong> <a href="mailto:info@readyonline.org">info@readyonline.org</a></p>
-    <p><strong>Early Access:</strong> <a href="https://forms.cloud.microsoft/r/kf91Zvp4Du" target="_blank">Join Here</a></p>
-    <p>© 2026 ReadyOnline LLC</p>
-  </footer>
-
-</body>
-</html>
+</div>
