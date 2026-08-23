@@ -1,74 +1,115 @@
-<!-- Flip Cards -->
-<div class="section">
-  <h2>What You’ll Learn</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ReadyOnline</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <div class="cards">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: #333;
+    }
 
-    <div class="flip-card">
-      <div class="flip-card-inner">
-        <div class="flip-card-front" style="background-color:#4DA3FF;">
-          🧠<br>Spot Red Flags
-        </div>
-        <div class="flip-card-back">
-          Recognize manipulation, pressure, scams, and risky situations early.
-        </div>
-      </div>
-    </div>
+    :root {
+      --mint: #9FE8D8;
+      --charcoal: #2E2E2E;
+      --accent-blue: #4DA3FF;
+      --accent-purple: #B88CFF;
+      --accent-yellow: #FFE27A;
+      --accent-pink: #FFB6B9;
+      --accent-teal: #A0E7E5;
+      --light-gray: #f5f5f5;
+    }
 
-    <div class="flip-card">
-      <div class="flip-card-inner">
-        <div class="flip-card-front" style="background-color:#B88CFF;">
-          🔒<br>Stay in Control
-        </div>
-        <div class="flip-card-back">
-          Build habits that keep your accounts, identity, and privacy safe.
-        </div>
-      </div>
-    </div>
+    /* Work in Progress Banner */
+    .wip-banner {
+      background-color: #fff3cd;
+      color: #856404;
+      padding: 10px;
+      text-align: center;
+      font-size: 0.9rem;
+      border-bottom: 1px solid #ffeeba;
+    }
 
-    <div class="flip-card">
-      <div class="flip-card-inner">
-        <div class="flip-card-front" style="background-color:#FFE27A; color:#333;">
-          🆘<br>Course‑Correct Anytime
-        </div>
-        <div class="flip-card-back">
-          Know what to do — and who to call — when something feels off.
-        </div>
-      </div>
-    </div>
+    /* Hero Section */
+    header {
+      background-color: var(--mint);
+      padding: 60px 20px;
+      text-align: center;
+      color: var(--charcoal);
+    }
 
-    <div class="flip-card">
-      <div class="flip-card-inner">
-        <div class="flip-card-front" style="background-color:#9FE8D8; color:#333;">
-          🤝<br>Support Friends
-        </div>
-        <div class="flip-card-back">
-          Learn how to help someone who’s struggling online.
-        </div>
-      </div>
-    </div>
+    header h1 {
+      margin: 0;
+      font-size: 2.8rem;
+      font-weight: bold;
+    }
 
-    <div class="flip-card">
-      <div class="flip-card-inner">
-        <div class="flip-card-front" style="background-color:#FFB6B9;">
-          💬<br>Ask for Help Early
-        </div>
-        <div class="flip-card-back">
-          Build confidence to reach out before harm escalates — no shame, just support.
-        </div>
-      </div>
-    </div>
+    header p {
+      margin: 15px 0 25px;
+      font-size: 1.3rem;
+    }
 
-    <div class="flip-card">
-      <div class="flip-card-inner">
-        <div class="flip-card-front" style="background-color:#A0E7E5; color:#333;">
-          🌱<br>Keep Growing
-        </div>
-        <div class="flip-card-back">
-          Digital skills evolve — keep learning, adapting, and staying aware.
-        </div>
-      </div>
-    </div>
+    .cta-button {
+      background-color: var(--charcoal);
+      color: white;
+      padding: 14px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 1rem;
+      display: inline-block;
+    }
 
-  </div>
-</div>
+    /* Section Styling */
+    .section {
+      padding: 50px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+      color: var(--charcoal);
+      text-align: center;
+    }
+
+    .section p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    /* Quote Block */
+    .quote {
+      font-style: italic;
+      background-color: var(--light-gray);
+      padding: 25px;
+      border-left: 6px solid var(--mint);
+      margin: 30px auto;
+      max-width: 800px;
+      font-size: 1.1rem;
+    }
+
+    /* Flip Cards */
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .flip-card {
+      background-color: transparent;
+      width: 260px;
+      height: 240px;
+      perspective: 1000px;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
