@@ -24,7 +24,6 @@
       --light-gray: #f5f5f5;
     }
 
-    /* Work in Progress Banner */
     .wip-banner {
       background-color: #fff3cd;
       color: #856404;
@@ -34,7 +33,6 @@
       border-bottom: 1px solid #ffeeba;
     }
 
-    /* Hero Section */
     header {
       background-color: var(--mint);
       padding: 60px 20px;
@@ -63,7 +61,6 @@
       display: inline-block;
     }
 
-    /* Section Styling */
     .section {
       padding: 50px 20px;
       max-width: 1000px;
@@ -83,7 +80,6 @@
       text-align: center;
     }
 
-    /* Quote Block */
     .quote {
       font-style: italic;
       background-color: var(--light-gray);
@@ -94,7 +90,6 @@
       font-size: 1.1rem;
     }
 
-    /* Flip Cards */
     .cards {
       display: flex;
       flex-wrap: wrap;
@@ -103,13 +98,122 @@
       margin-top: 40px;
     }
 
-    .flip-card {
-      background-color: transparent;
+    .card {
       width: 260px;
-      height: 240px;
-      perspective: 1000px;
+      min-height: 160px;
+      border-radius: 10px;
+      padding: 20px;
+      color: #fff;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: left;
+      font-size: 1rem;
     }
 
-    .flip-card-inner {
-      position: relative;
-      width: 100%;
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    footer {
+      background-color: var(--charcoal);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: var(--mint);
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="wip-banner">
+    🚧 This site is a work in progress — new content added daily.
+  </div>
+
+  <header>
+    <h1>Digital independence starts with awareness.</h1>
+    <p>Build the reflexes to stay safe online — confidently, calmly, and without shame.</p>
+    <a class="cta-button" href="https://forms.cloud.microsoft/r/kf91Zvp4Du" target="_blank">
+      Join Early Access
+    </a>
+  </header>
+
+  <div class="section">
+    <h2>Our Mission</h2>
+    <p>
+      <strong>ReadyOnline empowers youth and families with digital reflexes — the “that was a close call”
+      awareness that keeps you safe online.</strong><br><br>
+      We teach confidence, awareness, and shame‑free support so you can navigate your digital world with clarity and calm.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>Our Vision</h2>
+    <p>
+      ReadyOnline is growing into a full digital‑resilience platform — a place where youth, families, and schools learn online safety the same way we learn to drive: with training, awareness, and support at every stage.<br><br>
+      Our future app will include interactive modules, real‑time guidance, and a dashboard that helps you build and track your digital reflexes over time.
+    </p>
+  </div>
+
+  <div class="section">
+    <div class="quote">
+      “Being online is like learning to drive — exciting and full of possibilities, but it still requires real skills to stay safe. You can rely on new technology and monitoring tools, but they miss things. Awareness doesn’t. Pausing, checking your mirrors, and noticing what tech might overlook keeps you in control. We help you build those ‘close call’ reflexes without making you afraid of the journey.”
+      <br><br>
+      — <strong>Charlie Kropf, Co‑Founder</strong>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>What You’ll Learn</h2>
+
+    <div class="cards">
+
+      <div class="card" style="background-color: var(--accent-blue);">
+        <div class="card-title">🧠 Spot Red Flags</div>
+        <p>Recognize manipulation, pressure, scams, and risky situations early.</p>
+      </div>
+
+      <div class="card" style="background-color: var(--accent-purple);">
+        <div class="card-title">🔒 Stay in Control</div>
+        <p>Build habits that keep your accounts, identity, and privacy safe.</p>
+      </div>
+
+      <div class="card" style="background-color: var(--accent-yellow); color:#333;">
+        <div class="card-title">🆘 Course‑Correct Anytime</div>
+        <p>Know what to do — and who to call — when something feels off.</p>
+      </div>
+
+      <div class="card" style="background-color: var(--mint); color:#333;">
+        <div class="card-title">🤝 Support Friends</div>
+        <p>Learn how to help someone who’s struggling online.</p>
+      </div>
+
+      <div class="card" style="background-color: var(--accent-pink);">
+        <div class="card-title">💬 Ask for Help Early</div>
+        <p>Build confidence to reach out before harm escalates — no shame, just support.</p>
+      </div>
+
+      <div class="card" style="background-color: var(--accent-teal); color:#333;">
+        <div class="card-title">🌱 Keep Growing</div>
+        <p>Digital skills evolve — keep learning, adapting, and staying aware.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <p><strong>About:</strong> ReadyOnline empowers youth and families with continuous digital safety training. We teach awareness, reflexes, and confidence to navigate online life responsibly — without fear or shame.</p>
+    <p><strong>Contact:</strong> <a href="mailto:info@readyonline.org">info@readyonline.org</a></p>
+    <p><strong>Early Access:</strong> <a href="https://forms.cloud.microsoft/r/kf91Zvp4Du" target="_blank">Join Here</a></p>
+    <p>© 2026 ReadyOnline LLC</p>
+  </footer>
+
+</body>
+</html>
