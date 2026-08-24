@@ -5,30 +5,29 @@
   <title>Accountability in the Apps We Use | ReadyOnline</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    :root {
-  --bg: #0f172a;
-  --card-start: #1e293b;
-  --card-end: #0f172a;
+:root {
+  --bg-start: #121826;
+  --bg-end: #1e293b;
+  --card: #1e293b;
   --accent: #38bdf8;
-  --accent-soft: #1d4ed8;
-  --text: #e5e7eb;
-  --muted: #94a3b8;
   --highlight: #facc15;
-  --border: #334155;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --border: #3b82f6;
   --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 body {
   margin: 0;
   font-family: var(--font);
-  background: radial-gradient(circle at top, #1e293b 0, #020617 55%);
+  background: linear-gradient(160deg, var(--bg-start), var(--bg-end));
   color: var(--text);
 }
 
 .page {
   max-width: 960px;
   margin: 0 auto;
-  padding: 32px 16px 64px;
+  padding: 40px 20px 80px;
 }
 
 header {
@@ -72,7 +71,7 @@ h3 {
 }
 
 .card {
-  background: linear-gradient(145deg, var(--card-start), var(--card-end));
+  background: var(--card);
   border-radius: 16px;
   border: 1px solid var(--border);
   padding: 18px;
@@ -83,17 +82,6 @@ h3 {
 .card:hover {
   transform: translateY(-4px);
   box-shadow: 0 0 18px rgba(250, 204, 21, 0.25);
-}
-
-ul {
-  margin: 6px 0 10px;
-  padding-left: 18px;
-  font-size: 15px;
-  line-height: 1.6;
-}
-
-li {
-  margin-bottom: 4px;
 }
 
 .highlight-box {
