@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Accountability in the Apps We Use | ReadyOnline</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
 :root {
-  --bg-start: #121826;
-  --bg-end: #1e293b;
-  --card: #1e293b;
+  --bg-start: #141a2a;
+  --bg-end: #1f2a40;
+  --card-bg: #25324a;
+  --card-bg-light: #2e3c57;
   --accent: #38bdf8;
+  --accent-strong: #3b82f6;
   --highlight: #facc15;
   --text: #e2e8f0;
   --muted: #94a3b8;
@@ -38,7 +33,7 @@ header {
   display: inline-block;
   padding: 6px 12px;
   border-radius: 999px;
-  background: rgba(56, 189, 248, 0.15);
+  background: rgba(56, 189, 248, 0.18);
   color: var(--accent);
   font-size: 13px;
   font-weight: 600;
@@ -53,290 +48,26 @@ h1 {
 }
 
 h2 {
-  font-size: 22px;
+  font-size: 24px;
   color: var(--accent);
-  margin-top: 28px;
+  margin-top: 32px;
 }
 
 h3 {
-  font-size: 17px;
+  font-size: 18px;
   color: var(--highlight);
+}
+
+p {
+  font-size: 15px;
+  line-height: 1.6;
 }
 
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px;
-  margin-top: 12px;
+  gap: 20px;
+  margin-top: 16px;
 }
 
-.card {
-  background: var(--card);
-  border-radius: 16px;
-  border: 1px solid var(--border);
-  padding: 18px;
-  box-shadow: 0 0 12px rgba(56, 189, 248, 0.15);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0 18px rgba(250, 204, 21, 0.25);
-}
-
-.highlight-box {
-  margin-top: 18px;
-  padding: 14px 16px;
-  border-radius: 14px;
-  border: 1px dashed var(--highlight);
-  background: rgba(250, 204, 21, 0.08);
-  font-size: 14px;
-  box-shadow: 0 0 10px rgba(250, 204, 21, 0.15);
-}
-
-
-    .footer-note {
-      margin-top: 32px;
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    .app-label {
-      font-size: 13px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: var(--accent);
-      margin-bottom: 4px;
-    }
-
-    .vision-tag {
-      color: var(--highlight);
-      font-weight: 600;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-  </style>
-</head>
-<body>
-  <div class="page">
-    <header>
-      <div class="tag">Accountability · Apps & Platforms</div>
-      <h1>Accountability in the Apps We Use</h1>
-      <p class="subtitle">
-        The digital world wasn’t built with kids in mind. We’re here to change that — starting with transparency,
-        education, and a clear vision for what comes next.
-      </p>
-    </header>
-
-    <section>
-      <p>
-        Kids get phones early. They join apps early. They encounter risks early. But the protections they need often
-        come late — or not at all.
-      </p>
-      <p>
-        ReadyOnline is committed to helping families understand the gaps, navigate them today, and push the industry
-        toward a safer future.
-      </p>
-    </section>
-
-    <section>
-      <h2>Where We Are Today</h2>
-      <p>
-        Right now, every major app — Instagram, Snapchat, TikTok, Discord, Spotify, Roblox, YouTube and more — allows a
-        child to create an <strong>adult account</strong>, even when:
-      </p>
-      <ul>
-        <li>The device is set up as a <strong>child account</strong></li>
-        <li>The operating system knows the child’s <strong>real age</strong></li>
-        <li>The parent approved the download through Apple Family Sharing or Android Family Link</li>
-      </ul>
-      <p>
-        Apps rely on <strong>self‑reported age</strong>, which kids can bypass in seconds. Parents assume protections
-        are in place. Kids assume they’re safe. Apps assume nothing. This is the accountability gap.
-      </p>
-    </section>
-
-    <section>
-      <h2>What Parents Need to Know</h2>
-      <div class="card-grid">
-        <div class="card">
-          <h3>Behind the Scenes</h3>
-          <ul>
-            <li>Apps do not automatically switch to teen mode, even on child devices.</li>
-            <li>Apps do not read the child’s real age from Apple or Android.</li>
-            <li>Risky features are often enabled by default: DMs, location sharing, chat, discovery.</li>
-            <li>Parents are rarely notified when these features turn on.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Why It Matters</h3>
-          <p>
-            Our teen survey shows kids access major platforms between ages <strong>8–13</strong>, long before most
-            parents expect. That’s why ReadyOnline focuses on helping families configure, clean up, and stay aware of
-            the digital spaces their kids use.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>Teens Want Better Tools Too</h2>
-      <p>
-        This isn’t just a parent concern — older teens want better safety tools for themselves.
-      </p>
-      <p>
-        Our survey shows that teens over 16 want to learn how to protect their accounts, spot scams, understand privacy,
-        recognize manipulation, and support friends who may be struggling online. They’re not asking for more
-        monitoring. They’re asking for clearer design, honest settings, and protections that don’t require digging
-        through hidden menus.
-      </p>
-      <p>
-        Teens want autonomy — and they want apps to make safe choices the default. ReadyOnline is built for them too:
-        teaching the skills, reflexes, and awareness they want to develop, early and often.
-      </p>
-    </section>
-
-    <section>
-      <h2>What ReadyOnline Can Do Right Now</h2>
-      <div class="card-grid">
-        <div class="card">
-          <h3>Practical Help for Families</h3>
-          <ul>
-            <li>Clear setup guides for each app and platform.</li>
-            <li>How to fix accounts that were set up as adult accounts.</li>
-            <li>Education on Apple Family and Android Family tools.</li>
-            <li>Ongoing updates on new risks and scams.</li>
-            <li>Conversation prompts for parents and teens.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Building Reflexes, Not Just Rules</h3>
-          <p>
-            We don’t just teach “settings.” We teach digital reflexes — pausing, checking surroundings, and making
-            safer choices before tapping forward. Technology can help, but it can’t replace awareness.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>The Future We Expect: Child Mode API</h2>
-      <p>
-        We believe in a simple, universal standard:
-        <strong>if the device is flagged as a child device, apps must automatically enable child protections.</strong>
-      </p>
-      <div class="highlight-box">
-        <span class="vision-tag">Vision · Child Mode API</span>
-        <p style="margin-top: 6px;">
-          A basic signal from the operating system — “this is a child account” — should be enough for apps to turn on
-          teen/child protections by default. No self‑reported age. No hidden menus. No loopholes.
-        </p>
-      </div>
-      <p>
-        This is technically possible. It’s overdue. ReadyOnline will champion this vision as we grow.
-      </p>
-    </section>
-
-    <section>
-      <h2>What We Expect from Apps</h2>
-      <p class="muted">
-        We’re not attacking companies. We’re setting expectations — clearly, constructively, and publicly.
-      </p>
-
-      <div class="card-grid">
-        <div class="card">
-          <div class="app-label">Meta · Instagram & Messenger</div>
-          <ul>
-            <li>Automatic teen mode on child devices.</li>
-            <li>Private accounts by default for minors.</li>
-            <li>DM restrictions for under‑18 users.</li>
-            <li>No self‑reported age overrides.</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <div class="app-label">Discord</div>
-          <ul>
-            <li>Teen mode with safer defaults.</li>
-            <li>No NSFW servers for minors.</li>
-            <li>No DMs from strangers by default.</li>
-            <li>Safer onboarding for young users.</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <div class="app-label">Snapchat</div>
-          <ul>
-            <li>Snap Map off by default for minors.</li>
-            <li>Quick Add disabled for child accounts.</li>
-            <li>Private accounts mandatory for under‑18.</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <div class="app-label">TikTok</div>
-          <ul>
-            <li>Teen mode auto‑on for child devices.</li>
-            <li>Content filters mandatory for minors.</li>
-            <li>No birthday bypass to access adult features.</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <div class="app-label">Spotify</div>
-          <ul>
-            <li>No chat/social features for minors by default.</li>
-            <li>Clear disclosures to parents about social features.</li>
-            <li>Teen mode for shared family accounts.</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <div class="app-label">YouTube & Gaming Platforms</div>
-          <ul>
-            <li>Autoplay off for minors.</li>
-            <li>Restricted/teen modes on by default.</li>
-            <li>Safer chat and voice defaults in games.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>How ReadyOnline Will Grow Into Advocacy</h2>
-      <p>
-        We’re not launching petitions or lobbying campaigns today. We’re building the foundation.
-      </p>
-      <ul>
-        <li>Sharing aggregated insights with platforms about what teens and parents need.</li>
-        <li>Offering safety curriculum and teen‑tested modules that apps can reference.</li>
-        <li>Providing app configuration guidance for families and schools.</li>
-        <li>Supporting OS‑level standards that apps must honor.</li>
-        <li>Building a coalition of parents, educators, and teens over time.</li>
-      </ul>
-      <p>
-        This is a long‑term vision, not a day‑one initiative. But it starts here — with clarity and expectations.
-      </p>
-    </section>
-
-    <section>
-      <h2>Our Commitment</h2>
-      <p>
-        ReadyOnline is committed to transparency, education, practical guidance, teen‑centered design, parent‑centered
-        support, and industry accountability.
-      </p>
-      <p>
-        We’re building the reflexes kids need — early, often, and instinctively. And we’re building the future the
-        industry should have built years ago.
-      </p>
-    </section>
-
-    <p class="footer-note">
-      This page reflects our current capabilities and our vision. As ReadyOnline grows, this accountability roadmap
-      will grow with it.
-    </p>
-  </div>
-</body>
-</html>
+/* ⭐ NEW CARD STYLE WITH STRONGER CONTR
