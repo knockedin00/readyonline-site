@@ -2,309 +2,702 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ReadyOnline | Digital Reflexes for Real Life</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <title>ReadyOnline – Growing Up Online</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
-      --bg-start: #141a2a;
-      --bg-end: #1f2a40;
-      --card-bg: #25324a;
-      --card-bg-light: #2e3c57;
-      --accent: #38bdf8;
-      --accent-strong: #3b82f6;
-      --highlight: #facc15;
-      --text: #e2e8f0;
-      --muted: #94a3b8;
-      --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --bg-deep: #0B1A2A;
+      --bg-deeper: #050b14;
+      --accent: #00B4D8;
+      --accent-dark: #0077B6;
+      --accent-soft1: #90E0EF;
+      --accent-soft2: #CAF0F8;
+      --text-primary: #FFFFFF;
+      --text-secondary: #B0C4DE;
+      --card-shadow: rgba(0, 180, 216, 0.3);
+      --border-soft: rgba(255, 255, 255, 0.08);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      --transition-fast: 0.2s ease-out;
+      --transition-med: 0.3s ease-out;
+      --max-width: 1120px;
+      --tile-gap: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      font-family: var(--font);
-      background: linear-gradient(160deg, var(--bg-start), var(--bg-end));
-      color: var(--text);
-    }
-
-    /* NAVIGATION */
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      padding: 20px 0;
-      background: rgba(0,0,0,0.25);
-      backdrop-filter: blur(6px);
-    }
-    nav a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 15px;
-      letter-spacing: 0.03em;
-    }
-    nav a:hover {
-      color: var(--highlight);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #12263f 0%, var(--bg-deep) 40%, var(--bg-deeper) 100%);
+      color: var(--text-primary);
+      line-height: 1.6;
     }
 
     .page {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 40px 20px 80px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    /* HERO */
-    .hero {
-      text-align: center;
-      margin-bottom: 60px;
+    header {
+      width: 100%;
+      border-bottom: 1px solid var(--border-soft);
+      background: linear-gradient(90deg, rgba(0, 180, 216, 0.08), rgba(0, 119, 182, 0.08));
+      backdrop-filter: blur(10px);
     }
+
+    .header-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      color: var(--accent-soft2);
+    }
+
+    nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      margin-left: 18px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    nav a:hover {
+      color: var(--accent-soft1);
+    }
+
+    main {
+      width: 100%;
+      flex: 1;
+    }
+
+    .section {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 32px 20px;
+    }
+
+    .hero {
+      margin-top: 24px;
+      padding: 32px 24px;
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top left, rgba(0, 180, 216, 0.18), rgba(5, 11, 20, 0.95));
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(0, 180, 216, 0.12);
+      color: var(--accent-soft2);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 16px;
+    }
+
+    .hero-tag span {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
     .hero h1 {
-      font-size: 42px;
-      color: var(--highlight);
+      font-size: 2.1rem;
       margin-bottom: 12px;
     }
+
     .hero p {
-      font-size: 18px;
-      max-width: 700px;
-      margin: 0 auto;
-      color: var(--muted);
+      font-size: 0.98rem;
+      color: var(--text-secondary);
+      max-width: 720px;
     }
 
-    /* SECTION HEADERS */
-    h2 {
-      font-size: 28px;
-      color: var(--accent);
-      margin-top: 48px;
-      text-align: center;
-    }
-
-    /* MISSION */
-    .mission p {
-      font-size: 17px;
-      line-height: 1.7;
-      max-width: 760px;
-      margin: 16px auto;
-      text-align: center;
-    }
-
-    /* VALUES */
-    .value-grid {
+    .hero-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 20px;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.4fr);
+      gap: 24px;
       margin-top: 24px;
     }
-    .value-item {
-      background: var(--card-bg-light);
-      padding: 20px;
-      border-radius: 12px;
-      text-align: center;
-      font-size: 18px;
+
+    .hero-block {
+      padding: 18px 18px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-soft);
+      background: linear-gradient(135deg, rgba(0, 180, 216, 0.08), rgba(0, 119, 182, 0.02));
+    }
+
+    .hero-block h2 {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 8px;
+      color: var(--accent-soft1);
+    }
+
+    .hero-block p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+
+    .hero-cta {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-primary {
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
       font-weight: 600;
-      color: var(--highlight);
-      border: 1px solid rgba(255,255,255,0.08);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: var(--text-primary);
+      box-shadow: 0 12px 30px var(--card-shadow);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
     }
 
-    /* NO SHAME ZONE */
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 40px var(--card-shadow);
+    }
+
+    .hero-cta-note {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    /* Quote */
+
+    .quote {
+      margin-top: 12px;
+      padding: 24px 22px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-soft);
+      background: linear-gradient(135deg, rgba(144, 224, 239, 0.08), rgba(202, 240, 248, 0.04));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quote::before {
+      content: "“";
+      position: absolute;
+      font-size: 4rem;
+      color: rgba(144, 224, 239, 0.25);
+      top: -10px;
+      left: 12px;
+    }
+
+    .quote-text {
+      font-size: 0.98rem;
+      color: var(--text-primary);
+    }
+
+    .quote-author {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: var(--accent-soft1);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    /* No Shame */
+
     .no-shame {
-      background: rgba(255,255,255,0.06);
-      padding: 28px;
-      border-radius: 16px;
-      margin-top: 32px;
-      border: 1px solid rgba(255,255,255,0.08);
+      margin-top: 24px;
+      padding: 24px 22px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(144, 224, 239, 0.18), rgba(0, 180, 216, 0.08));
+      border: 1px solid rgba(144, 224, 239, 0.4);
     }
+
+    .no-shame h2 {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 8px;
+    }
+
     .no-shame p {
-      font-size: 17px;
-      line-height: 1.7;
-      text-align: center;
-      max-width: 760px;
-      margin: 0 auto;
+      font-size: 0.95rem;
+      color: var(--bg-deeper);
     }
 
-    /* FLIP TILES */
-    .tiles {
-      margin-top: 48px;
+    /* Accountability */
+
+    .accountability {
+      margin-top: 24px;
+      padding: 24px 22px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      background: linear-gradient(135deg, rgba(0, 119, 182, 0.18), rgba(5, 11, 20, 0.96));
+    }
+
+    .accountability-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.2fr);
       gap: 24px;
+      align-items: center;
     }
 
-    .tile {
+    .accountability h2 {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 10px;
+      color: var(--accent-soft1);
+    }
+
+    .accountability p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+
+    .accountability-pill {
+      margin-top: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 180, 216, 0.4);
+      font-size: 0.8rem;
+      color: var(--accent-soft2);
+    }
+
+    .accountability-pill span {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent-soft1);
+    }
+
+    .accountability-box {
+      padding: 16px 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-soft);
+      background: linear-gradient(135deg, rgba(0, 180, 216, 0.12), rgba(0, 119, 182, 0.04));
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    /* Flip Tiles */
+
+    .tiles-section {
+      margin-top: 32px;
+    }
+
+    .tiles-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .tiles-header h2 {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .tiles-header p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .tiles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--tile-gap);
+    }
+
+    .tile-wrapper {
       perspective: 1000px;
     }
 
-    .tile-inner {
+    .tile {
       position: relative;
       width: 100%;
-      height: 260px; /* Larger tiles */
+      padding-top: 80%;
+      border-radius: var(--radius-md);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6);
       transform-style: preserve-3d;
-      transition: transform 0.7s;
-    }
-
-    .tile:hover .tile-inner {
-      transform: rotateY(180deg);
+      transition: transform var(--transition-med), box-shadow var(--transition-med);
     }
 
     .tile-front,
     .tile-back {
       position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border-radius: 16px;
-      overflow: hidden;
+      inset: 0;
+      border-radius: var(--radius-md);
+      padding: 14px 14px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
-      padding: 20px;
-      text-align: center;
+      backface-visibility: hidden;
+      border: 1px solid var(--border-soft);
     }
 
-    .tile-front {
-      background: var(--card-bg);
-      border: 1px solid rgba(255,255,255,0.08);
+    .tile-front h3,
+    .tile-back h3 {
+      font-size: 0.95rem;
+      margin-bottom: 6px;
     }
 
-    .tile-front img {
-      width: 110px; /* Bigger images */
-      height: 110px;
-      margin-bottom: 16px;
+    .tile-front p,
+    .tile-back p {
+      font-size: 0.85rem;
+      color: var(--text-primary);
+    }
+
+    .tile-front span.icon {
+      font-size: 1.4rem;
+      margin-bottom: 6px;
     }
 
     .tile-back {
-      background: var(--card-bg-light);
       transform: rotateY(180deg);
-      border: 1px solid rgba(255,255,255,0.08);
-      padding: 24px;
     }
 
-    .tile-back p {
-      font-size: 15px;
-      line-height: 1.6;
-      color: var(--muted);
+    .tile-wrapper:hover .tile {
+      transform: rotateY(180deg) translateY(-2px);
+      box-shadow: 0 18px 50px var(--card-shadow);
+    }
+
+    /* Alternating gradients */
+
+    .tile-gradient-1 .tile-front {
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    }
+
+    .tile-gradient-1 .tile-back {
+      background: linear-gradient(135deg, rgba(0, 180, 216, 0.9), rgba(0, 119, 182, 0.9));
+    }
+
+    .tile-gradient-2 .tile-front {
+      background: linear-gradient(135deg, var(--accent-soft1), var(--accent-soft2));
+      color: var(--bg-deeper);
+    }
+
+    .tile-gradient-2 .tile-back {
+      background: linear-gradient(135deg, rgba(144, 224, 239, 0.95), rgba(202, 240, 248, 0.95));
+      color: var(--bg-deeper);
+    }
+
+    /* CTA Footer */
+
+    .cta-footer {
+      margin-top: 32px;
+      padding: 22px 22px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 20px 50px var(--card-shadow);
+    }
+
+    .cta-footer h2 {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .cta-footer p {
+      font-size: 0.9rem;
+    }
+
+    .cta-footer .btn-secondary {
+      padding: 9px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      background: transparent;
+      color: var(--text-primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background var(--transition-fast), color var(--transition-fast);
+    }
+
+    .cta-footer .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    footer {
+      width: 100%;
+      border-top: 1px solid var(--border-soft);
+      padding: 16px 20px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .accountability-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .tiles-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .cta-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .tiles-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero h1 {
+        font-size: 1.7rem;
+      }
     }
   </style>
 </head>
-
 <body>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="parents.html">Parents</a>
-    <a href="teens.html">Teens</a>
-    <a href="newusers.html">New Users</a>
-    <a href="accountability.html">Accountability</a>
-  </nav>
-
   <div class="page">
-
-    <!-- HERO -->
-    <section class="hero">
-      <h1>ReadyOnline</h1>
-      <p>Building digital reflexes early — so staying safe online becomes automatic. For parents, teens, and new users navigating today’s digital world.</p>
-    </section>
-
-    <!-- MISSION -->
-    <section class="mission">
-      <h2>Our Mission</h2>
-      <p>ReadyOnline empowers youth and families with digital reflexes — the “that was a close call” awareness that keeps you safe online. We teach confidence, awareness, and shame‑free support so you can navigate your digital world with clarity and calm.</p>
-    </section>
-
-    <!-- VALUES -->
-    <section class="values">
-      <h2>Our Values</h2>
-      <div class="value-grid">
-        <div class="value-item">🧠 Awareness</div>
-        <div class="value-item">💬 Communication</div>
-        <div class="value-item">🤝 Accountability</div>
-        <div class="value-item">💪 Confidence</div>
+    <header>
+      <div class="header-inner">
+        <div class="logo">ReadyOnline · Growing Up Online</div>
+        <nav>
+          <a href="#mission">Mission</a>
+          <a href="#learn">What You’ll Learn</a>
+          <a href="#accountability">Accountability</a>
+          <a href="#cta">Early Access</a>
+        </nav>
       </div>
-    </section>
+    </header>
 
-    <!-- NO SHAME ZONE -->
-    <section class="no-shame">
-      <h2>No Shame Zone</h2>
-      <p>Learning digital safety should never involve fear or embarrassment. Mistakes are part of growth — and every “close call” is a chance to build stronger reflexes. ReadyOnline is built on calm guidance, private conversations, and support without judgment.</p>
-    </section>
+      <main>
+      <section class="section hero" id="mission">
+        <div class="hero-tag">
+          <span></span> Work in progress · Early access
+        </div>
+        <h1>Digital reflexes for a lifetime online.</h1>
+        <p>
+          ReadyOnline helps families and youth recognize digital red flags — from manipulation and scams to subtle social pressure.
+          We teach awareness and reflexes that make safe choices automatic, not reactive.
+        </p>
 
-    <!-- WHAT YOU'LL LEARN -->
-    <h2>What You'll Learn</h2>
-
-    <div class="tiles">
-
-      <div class="tile">
-        <div class="tile-inner">
-          <div class="tile-front">
-            <img src="images/redflags.png" alt="Spot Red Flags">
-            <h3>Spot Red Flags</h3>
+        <div class="hero-grid">
+          <div class="hero-block">
+            <h2>Vision</h2>
+            <p>
+              We’re building the world’s first continuous digital‑resilience app — a place where families learn, practice, and track
+              digital habits together. Technology provides guardrails, but it can’t stay ahead of every bad actor. Instincts fill that
+              gap — and the skills built early flex into adulthood in all stages of life, shaping confident digital behavior at work
+              and in personal life.
+            </p>
           </div>
-          <div class="tile-back">
-            <p>Recognize manipulation, pressure, scams, and risky situations early.</p>
+          <div class="hero-block">
+            <h2>How it works</h2>
+            <p>
+              ReadyOnline combines short lessons, real‑world scenarios, and reflection prompts to build digital instincts over time.
+              It’s not about perfect behavior — it’s about learning to pause, look both ways, and choose what’s safe and healthy.
+            </p>
           </div>
         </div>
-      </div>
 
-      <div class="tile">
-        <div class="tile-inner">
-          <div class="tile-front">
-            <img src="images/control.png" alt="Stay in Control">
-            <h3>Stay in Control</h3>
-          </div>
-          <div class="tile-back">
-            <p>Build habits that keep your accounts, identity, and privacy safe.</p>
+        <div class="hero-cta">
+          <button class="btn-primary">Join early access</button>
+          <div class="hero-cta-note">
+            Help us shape the app teens, parents, and schools actually want.
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="tile">
-        <div class="tile-inner">
-          <div class="tile-front">
-            <img src="images/coursecorrect.png" alt="Course Correct">
-            <h3>Course‑Correct Anytime</h3>
+      <section class="section">
+        <div class="quote">
+          <div class="quote-text">
+            “Being online should feel like crossing the street — you pause, look both ways, and trust your instincts.
+            Technology can help, but it can’t replace awareness. We teach those reflexes early, so staying safe becomes automatic.”
           </div>
-          <div class="tile-back">
-            <p>Know what to do — and who to call — when something feels off.</p>
+          <div class="quote-author">
+            Charlie Kropf · Co‑Founder
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="tile">
-        <div class="tile-inner">
-          <div class="tile-front">
-            <img src="images/support.png" alt="Support Friends">
-            <h3>Support Friends</h3>
+      <section class="section">
+        <div class="no-shame">
+          <h2>No shame. Just learning.</h2>
+          <p>
+            Learning digital safety should never involve fear or embarrassment. Mistakes are part of growth — and every “close call”
+            is a chance to build stronger reflexes. ReadyOnline is built on calm guidance, shared learning, and support without judgment.
+          </p>
+        </div>
+      </section>
+
+      <section class="section accountability" id="accountability">
+        <div class="accountability-grid">
+          <div>
+            <h2>Accountability · Apps & People</h2>
+            <p>
+              Digital safety isn’t just about restrictions — it’s everyone’s responsibility. Kids want to learn these skills and often
+              wish they had them when they first explored social media. We can’t depend on apps to self‑monitor for everyone’s benefit.
+              Education is key, and together we can hold companies accountable to create safer digital environments for all users.
+            </p>
+            <div class="accountability-pill">
+              <span></span> Education + shared responsibility + platform accountability
+            </div>
           </div>
-          <div class="tile-back">
-            <p>Learn how to help someone who’s struggling online.</p>
+          <div class="accountability-box">
+            ReadyOnline sits between families and platforms — helping youth build instincts while we push for clearer guardrails on
+            child accounts. We believe safety is a shared effort: parents, schools, apps, and young people all play a role in making
+            online spaces safer and more honest.
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="tile">
-        <div class="tile-inner">
-          <div class="tile-front">
-            <img src="images/help.png" alt="Ask for Help">
-            <h3>Ask for Help Early</h3>
+      <section class="section tiles-section" id="learn">
+        <div class="tiles-header">
+          <h2>What you’ll learn</h2>
+          <p>
+            Each tile is a skill you’ll practice inside the app — building reflexes that stay with you for life.
+          </p>
+        </div>
+
+        <div class="tiles-grid">
+          <div class="tile-wrapper tile-gradient-1">
+            <div class="tile">
+              <div class="tile-front">
+                <span class="icon">🧠</span>
+                <h3>Spot Red Flags</h3>
+                <p>Recognize manipulation, scams, and risky behavior early.</p>
+              </div>
+              <div class="tile-back">
+                <h3>Spot Red Flags</h3>
+                <p>Learn patterns and signals that tell you something isn’t right — before it becomes a problem.</p>
+              </div>
+            </div>
           </div>
-          <div class="tile-back">
-            <p>Build confidence to reach out before harm escalates — no shame, just support.</p>
+
+          <div class="tile-wrapper tile-gradient-2">
+            <div class="tile">
+              <div class="tile-front">
+                <span class="icon">⚙️</span>
+                <h3>Stay in Control</h3>
+                <p>Learn to pause before reacting — awareness beats impulse.</p>
+              </div>
+              <div class="tile-back">
+                <h3>Stay in Control</h3>
+                <p>Practice taking a breath, checking context, and choosing responses that protect your future self.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="tile-wrapper tile-gradient-1">
+            <div class="tile">
+              <div class="tile-front">
+                <span class="icon">🔄</span>
+                <h3>Course‑Correct Anytime</h3>
+                <p>Mistakes happen; learn to reset calmly and safely.</p>
+              </div>
+              <div class="tile-back">
+                <h3>Course‑Correct Anytime</h3>
+                <p>Turn missteps into lessons, not shame — and move forward with stronger instincts.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="tile-wrapper tile-gradient-2">
+            <div class="tile">
+              <div class="tile-front">
+                <span class="icon">🤝</span>
+                <h3>Support Friends</h3>
+                <p>Help peers navigate tough online moments without judgment.</p>
+              </div>
+              <div class="tile-back">
+                <h3>Support Friends</h3>
+                <p>Learn how to listen, validate, and guide friends toward safer choices when things feel off.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="tile-wrapper tile-gradient-1">
+            <div class="tile">
+              <div class="tile-front">
+                <span class="icon">💬</span>
+                <h3>Ask for Help</h3>
+                <p>Know when and how to reach out — safety is shared.</p>
+              </div>
+              <div class="tile-back">
+                <h3>Ask for Help</h3>
+                <p>Identify trusted adults and channels, and practice what to say when you need backup.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="tile-wrapper tile-gradient-2">
+            <div class="tile">
+              <div class="tile-front">
+                <span class="icon">🌱</span>
+                <h3>Keep Growing</h3>
+                <p>Build lifelong digital habits that evolve with technology.</p>
+              </div>
+              <div class="tile-back">
+                <h3>Keep Growing</h3>
+                <p>See how skills you build now carry into college, work, and every stage of your digital life.</p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="tile">
-        <div class="tile-inner">
-          <div class="tile-front">
-            <img src="images/grow.png" alt="Keep Growing">
-            <h3>Keep Growing</h3>
+      <section class="section" id="cta">
+        <div class="cta-footer">
+          <div>
+            <h2>Shape the app with us</h2>
+            <p>
+              ReadyOnline is in early access. We’re listening to teens, parents, and educators to build the digital‑resilience app
+              they wish they had from the start.
+            </p>
           </div>
-          <div class="tile-back">
-            <p>Digital skills evolve — keep learning, adapting, and staying aware.</p>
+          <div>
+            <button class="btn-secondary">Request early access</button>
           </div>
         </div>
-      </div>
+      </section>
+    </main>
 
-    </div>
-
+    <footer>
+      ReadyOnline · Growing Up Online · This site and app are a work in progress. Content may evolve as we learn from families and students.
+    </footer>
   </div>
 </body>
 </html>
