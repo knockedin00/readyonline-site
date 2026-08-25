@@ -244,10 +244,10 @@
       margin-bottom: 8px;
     }
 
-    .no-shame p {
-      font-size: 0.95rem;
-      color: var(--bg-deeper);
-    }
+   .no-shame p {
+  font-size: 0.95rem;
+  color: var(--text-primary); /* White text for contrast */
+}
 
     /* Accountability */
 
@@ -406,10 +406,14 @@
       color: var(--bg-deeper);
     }
 
-    .tile-gradient-2 .tile-back {
-      background: linear-gradient(135deg, rgba(144, 224, 239, 0.95), rgba(202, 240, 248, 0.95));
-      color: var(--bg-deeper);
-    }
+   .tile-gradient-2 .tile-front {
+  background: linear-gradient(135deg, var(--accent-soft1), var(--accent-soft2));
+  color: #1A1A1A; /* Dark grey text for ADA compliance */
+}
+.tile-gradient-2 .tile-back {
+  background: linear-gradient(135deg, rgba(144, 224, 239, 0.95), rgba(202, 240, 248, 0.95));
+  color: #1A1A1A; /* Match front for consistency */
+}
 
     /* CTA Footer */
 
