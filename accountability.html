@@ -7,23 +7,31 @@
 
   <style>
     :root {
-      --bg-start: #141a2a;
-      --bg-end: #1f2a40;
-      --card-bg: #25324a;
-      --card-bg-light: #2e3c57;
-      --accent: #38bdf8;
-      --accent-strong: #3b82f6;
-      --highlight: #facc15;
-      --text: #e2e8f0;
-      --muted: #94a3b8;
-      --border: #3b82f6;
-      --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
+   :root {
+  --bg-deep: #0B1A2A;
+  --bg-deeper: #050b14;
+  --accent: #00B4D8;
+  --accent-dark: #0077B6;
+  --accent-soft1: #90E0EF;
+  --accent-soft2: #CAF0F8;
+  --text-primary: #FFFFFF;
+  --text-secondary: #B0C4DE;
+  --card-shadow: rgba(0, 180, 216, 0.3);
+  --border-soft: rgba(255, 255, 255, 0.08);
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --transition-fast: 0.2s ease-out;
+  --transition-med: 0.3s ease-out;
+  --max-width: 1120px;
+  --tile-gap: 18px;
+}
+
 
     body {
       margin: 0;
       font-family: var(--font);
-      background: linear-gradient(160deg, var(--bg-start), var(--bg-end));
+    background: radial-gradient(circle at top, #12263f 0%, var(--bg-deep) 40%, var(--bg-deeper) 100%);
       color: var(--text);
     }
 
@@ -228,29 +236,41 @@
 
 <body>
 
-  <!-- NAVIGATION -->
-  <header>
-    <nav class="nav">
-      <a href="index.html">Home</a>
-      <a href="parents.html">Parents</a>
-      <a href="teens.html">Teens</a>
-      <a href="new-users.html">New Users</a>
-      <a href="accountability.html">Accountability</a>
-    </nav>
-  </header>
-
-  <!-- PAGE CONTENT -->
+<body>
   <div class="page">
+    <header>
+      <div class="header-inner">
+        <div class="logo">ReadyOnline · Growing Up Online</div>
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="parents.html">Parents</a>
+          <a href="teens.html">Teens</a>
+          <a href="new-users.html">New Users</a>
+          <a href="accountability.html" class="active">Accountability</a>
+          <a href="https://forms.cloud.microsoft/r/kf91Zvp4Du" target="_blank" rel="noopener">Early Access</a>
+        </nav>
+      </div>
+    </header>
 
-    <div class="tag">Accountability · Apps & Platforms</div>
-    <h1>Accountability in the Apps We Use</h1>
+    <main>
+      <section class="section hero" id="accountability">
+        <div class="hero-tag">
+          <span></span> Accountability · Apps & Platforms
+        </div>
 
-    <p>
-      The digital world wasn’t built with kids in mind. We’re here to change that — starting with transparency,
-      education, and a clear vision for what comes next. Our goal isn’t to promise “safe.” It’s to build
-      <strong>safer</strong> digital lives through better design, better defaults, and better education.
-    </p>
+        <h1>Accountability in the Apps We Use</h1>
 
+        <p>
+          The digital world wasn’t built with kids in mind. We’re here to change that — starting with transparency,
+          education, and a clear vision for what comes next. Our goal isn’t to promise “safe.” It’s to build safer
+          digital lives through better design, better defaults, and better education.
+        </p>
+
+        <!-- Keep all your existing Accountability sections here -->
+      </section>
+    </main>
+  </div>
+</body>
     <h2>There Is No Single Solution</h2>
     <p>
       Even if every device is set up as a child account, every app honors age signals, and every parent configures
