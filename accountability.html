@@ -1,375 +1,795 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Accountability · ReadyOnline</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>ReadyOnline · Accountability</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      --bg-dark: #020617;
-      --bg-card: #0f172a;
-      --bg-card-alt: #111827;
-      --accent-blue: #38bdf8;
-      --accent-yellow: #facc15;
-      --accent-pink: #fb7185;
-      --accent-purple: #a855f7;
+      --bg-deep: #050816;
+      --bg-deeper: #02010c;
+      --bg-card: #0b1220;
+      --bg-card-soft: #111827;
+      --border-soft: #1f2937;
       --text-main: #e5e7eb;
       --text-muted: #9ca3af;
-      --border-subtle: #1f2937;
-      --radius-lg: 18px;
-      --radius-md: 12px;
+      --text-strong: #f9fafb;
+      --accent-slate: #1e40af;
+      --accent-steel: #374151;
+      --accent-teal: #0f766e;
+      --accent-navy: #0b1120;
+      --accent-ice: #38bdf8;
+      --accent-button: #0ea5e9;
+      --accent-button-hover: #0284c7;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.75);
+      --radius-card: 18px;
+      --radius-pill: 999px;
+      --header-height: 64px;
+      --max-width: 960px;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background-color: var(--bg-dark);
+      font-family: var(--font-main);
+      background: radial-gradient(circle at top, #0b1120 0, #02010c 55%, #000 100%);
       color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
     header {
-      background-color: #020617;
-      border-bottom: 1px solid #1f2937;
-      padding: 14px 32px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 0.9rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--text-muted);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(15, 23, 42, 0.95),
+        rgba(15, 23, 42, 0.75),
+        transparent
+      );
+      border-bottom: 1px solid rgba(31, 41, 55, 0.7);
     }
 
-    header .brand {
-      font-weight: 600;
-      color: var(--text-main);
+    .header-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      font-size: 0.95rem;
+      color: #facc15;
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+      font-size: 0.9rem;
     }
 
     nav a {
       color: var(--text-muted);
-      text-decoration: none;
-      margin-left: 16px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      transition: background 0.18s ease, color 0.18s ease;
     }
 
-    nav a:hover,
+    nav a:hover {
+      background: rgba(148, 163, 184, 0.18);
+      color: var(--text-main);
+    }
+
     nav a.active {
-      color: var(--accent-blue);
+      background: rgba(56, 189, 248, 0.18);
+      color: var(--text-strong);
+      border: 1px solid rgba(56, 189, 248, 0.6);
     }
 
     main {
-      max-width: 1100px;
-      margin: 40px auto 60px;
-      padding: 0 24px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 24px 16px 40px;
     }
 
-    .tag-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 18px;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-muted);
+    .page-section {
+      margin-bottom: 32px;
     }
 
-    .tag-pill {
+    .section-label {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background-color: #0b1120;
-      border-radius: 999px;
-      padding: 6px 14px;
-      border: 1px solid #1f2937;
-      color: var(--accent-blue);
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: var(--text-muted);
     }
 
-    .tag-pill span.dot {
+    .section-label-dot {
       width: 6px;
       height: 6px;
       border-radius: 999px;
-      background-color: var(--accent-blue);
-    }
-
-    .page-title {
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: #f9fafb;
-      margin-bottom: 10px;
-    }
-
-    .page-subtitle {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      max-width: 720px;
-      margin-bottom: 26px;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-      gap: 20px;
-      margin-bottom: 28px;
-    }
-
-    .card {
-      background: radial-gradient(circle at top left, #0b1120, #020617);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-subtle);
-      padding: 18px 20px;
-    }
-
-    .card-alt {
-      background: radial-gradient(circle at top left, #020617, #0b1120);
-    }
-
-    .card h2 {
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--accent-blue);
-      margin: 0 0 10px;
-    }
-
-    .card h3 {
-      font-size: 1.05rem;
-      font-weight: 600;
-      margin: 18px 0 8px;
-      color: #e5e7eb;
-    }
-
-    .card p {
-      font-size: 0.95rem;
-      margin: 0 0 10px;
-      color: var(--text-main);
-    }
-
-    .card ul {
-      margin: 6px 0 10px 18px;
-      padding: 0;
-      font-size: 0.95rem;
-      color: var(--text-main);
-    }
-
-    .card ul li {
-      margin-bottom: 4px;
+      background: #38bdf8;
     }
 
     .section-title {
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--text-muted);
-      margin: 32px 0 10px;
+      margin: 12px 0 8px;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text-strong);
     }
 
-    .apps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 18px;
-      margin-top: 10px;
-    }
-
-    .app-card {
-      background-color: var(--bg-card);
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-subtle);
-      padding: 14px 16px;
-      font-size: 0.9rem;
-    }
-
-    .app-card h3 {
-      margin: 0 0 8px;
+    .section-subtitle {
+      margin: 0 0 16px;
       font-size: 0.95rem;
-      color: var(--accent-blue);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      max-width: 640px;
     }
 
-    .app-card p {
-      margin: 4px 0 8px;
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius-card);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      padding: 18px 18px 20px;
+      margin-bottom: 20px;
+    }
+
+    .card-header {
+      padding: 8px 12px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-header.slate {
+      background: linear-gradient(
+        to right,
+        rgba(30, 64, 175, 0.85),
+        rgba(15, 23, 42, 0.9)
+      );
+    }
+
+    .card-header.steel {
+      background: linear-gradient(
+        to right,
+        rgba(55, 65, 81, 0.9),
+        rgba(15, 23, 42, 0.9)
+      );
+    }
+
+    .card-header.teal {
+      background: linear-gradient(
+        to right,
+        rgba(15, 118, 110, 0.9),
+        rgba(15, 23, 42, 0.9)
+      );
+    }
+
+    .card-header.navy {
+      background: linear-gradient(
+        to right,
+        rgba(11, 17, 32, 0.95),
+        rgba(15, 23, 42, 0.9)
+      );
+    }
+
+    .card-header.ice {
+      background: linear-gradient(
+        to right,
+        rgba(56, 189, 248, 0.9),
+        rgba(15, 23, 42, 0.9)
+      );
+    }
+
+    .card-header-pill {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(248, 250, 252, 0.9);
+    }
+
+    .card-title {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-strong);
+    }
+
+    .card-text {
+      margin: 0 0 10px;
+      font-size: 0.9rem;
+      line-height: 1.5;
       color: var(--text-main);
     }
 
-    .app-card p strong {
-      color: var(--accent-yellow);
-      font-weight: 600;
+    .card-text-muted {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin: 0 0 8px;
     }
 
-    .footer-note {
-      margin-top: 32px;
+    .card-list {
+      margin: 8px 0 10px;
+      padding-left: 18px;
+      font-size: 0.9rem;
+      color: var(--text-main);
+    }
+
+    .card-list li {
+      margin-bottom: 4px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    @media (min-width: 768px) {
+      .grid.apps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .cta-card {
+      text-align: center;
+    }
+
+    .cta-title {
+      margin: 0 0 8px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-strong);
+    }
+
+    .cta-text {
+      margin: 0 0 16px;
       font-size: 0.9rem;
       color: var(--text-muted);
     }
 
-    .contact {
-      margin-top: 12px;
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 20px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(15, 23, 42, 0.9);
+      background: linear-gradient(
+        to right,
+        var(--accent-button),
+        #22c1f1
+      );
+      color: #0b1120;
       font-size: 0.9rem;
-      color: var(--accent-blue);
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(56, 189, 248, 0.45);
+      transition: transform 0.12s ease, box-shadow 0.12s ease,
+        background 0.12s ease;
     }
 
-    @media (max-width: 768px) {
-      .grid-2 {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-      }
-      nav {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
+    .cta-button:hover {
+      background: linear-gradient(
+        to right,
+        var(--accent-button-hover),
+        #0ea5e9
+      );
+      transform: translateY(-1px);
+      box-shadow: 0 16px 36px rgba(56, 189, 248, 0.6);
+    }
+
+    footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 12px 16px 24px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(31, 41, 55, 0.7);
     }
   </style>
 </head>
-
 <body>
   <header>
-    <div class="brand">READYONLINE · GROWING UP ONLINE</div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="parents.html">Parents</a>
-      <a href="teens.html">Teens</a>
-      <a href="newusers.html">New Users</a>
-      <a href="accountability.html" class="active">Accountability</a>
-      <a href="earlyaccess.html">Early Access</a>
-    </nav>
+    <div class="header-inner">
+      <div class="brand">READYONLINE</div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="parents.html">Parents</a>
+        <a href="teens.html">Teens</a>
+        <a href="new-users.html">New Users</a>
+        <a href="accountability.html" class="active">Accountability</a>
+      </nav>
+    </div>
   </header>
 
   <main>
-    <div class="tag-row">
-      <div class="tag-pill">
-        <span class="dot"></span>
-        ACCOUNTABILITY · APPS & PLATFORMS
+    <!-- Intro -->
+    <section class="page-section">
+      <div class="section-label">
+        <span class="section-label-dot"></span>
+        <span>Accountability · Apps & Platforms</span>
       </div>
-    </div>
-
-    <div class="page-title">Accountability in the Apps We Use</div>
-    <div class="page-subtitle">
-      The digital world wasn’t built with kids in mind. We’re here to change that — starting with transparency, education, and a clear vision for what comes next. Our goal isn’t to promise “safe.” It’s to build safer digital lives through better design, better defaults, and better education.
-    </div>
-
-    <!-- Top grid: No single solution + Where we are today -->
-    <div class="grid-2">
-      <div class="card">
-        <h2>THERE IS NO SINGLE SOLUTION</h2>
-        <p>Even if every device is set up as a child account, every app honors age signals, and every parent configures settings perfectly, kids still need awareness, reflexes, judgment, and support. Technology alone cannot teach digital instincts.</p>
-        <p>That’s why ReadyOnline focuses on both monitoring and education — together they work better than either one alone.</p>
-      </div>
-
-      <div class="card card-alt">
-        <h2>WHERE WE ARE TODAY</h2>
-        <p>Right now, every major app — Instagram, Snapchat, TikTok, Discord, Spotify, Roblox, YouTube and more — allows a child to create an adult account, even when:</p>
-        <ul>
-          <li>The device is set up as a <strong>child account</strong></li>
-          <li>The operating system knows the child’s <strong>real age</strong></li>
-          <li>The parent approved the download through Apple Family Sharing or Android Family Link</li>
-        </ul>
-        <p>Apps rely on self‑reported age, which kids can bypass in seconds. Parents assume protections are in place. Kids assume they’re safer than they are. Apps assume nothing. This is the accountability gap.</p>
-      </div>
-    </div>
-
-    <!-- Child accounts + Child Mode API -->
-    <div class="grid-2">
-      <div class="card card-alt">
-        <h2>WHY CHILD ACCOUNTS ALONE AREN’T ENOUGH</h2>
-        <p>Locking everything down without explanation doesn’t teach kids how to recognize manipulation, pressure, scams, or risky situations. It doesn’t build the reflex to pause, ask questions, or reach out for help early.</p>
-        <p>Child accounts are a starting point, not a complete solution. Kids need both guardrails and education to navigate digital life with confidence.</p>
-      </div>
+      <h1 class="section-title">Accountability in the Apps We Use</h1>
+      <p class="section-subtitle">
+        The digital world wasn’t built with kids in mind. We’re here to change that
+        — starting with transparency, education, and a clear vision for what comes
+        next. Our goal isn’t to promise “safe.” It’s to build safer digital lives
+        through better design, better defaults, and better education.
+      </p>
 
       <div class="card">
-        <h2>THE CHILD MODE API</h2>
-        <p>We believe operating systems should provide a simple, universal signal to apps: “This is a child account. Turn on protections automatically.” This is the Child Mode API — a basic capability that should be included in Apple and Android SDKs and honored by every major app.</p>
+        <div class="card-header slate">
+          <span class="card-header-pill"></span>
+          <span>Baseline Reality</span>
+        </div>
+        <p class="card-text">
+          Right now, every major app — Instagram, Snapchat, TikTok, YouTube, Roblox,
+          and Spotify — allows a child to create an adult account, even when the
+          device is set up as a child account and parents approve downloads through
+          Apple Family Sharing or Google Family Link.
+        </p>
+        <p class="card-text">
+          Parents assume that when they use Family Sharing or Family Link, the age
+          of their child “translates” into the apps they approve. They expect
+          protections to turn on automatically. Most do not realize that apps
+          rarely receive that age information — and instead rely on whatever age
+          the child enters manually inside the app.
+        </p>
+        <p class="card-text-muted">
+          This is one of the biggest knowledge gaps in digital parenting today.
+          Parents think they’re controlling the app. Apps think nothing. Kids
+          assume they’re safer than they are. This is the accountability gap.
+        </p>
+      </div>
+    </section>
 
-        <h3>What the Child Mode API Should Do</h3>
-        <ul>
-          <li>Automatically enable teen/child modes and safer defaults</li>
-          <li>Disable or restrict risky features by default (open DMs, public discovery, location sharing)</li>
-          <li>Limit exposure to adult, gambling, and high‑risk content categories</li>
-          <li>Make safety settings visible and understandable to both teens and parents</li>
-          <li>Notify parents when protections are turned off or risky features are enabled</li>
+    <!-- Child Mode API / Age Signaling -->
+    <section class="page-section">
+      <div class="section-label">
+        <span class="section-label-dot"></span>
+        <span>Child Mode API · Age Signaling</span>
+      </div>
+      <h2 class="section-title">The Child Mode API: The Baseline the Industry Has Been Missing</h2>
+      <p class="section-subtitle">
+        We believe Apple and Google should provide a simple, universal signal to
+        apps: “This is a child account. Turn on protections automatically.” This
+        is called Age Signaling — and it is the missing baseline for youth safety.
+      </p>
+
+      <div class="card">
+        <div class="card-header teal">
+          <span class="card-header-pill"></span>
+          <span>What Age Signaling Is</span>
+        </div>
+        <p class="card-text">
+          Most parents assume that when they set up Apple <strong>Family Sharing</strong>
+          or Google <strong>Family Link</strong>, and approve an app for their child,
+          the app will automatically recognize their child’s age and activate
+          protections. Today, that doesn’t happen.
+        </p>
+        <p class="card-text">
+          Apps do not receive the child’s age from Family Sharing or Family Link.
+          Instead, apps rely entirely on whatever age the child enters manually
+          inside the app — meaning protections fail unless the child sets up their
+          account correctly. Most parents do not realize this. Most assume the age
+          “translates.” Most assume protections turn on automatically. They don’t.
+        </p>
+        <p class="card-text">
+          Age Signaling is a simple, privacy‑safe way for the operating system to
+          tell apps when a child account is in use. It does not send the child’s
+          name, birthday, location, identity, contacts, or behavior. It sends one
+          thing:
+        </p>
+        <p class="card-text">
+          <strong>“Treat this user as a minor — and activate the available child
+          protections in the app.”</strong>
+        </p>
+        <p class="card-text-muted">
+          Apps already read dozens of OS signals — device type, region, language,
+          permissions, content restrictions, and screen‑time rules. Age Signaling
+          is just one more signal, and the most important one.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-header steel">
+          <span class="card-header-pill"></span>
+          <span>What Apps Should Do When They Receive the Child Mode API</span>
+        </div>
+        <p class="card-text">
+          When an app receives the child flag, it should automatically:
+        </p>
+        <ul class="card-list">
+          <li>Enable teen/child modes.</li>
+          <li>Disable risky features (open DMs, public discovery, location sharing).</li>
+          <li>Restrict adult, explicit, gambling, and high‑risk content.</li>
+          <li>Surface safety settings clearly and make them easy to understand.</li>
+          <li>Notify parents when protections are turned off.</li>
+          <li>Prevent silent activation of new features for minors.</li>
+          <li>Reduce reliance on self‑reported age.</li>
+          <li>
+            Provide tools and guidance to help teens control what they see in
+            their feeds and recommendations — including how to adjust algorithms
+            per app, which many teens in our survey said they want to learn.
+          </li>
         </ul>
-        <p>This doesn’t replace education — it makes it easier for families to use the protections apps already claim to provide.</p>
-      </div>
-    </div>
-
-    <!-- Apps must be held accountable -->
-    <div class="card" style="margin-top: 26px;">
-      <h2>APPS MUST BE HELD ACCOUNTABLE</h2>
-      <p>Today, most platforms claim to “self‑monitor” youth safety. In practice, they rely on self‑reported age, bury safety settings, and enable risky features by default. That’s not real protection.</p>
-      <p>The Accountability page exists to call out where major apps fall short and to invite them to do better — not just by giving parents tools, but by partnering to create honest, up‑to‑date training based on the risks they already see in their own reporting.</p>
-    </div>
-
-    <!-- Apps grid -->
-    <div class="section-title">WHERE MAJOR APPS FALL SHORT — AND WHAT WE EXPECT</div>
-    <div class="apps-grid">
-      <div class="app-card">
-        <h3>INSTAGRAM (META)</h3>
-        <p><strong>Where this app falls short:</strong> Heavy algorithmic feeds, DMs, and discovery features are enabled by default. Teen protections are inconsistent and rely on self‑reported age.</p>
-        <p><strong>What We’d Like to See:</strong> Honor OS‑level child signals automatically, default to teen/child modes, restrict discovery and DMs for minors, and partner with ReadyOnline to share real red‑flag patterns so families can learn how harm actually shows up on the platform.</p>
+        <p class="card-text-muted">
+          Apps already have teen and child modes. They simply don’t turn them on
+          automatically. A Child Mode API connects the protections that exist with
+          the signals parents already provide.
+        </p>
       </div>
 
-      <div class="app-card">
-        <h3>SNAPCHAT</h3>
-        <p><strong>Where this app falls short:</strong> Ephemeral messaging, location features, and friend discovery can expose teens to strangers and risky interactions with very little visibility for parents.</p>
-        <p><strong>What We’d Like to See:</strong> Automatic child‑mode defaults for location and discovery, clearer controls for parents and teens, and collaboration on training that reflects real abuse and grooming patterns seen in Snapchat’s own safety reports.</p>
+      <div class="card">
+        <div class="card-header navy">
+          <span class="card-header-pill"></span>
+          <span>Privacy & Safety: Why the Child Mode API Is Safe</span>
+        </div>
+        <p class="card-text">
+          Parents often ask whether Age Signaling creates new privacy risks. It
+          does not. The operating system already knows the child’s age through
+          Family Sharing and Family Link. Parents already consent to app approvals.
+        </p>
+        <p class="card-text">
+          Age Signaling does not send personal data to apps. Apps do not receive
+          identity, birthday, precise location, contacts, or behavioral data. They
+          only receive a simple safety signal: treat this user as a minor and
+          activate protections.
+        </p>
+        <p class="card-text-muted">
+          This is safer than the current system, which relies on self‑reported age
+          — the least private and least reliable method. Age Signaling is a
+          privacy‑preserving safety signal, not a data‑sharing mechanism.
+        </p>
+      </div>
+    </section>
+
+    <!-- Obstacles / Accountability Gap -->
+    <section class="page-section">
+      <div class="section-label">
+        <span class="section-label-dot"></span>
+        <span>Obstacles · Accountability Gap</span>
+      </div>
+      <h2 class="section-title">Why a Child Mode API Is Not a Big Ask</h2>
+      <p class="section-subtitle">
+        The biggest obstacles are not technical. They are about incentives,
+        standards, and accountability. A Child Mode API would pull everyone
+        together — OS vendors, app stores, apps, and families — to protect the
+        younger generation.
+      </p>
+
+      <div class="card">
+        <div class="card-header steel">
+          <span class="card-header-pill"></span>
+          <span>Where the Obstacles Really Are</span>
+        </div>
+        <p class="card-text">
+          <strong>Obstacle 1 — Business incentives.</strong> Teen engagement drives
+          revenue. Automatic child mode reduces engagement and time on platform.
+        </p>
+        <p class="card-text">
+          <strong>Obstacle 2 — No shared standard.</strong> Every app has different
+          defaults, settings, and risks. There is no common baseline for how
+          minors should be treated.
+        </p>
+        <p class="card-text">
+          <strong>Obstacle 3 — No regulatory requirement.</strong> Until states or
+          federal law require OS‑level age signaling and app‑level enforcement,
+          platforms are unlikely to adopt it voluntarily.
+        </p>
+        <p class="card-text">
+          <strong>Obstacle 4 — No accountability layer.</strong> This is the most
+          important obstacle — and the one parents need to understand.
+        </p>
+        <ul class="card-list">
+          <li>OS vendors assume apps will handle youth safety.</li>
+          <li>Apps assume parents will handle youth safety.</li>
+          <li>App stores assume OS vendors will handle youth safety.</li>
+          <li>Parents assume OS approval handles youth safety.</li>
+          <li>Kids assume they’re protected.</li>
+        </ul>
+        <p class="card-text-muted">
+          Everyone thinks it’s someone else’s responsibility. No one owns the
+          problem. A Child Mode API would create a shared baseline and make it
+          clear that youth safety is a responsibility everyone shares.
+        </p>
+      </div>
+    </section>
+
+    <!-- App Accountability Grid -->
+    <section class="page-section">
+      <div class="section-label">
+        <span class="section-label-dot"></span>
+        <span>Major Apps · Where They Fall Short</span>
+      </div>
+      <h2 class="section-title">Where Major Apps Fall Short — and What We Expect</h2>
+      <p class="section-subtitle">
+        Each platform already knows where harm shows up — in their abuse reports,
+        safety dashboards, fraud teams, and trust and safety investigations. We
+        don’t want to guess. We want apps to work with us to develop honest,
+        up‑to‑date training families can use.
+      </p>
+
+      <div class="grid apps">
+        <!-- Instagram -->
+        <div class="card">
+          <div class="card-header slate">
+            <span class="card-header-pill"></span>
+            <span>Instagram (Meta)</span>
+          </div>
+          <p class="card-title">Where this app falls short</p>
+          <p class="card-text">
+            Heavy algorithmic feeds, DMs, and discovery features are enabled by
+            default. Teen protections rely on self‑reported age and are easy to
+            bypass.
+          </p>
+          <p class="card-title">What we’d like to see</p>
+          <p class="card-text">
+            Honor OS‑level child signals automatically, default to teen/child
+            modes, restrict discovery and DMs for minors, and partner with
+            ReadyOnline to share real red‑flag patterns families need to know.
+          </p>
+        </div>
+
+        <!-- Snapchat -->
+        <div class="card">
+          <div class="card-header steel">
+            <span class="card-header-pill"></span>
+            <span>Snapchat</span>
+          </div>
+          <p class="card-title">Where this app falls short</p>
+          <p class="card-text">
+            Ephemeral messaging, location features, and friend discovery expose
+            teens to strangers with little visibility for parents.
+          </p>
+          <p class="card-title">What we’d like to see</p>
+          <p class="card-text">
+            Automatic child‑mode defaults for location and discovery, clearer
+            controls for families, and collaboration on training that reflects
+            real grooming and abuse patterns.
+          </p>
+        </div>
+
+        <!-- TikTok -->
+        <div class="card">
+          <div class="card-header teal">
+            <span class="card-header-pill"></span>
+            <span>TikTok</span>
+          </div>
+          <p class="card-title">Where this app falls short</p>
+          <p class="card-text">
+            Highly engaging algorithmic feeds amplify harmful content, trends, and
+            challenges. Teen protections depend on age entry and are easy to
+            bypass.
+          </p>
+          <p class="card-title">What we’d like to see</p>
+          <p class="card-text">
+            Automatic teen/child modes based on OS signals, stronger defaults for
+            content limits, and partnership on training that helps families
+            recognize manipulative trends and addictive loops — including how to
+            adjust algorithms when feeds drift into harmful territory.
+          </p>
+        </div>
+
+        <!-- YouTube -->
+        <div class="card">
+          <div class="card-header navy">
+            <span class="card-header-pill"></span>
+            <span>YouTube</span>
+          </div>
+          <p class="card-title">Where this app falls short</p>
+          <p class="card-text">
+            Recommendations can surface adult content, gambling streams, and
+            high‑risk material even when kids start from harmless videos.
+          </p>
+          <p class="card-title">What we’d like to see</p>
+          <p class="card-text">
+            Stronger child‑mode defaults tied to OS signals, clearer separation of
+            youth and adult spaces, and training that helps families understand
+            algorithmic drift and how to steer recommendations back to healthier
+            content.
+          </p>
+        </div>
+
+        <!-- Roblox -->
+        <div class="card">
+          <div class="card-header steel">
+            <span class="card-header-pill"></span>
+            <span>Roblox</span>
+          </div>
+          <p class="card-title">Where this app falls short</p>
+          <p class="card-text">
+            User‑generated games and chat expose younger kids to older players,
+            spending pressure, and experiences that don’t match parent
+            expectations.
+          </p>
+          <p class="card-title">What we’d like to see</p>
+          <p class="card-text">
+            Automatic child‑mode defaults for chat, spending, and game discovery,
+            plus training that reflects real grooming and pressure patterns Roblox
+            already tracks in its safety systems.
+          </p>
+        </div>
+
+        <!-- Spotify -->
+        <div class="card">
+          <div class="card-header teal">
+            <span class="card-header-pill"></span>
+            <span>Spotify</span>
+          </div>
+          <p class="card-title">Where this app falls short</p>
+          <p class="card-text">
+            Podcasts and playlists surface adult themes and explicit content
+            without clear age‑aware defaults. And for accounts over age 16,
+            Spotify automatically enables in‑app chat, giving teens access to
+            direct messaging without notifying parents.
+          </p>
+          <p class="card-title">What we’d like to see</p>
+          <p class="card-text">
+            Honor OS‑level child signals automatically, disable chat for minors by
+            default, enforce explicit‑content restrictions consistently, and
+            partner with ReadyOnline to help families understand how audio
+            content and creator interactions shape beliefs and risk exposure.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Location Transparency -->
+    <section class="page-section">
+      <div class="section-label">
+        <span class="section-label-dot"></span>
+        <span>Location Transparency · Authenticity</span>
+      </div>
+      <h2 class="section-title">Location Transparency: A Basic Safety Signal Everyone Deserves</h2>
+      <p class="section-subtitle">
+        One of the most important digital‑literacy skills — for kids, teens,
+        adults, and seniors — is learning how to verify who you’re interacting
+        with online. Country‑level location for public accounts is a basic
+        authenticity signal, not a privacy violation.
+      </p>
+
+      <div class="card">
+        <div class="card-header ice">
+          <span class="card-header-pill"></span>
+          <span>Why Country‑Level Location Matters</span>
+        </div>
+        <p class="card-text">
+          Many platforms do not provide even the most basic telemetry for public
+          accounts. Meta, for example, shows country‑level location in Kid Mode
+          for chat, but does not show country‑level origin for public posts or
+          creators. This inconsistency removes a critical safety tool.
+        </p>
+        <p class="card-text">
+          Country‑level location helps users:
+        </p>
+        <ul class="card-list">
+          <li>Verify whether a public creator is who they claim to be.</li>
+          <li>Identify potential misinformation or coordinated influence campaigns.</li>
+          <li>
+            Understand whether someone presenting themselves as a “local peer” is
+            actually located elsewhere.
+          </li>
+          <li>
+            Avoid impersonation scams and social‑engineering attempts, especially
+            for teens, adults, and seniors.
+          </li>
+        </ul>
+        <p class="card-text">
+          Country‑level location does not reveal private or sensitive information.
+          It is already public for many creators on other platforms. It is a basic
+          authenticity signal that should be available for public accounts and
+          public figures.
+        </p>
+        <p class="card-text-muted">
+          If companies do not allow families to see this minimal telemetry for
+          public accounts, they are removing one of the core skills ReadyOnline
+          teaches: verifying identity and origin before engaging. This is
+          essential for identifying misinformation, avoiding impersonation, and
+          understanding the true source of content.
+        </p>
+      </div>
+    </section>
+
+    <!-- Legislative Advocacy + Petition -->
+    <section class="page-section">
+      <div class="section-label">
+        <span class="section-label-dot"></span>
+        <span>Advocacy · State & Federal</span>
+      </div>
+      <h2 class="section-title">Turning Accountability into Action</h2>
+      <p class="section-subtitle">
+        We believe the Child Mode API should be required by state and federal law.
+        Connecticut is a perfect place to start — and we intend to advocate for
+        legislation that makes OS‑level age signaling and app‑level enforcement a
+        legal baseline.
+      </p>
+
+      <div class="card">
+        <div class="card-header slate">
+          <span class="card-header-pill"></span>
+          <span>Our Legislative Position</span>
+        </div>
+        <p class="card-text">
+          We will advocate for laws that require:
+        </p>
+        <ul class="card-list">
+          <li>OS‑level Age Signaling for child accounts.</li>
+          <li>App stores to pass age signals through to apps.</li>
+          <li>Apps to honor the Child Mode API and activate protections automatically.</li>
+          <li>Transparent documentation of how apps treat minors by default.</li>
+          <li>
+            Consistent child‑mode defaults for communication, discovery, content,
+            and spending.
+          </li>
+          <li>
+            Country‑level location visibility for public accounts and creators, as
+            a basic authenticity signal.
+          </li>
+        </ul>
+        <p class="card-text-muted">
+          This is realistic, achievable, and overdue. It does not require new
+          categories of personal data. It simply connects the age information
+          parents already provide to the protections apps already have.
+        </p>
       </div>
 
-      <div class="app-card">
-        <h3>TIKTOK</h3>
-        <p><strong>Where this app falls short:</strong> Highly engaging, algorithm‑driven feeds can amplify harmful content, trends, and challenges. Teen protections depend on age entry and are easy to bypass.</p>
-        <p><strong>What We’d Like to See:</strong> Automatic teen/child modes based on OS signals, stronger defaults for content limits, and partnership with ReadyOnline to teach families how to recognize manipulative trends, harmful challenges, and addictive loops.</p>
+      <div class="card cta-card">
+        <div class="card-header teal">
+          <span class="card-header-pill"></span>
+          <span>Change.org Petition</span>
+        </div>
+        <p class="cta-title">Support a Universal Child Mode API</p>
+        <p class="cta-text">
+          We’ve launched a Change.org petition calling on Apple, Google, major
+          apps, and lawmakers to adopt and require a universal Child Mode API.
+          When you approve an app for your child, their age should matter — and
+          protections should turn on automatically.
+        </p>
+        <a
+          class="cta-button"
+          href="https://c.org/JNS2YPmGCm"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Sign the Petition on Change.org
+        </a>
       </div>
-
-      <div class="app-card">
-        <h3>DISCORD</h3>
-        <p><strong>Where this app falls short:</strong> Open servers, private channels, and invite links can expose teens to unmoderated spaces, gambling picks, and adult communities with minimal friction.</p>
-        <p><strong>What We’d Like to See:</strong> Child‑mode defaults that restrict server discovery, clearer controls for parents, and collaboration on training around red flags in gaming, gambling, and high‑risk communities that Discord already tracks internally.</p>
-      </div>
-
-      <div class="app-card">
-        <h3>YOUTUBE</h3>
-        <p><strong>Where this app falls short:</strong> Recommendations can surface adult content, gambling streams, and high‑risk material even when kids start from seemingly harmless videos.</p>
-        <p><strong>What We’d Like to See:</strong> Stronger child‑mode defaults tied to OS signals, clearer separation of youth and adult spaces, and partnership on training that helps families understand how recommendation systems can drift into harmful territory.</p>
-      </div>
-
-      <div class="app-card">
-        <h3>ROBLOX</h3>
-        <p><strong>Where this app falls short:</strong> User‑generated games and chat can expose younger kids to older players, in‑game spending pressure, and experiences that don’t match parent expectations.</p>
-        <p><strong>What We’d Like to See:</strong> Automatic child‑mode defaults for chat, spending, and game discovery, plus collaboration on training that reflects real grooming, pressure, and spending patterns Roblox already sees in its trust and safety data.</p>
-      </div>
-
-      <div class="app-card">
-        <h3>SPOTIFY</h3>
-        <p><strong>Where this app falls short:</strong> Podcasts and playlists can surface adult themes, gambling content, and explicit material without clear age‑aware defaults for younger listeners.</p>
-        <p><strong>What We’d Like to See:</strong> Child‑aware defaults for podcasts and explicit content, clearer controls for families, and partnership on training that helps parents understand how audio content can shape beliefs, habits, and risk exposure over time.</p>
-      </div>
-    </div>
-
-    <!-- Partnering + banks + monitoring -->
-    <div class="card" style="margin-top: 28px;">
-      <h2>WE DON’T WANT TO GUESS — WE WANT TO PARTNER</h2>
-      <p>Each of these platforms already knows where harm shows up: in their abuse reports, safety dashboards, fraud teams, and trust and safety investigations. ReadyOnline doesn’t want to guess at those patterns. We want apps to work with us to develop honest, up‑to‑date training that families can use — based on the real red flags platforms see every day.</p>
-    </div>
-
-    <div class="card card-alt" style="margin-top: 18px;">
-      <h2>BEYOND APPS: BANKS AND INSURANCE COMPANIES</h2>
-      <p>Financial institutions and insurance companies already track scams, fraud, identity theft, and social engineering at scale. Their fraud and risk teams see how teens and young adults are targeted — and how families are impacted.</p>
-      <p>Our long‑term vision is to partner with these teams to build red‑flag training that helps families recognize financial manipulation early, before harm escalates.</p>
-    </div>
-
-    <div class="card" style="margin-top: 18px;">
-      <h2>MONITORING + EDUCATION + ACCOUNTABILITY</h2>
-      <p>ReadyOnline is built on a simple idea: monitoring and education together work better than either one alone. Parents cannot carry this burden by themselves. Apps must do their part. OS vendors must expose child‑account signals in their SDKs. Banks and insurers must share what they know about fraud and scams. And kids must learn the reflexes that keep them safer online.</p>
-      <p>Kids deserve a digital world built with them in mind. ReadyOnline is here to help families navigate the world we have today — and to push the industry toward the world we expect tomorrow.</p>
-      <div class="contact">Contact us at info@readyonline.org</div>
-    </div>
-
+    </section>
   </main>
+
+  <footer>
+    <div>
+      ReadyOnline · Building digital instincts, not just settings.<br />
+      Accountability · Apps & Platforms · Child Mode API · Advocacy.
+    </div>
+  </footer>
 </body>
 </html>
