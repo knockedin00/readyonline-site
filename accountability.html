@@ -1,724 +1,443 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>ReadyOnline · Accountability</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ReadyOnline — Accountability & Child Mode API</title>
+  <meta name="description" content="Accountability page: OS-level Age Signaling, Child Mode API, privacy guarantees, enforcement, and petition CTA." />
+  <meta name="author" content="Ngoc, ReadyOnline" />
 
-  <!-- Inter Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- JSON-LD for basic metadata -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "ReadyOnline — Accountability & Child Mode API",
+    "description": "Policy and advocacy page describing OS-level Age Signaling and a Child Mode API to protect minors online.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "ReadyOnline"
+    }
+  }
+  </script>
 
+  <!-- Basic styles (muted palette, readable) -->
   <style>
-    :root {
-      --bg-deep: #050816;
-      --bg-deeper: #02010c;
-      --bg-card: #0b1220;
-      --bg-card-soft: #111827;
-      --border-soft: #1f2937;
-      --text-main: #e5e7eb;
-      --text-muted: #9ca3af;
-      --text-strong: #f9fafb;
-
-      /* Muted professional palette */
-      --accent-slate: #1e40af;
-      --accent-steel: #374151;
-      --accent-teal: #0f766e;
-      --accent-navy: #0b1120;
-      --accent-ice: #38bdf8;
-
-      --accent-button: #0ea5e9;
-      --accent-button-hover: #0284c7;
-
-      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.75);
-      --radius-card: 18px;
-      --radius-pill: 999px;
-      --header-height: 64px;
-      --max-width: 960px;
-
-      --font-main: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    :root{
+      --bg:#f7f8fb;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --accent:#0ea5a4;
+      --slate:#334155;
+      --navy:#0f172a;
+      --pill:#e6eef0;
+      --maxw:980px;
+      --radius:10px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color:var(--slate);
     }
-
-    * {
-      box-sizing: border-box;
+    html,body{height:100%;}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,#fbfdff 0%,var(--bg) 100%);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      padding:24px;
     }
-
-    body {
-      margin: 0;
-      font-family: var(--font-main);
-      background: radial-gradient(circle at top, #0b1120 0, #02010c 55%, #000 100%);
-      color: var(--text-main);
-      min-height: 100vh;
-      line-height: 1.6;
-      font-size: 17px;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(18px);
-      background: linear-gradient(
-        to bottom,
-        rgba(15, 23, 42, 0.95),
-        rgba(15, 23, 42, 0.75),
-        transparent
-      );
-      border-bottom: 1px solid rgba(31, 41, 55, 0.7);
-    }
-
-    .header-inner {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 12px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .brand {
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      font-size: 1rem;
-      color: #facc15;
-    }
-
-    nav {
-      display: flex;
-      gap: 18px;
-      font-size: 0.9rem;
-    }
-
-    nav a {
-      color: var(--text-muted);
-      padding: 6px 10px;
-      border-radius: 999px;
-      transition: background 0.18s ease, color 0.18s ease;
-    }
-
-    nav a:hover {
-      background: rgba(148, 163, 184, 0.18);
-      color: var(--text-main);
-    }
-
-    nav a.active {
-      background: rgba(56, 189, 248, 0.18);
-      color: var(--text-strong);
-      border: 1px solid rgba(56, 189, 248, 0.6);
-    }
-
-    main {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 24px 16px 40px;
-    }
-
-    .page-section {
-      margin-bottom: 40px;
-    }
-
-    .section-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 4px 12px;
-      border-radius: var(--radius-pill);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      color: var(--text-muted);
-    }
-
-    .section-label-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: #38bdf8;
-    }
-
-    .section-title {
-      margin: 12px 0 8px;
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--text-strong);
-    }
-
-    .section-subtitle {
-      margin: 0 0 20px;
-      font-size: 1rem;
-      color: var(--text-muted);
-      max-width: 640px;
-    }
-
-    .card {
-      background: var(--bg-card);
-      border-radius: var(--radius-card);
-      border: 1px solid var(--border-soft);
-      box-shadow: var(--shadow-soft);
-      padding: 22px 22px 24px;
-      margin-bottom: 24px;
-    }
-
-    .card-header {
-      padding: 10px 14px;
-      border-radius: 12px;
-      margin-bottom: 16px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .card-header.slate {
-      background: linear-gradient(
-        to right,
-        rgba(30, 64, 175, 0.85),
-        rgba(15, 23, 42, 0.9)
-      );
-    }
-
-    .card-header.steel {
-      background: linear-gradient(
-        to right,
-        rgba(55, 65, 81, 0.9),
-        rgba(15, 23, 42, 0.9)
-      );
-    }
-
-    .card-header.teal {
-      background: linear-gradient(
-        to right,
-        rgba(15, 118, 110, 0.9),
-        rgba(15, 23, 42, 0.9)
-      );
-    }
-
-    .card-header.navy {
-      background: linear-gradient(
-        to right,
-        rgba(11, 17, 32, 0.95),
-        rgba(15, 23, 42, 0.9)
-      );
-    }
-
-    .card-header.ice {
-      background: linear-gradient(
-        to right,
-        rgba(56, 189, 248, 0.9),
-        rgba(15, 23, 42, 0.9)
-      );
-    }
-
-    .card-header-pill {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: rgba(248, 250, 252, 0.9);
-    }
-
-    .card-title {
-      margin: 0 0 8px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--text-strong);
-    }
-
-    .card-text {
-      margin: 0 0 12px;
-      font-size: 1rem;
-      line-height: 1.65;
-      color: var(--text-main);
-    }
-
-    .card-text-muted {
-      font-size: 1rem;
-      color: var(--text-muted);
-      margin: 0 0 12px;
-    }
-
-    .card-list {
-      margin: 8px 0 12px;
-      padding-left: 20px;
-      font-size: 1rem;
-      color: var(--text-main);
-    }
-
-    .card-list li {
-      margin-bottom: 6px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-      margin-top: 8px;
-    }
-
-    @media (min-width: 768px) {
-      .grid.apps {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    .cta-card {
-      text-align: center;
-    }
-
-    .cta-title {
-      margin: 0 0 10px;
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: var(--text-strong);
-    }
-
-    .cta-text {
-      margin: 0 0 20px;
-      font-size: 1rem;
-      color: var(--text-muted);
-    }
-
-    .cta-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 24px;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(15, 23, 42, 0.9);
-      background: linear-gradient(
-        to right,
-        var(--accent-button),
-        #22c1f1
-      );
-      color: #0b1120;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 12px 30px rgba(56, 189, 248, 0.45);
-      transition: transform 0.12s ease, box-shadow 0.12s ease,
-        background 0.12s ease;
-    }
-
-    .cta-button:hover {
-      background: linear-gradient(
-        to right,
-        var(--accent-button-hover),
-        #0ea5e9
-      );
-      transform: translateY(-1px);
-      box-shadow: 0 16px 36px rgba(56, 189, 248, 0.6);
-    }
-
-    footer {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 12px 16px 24px;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      border-top: 1px solid rgba(31, 41, 55, 0.7);
+    .container{max-width:var(--maxw);margin:0 auto;}
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
+    .brand{display:flex;align-items:center;gap:12px;}
+    .logo{width:48px;height:48px;border-radius:8px;background:linear-gradient(135deg,#0ea5a4,#2563eb);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;}
+    h1{font-size:20px;margin:0;color:var(--navy);}
+    nav a{color:var(--muted);text-decoration:none;margin-left:14px;font-size:14px;}
+    main{background:transparent;padding:6px 0 40px;}
+    .page-section{margin:18px 0;padding:18px;border-radius:12px;}
+    .section-label{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+    .section-label-dot{width:10px;height:10px;border-radius:50%;background:var(--pill);display:inline-block;}
+    .section-title{font-size:18px;margin:0 0 8px;color:var(--navy);}
+    .section-subtitle{color:var(--muted);margin:0 0 12px;}
+    .card{background:var(--card);border-radius:10px;padding:14px;margin:12px 0;box-shadow:0 6px 18px rgba(16,24,40,0.04);}
+    .card-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+    .card-header-pill{width:8px;height:8px;border-radius:50%;background:var(--pill);display:inline-block;}
+    .card-header.slate .card-header-pill{background:#e6eef6;}
+    .card-header.teal .card-header-pill{background:#dff3f2;}
+    .card-header.navy .card-header-pill{background:#e8eefc;}
+    .card-header.ice .card-header-pill{background:#eef8ff;}
+    .card-header.steel .card-header-pill{background:#f1f5f9;}
+    .card-header span{font-weight:600;color:var(--slate);}
+    .card-text{color:#111827;margin:8px 0;}
+    .card-text-muted{color:var(--muted);font-size:13px;margin-top:8px;}
+    .card-list{margin:8px 0 0 18px;color:#111827;}
+    .card-list li{margin:6px 0;}
+    .cta-card{border-left:4px solid var(--accent);}
+    .cta-title{font-weight:700;margin:6px 0;color:var(--navy);}
+    .cta-text{color:var(--muted);margin:6px 0 12px;}
+    .cta-button{display:inline-block;background:var(--accent);color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:600;}
+    pre.card-code{background:#0f172a;color:#fff;padding:12px;border-radius:8px;overflow:auto;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;font-size:13px;}
+    footer{margin-top:28px;padding:18px;text-align:center;color:var(--muted);font-size:13px;}
+    .two-col{display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start;}
+    @media (max-width:900px){.two-col{grid-template-columns:1fr;}nav a{display:none;}}
+    /* Print styles */
+    @media print{
+      body{padding:0;background:#fff;}
+      .cta-button{display:none;}
+      nav{display:none;}
     }
   </style>
 </head>
-
 <body>
-  <header>
-    <div class="header-inner">
-      <div class="brand">READYONLINE</div>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="parents.html">Parents</a>
-        <a href="teens.html">Teens</a>
-        <a href="new-users.html">New Users</a>
-        <a href="accountability.html" class="active">Accountability</a>
+  <div class="container" role="main" aria-labelledby="pageTitle">
+    <header>
+      <div class="brand" aria-hidden="false">
+        <div class="logo" aria-hidden="true">RO</div>
+        <div>
+          <h1 id="pageTitle">ReadyOnline — Accountability & Child Mode API</h1>
+          <div style="color:var(--muted);font-size:13px;">Policy, advocacy, and technical appendix</div>
+        </div>
+      </div>
+
+      <nav aria-label="Primary">
+        <a href="#advocacy-policy">Advocacy</a>
+        <a href="#implementation-enforcement">Implementation</a>
+        <a href="#accountability-roadmap">Accountability</a>
+        <a href="https://c.org/JNS2YPmGCm" target="_blank" rel="noopener noreferrer">Sign Petition</a>
       </nav>
-    </div>
-  </header>
+    </header>
 
-  <main>
+    <main>
 
-    <!-- INTRO SECTION -->
-    <section class="page-section">
-      <div class="section-label">
-        <span class="section-label-dot"></span>
-        <span>Accountability · Apps & Platforms</span>
-      </div>
-
-      <h1 class="section-title">Accountability in the Apps We Use</h1>
-
-      <p class="section-subtitle">
-        The digital world wasn’t built with kids in mind. We’re here to change that —
-        starting with transparency, education, and a clear vision for what comes next.
-        Our goal isn’t to promise “safe.” It’s to build safer digital lives through
-        better design, better defaults, and better education.
-      </p>
-
-      <div class="card">
-        <div class="card-header slate">
-          <span class="card-header-pill"></span>
-          <span>Baseline Reality</span>
+      <!-- SECTION 1: ADVOCACY / POLICY (already added earlier) -->
+      <section class="page-section" id="advocacy-policy" aria-labelledby="advocacyTitle">
+        <div class="section-label">
+          <span class="section-label-dot"></span>
+          <span>Advocacy · Policy · Accountability</span>
         </div>
 
-        <p class="card-text">
-          Right now, every major app — Instagram, Snapchat, TikTok, YouTube, Roblox,
-          and Spotify — allows a child to create an adult account, even when the
-          device is set up as a child account and parents approve downloads through
-          Apple Family Sharing or Google Family Link.
+        <h2 class="section-title" id="advocacyTitle">From Promises to Proof: Making Age Signals Enforceable</h2>
+
+        <p class="section-subtitle">
+          Recent industry settlements and global experiments show a hard truth: age verification inside apps is brittle and easily bypassed. Connecticut can require a different approach — one that preserves privacy, closes the accountability gap, and forces platforms to deliver real child protections.
         </p>
 
-        <p class="card-text">
-          Parents assume that when they use Family Sharing or Family Link, the age
-          of their child “translates” into the apps they approve. They expect
-          protections to turn on automatically. Most do not realize that apps
-          rarely receive that age information — and instead rely on whatever age
-          the child enters manually inside the app.
-        </p>
-
-        <p class="card-text-muted">
-          This is one of the biggest knowledge gaps in digital parenting today.
-          Parents think they’re controlling the app. Apps think nothing. Kids
-          assume they’re safer than they are. This is the accountability gap.
-        </p>
-      </div>
-    </section>
-    <!-- CHILD MODE API SECTION -->
-    <section class="page-section">
-      <div class="section-label">
-        <span class="section-label-dot"></span>
-        <span>Child Mode API · Age Signaling</span>
-      </div>
-
-      <h2 class="section-title">The Child Mode API: The Baseline the Industry Has Been Missing</h2>
-
-      <p class="section-subtitle">
-        We believe Apple and Google should provide a simple, universal signal to
-        apps: “This is a child account. Turn on protections automatically.” This
-        is called Age Signaling — and it is the missing baseline for youth safety.
-      </p>
-
-      <div class="card">
-        <div class="card-header teal">
-          <span class="card-header-pill"></span>
-          <span>What Age Signaling Is</span>
+        <div class="card">
+          <div class="card-header slate"><span class="card-header-pill"></span><span>Why Age Verification Alone Fails</span></div>
+          <p class="card-text">
+            Public reporting on recent platform settlements highlights a central problem: age verification depends on methods that are easy to bypass. When Australia banned social media for under‑16s in 2025, teens found workarounds within days. Platforms promise better verification, but the technical and behavioral realities make app‑level age checks unreliable.
+          </p>
+          <p class="card-text-muted">Age verification inside apps tries to guess who the user is. That approach has repeatedly failed in practice.</p>
         </div>
 
-        <p class="card-text">
-          Most parents assume that when they set up Apple <strong>Family Sharing</strong>
-          or Google <strong>Family Link</strong>, and approve an app for their child,
-          the app will automatically recognize their child’s age and activate
-          protections. Today, that doesn’t happen.
-        </p>
-
-        <p class="card-text">
-          Apps do not receive the child’s age from Family Sharing or Family Link.
-          Instead, apps rely entirely on whatever age the child enters manually
-          inside the app — meaning protections fail unless the child sets up their
-          account correctly. Most parents do not realize this. Most assume the age
-          “translates.” Most assume protections turn on automatically. They don’t.
-        </p>
-
-        <p class="card-text">
-          Age Signaling is a simple, privacy‑safe way for the operating system to
-          tell apps when a child account is in use. It does not send the child’s
-          name, birthday, location, identity, contacts, or behavior. It sends one
-          thing:
-        </p>
-
-        <p class="card-text">
-          <strong>“Treat this user as a minor — and activate the available child
-          protections in the app.”</strong>
-        </p>
-
-        <p class="card-text-muted">
-          Apps already read dozens of OS signals — device type, region, language,
-          permissions, content restrictions, and screen‑time rules. Age Signaling
-          is just one more signal, and the most important one.
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="card-header steel">
-          <span class="card-header-pill"></span>
-          <span>What Apps Should Do When They Receive the Child Mode API</span>
+        <div class="card">
+          <div class="card-header teal"><span class="card-header-pill"></span><span>Parents Already Verify the Device — Privacy Preserved</span></div>
+          <p class="card-text">
+            Parents verify their child when they create a child account using Apple Family Sharing or Google Family Link. That verification happens at the operating‑system level — not inside third‑party apps.
+          </p>
+          <p class="card-text">The Child Mode API does not share personal data with apps. It sends one non‑identifying safety flag:</p>
+          <p class="card-text"><strong><code>child = true</code></strong></p>
+          <p class="card-text-muted">Apps do not receive name, birthday, contacts, precise location, photos, or behavioral data. They receive a yes/no safety signal that allows them to activate the protections they already have.</p>
         </div>
 
-        <p class="card-text">
-          When an app receives the child flag, it should automatically:
-        </p>
-
-        <ul class="card-list">
-          <li>Enable teen/child modes.</li>
-          <li>Disable risky features (open DMs, public discovery, location sharing).</li>
-          <li>Restrict adult, explicit, gambling, and high‑risk content.</li>
-          <li>Surface safety settings clearly and make them easy to understand.</li>
-          <li>Notify parents when protections are turned off.</li>
-          <li>Prevent silent activation of new features for minors.</li>
-          <li>Reduce reliance on self‑reported age.</li>
-          <li>
-            Provide tools and guidance to help teens control what they see in
-            their feeds and recommendations — including how to adjust algorithms
-            per app, which many teens in our survey said they want to learn.
-          </li>
-        </ul>
-
-        <p class="card-text-muted">
-          Apps already have teen and child modes. They simply don’t turn them on
-          automatically. A Child Mode API connects the protections that exist with
-          the signals parents already provide.
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="card-header navy">
-          <span class="card-header-pill"></span>
-          <span>Privacy & Safety: Why the Child Mode API Is Safe</span>
+        <div class="card">
+          <div class="card-header steel"><span class="card-header-pill"></span><span>The Liability Loophole and Why It Matters</span></div>
+          <p class="card-text">
+            Today, platforms rely on self‑reported age. If a child lies, platforms can say they had no reason to treat the user as a minor. That creates a structural incentive to avoid reliable age signals.
+          </p>
+          <p class="card-text">
+            A universal Child Mode API changes the incentives: once the OS sends a verified child flag, platforms must activate youth protections and can no longer hide behind “the child lied.” Removing that loophole is the single most effective way to force companies to build real, enforceable protections.
+          </p>
+          <p class="card-text-muted">In short: age verification protects platforms; age signaling protects children.</p>
         </div>
 
-        <p class="card-text">
-          Parents often ask whether Age Signaling creates new privacy risks. It
-          does not. The operating system already knows the child’s age through
-          Family Sharing and Family Link. Parents already consent to app approvals.
-        </p>
+        <div class="card cta-card">
+          <div class="card-header navy"><span class="card-header-pill"></span><span>Policy Ask</span></div>
+          <p class="cta-title">Require OS‑Level Age Signaling and App Enforcement</p>
+          <p class="cta-text">
+            We ask Connecticut lawmakers to require: OS‑level Age Signaling (a verified child flag), mandatory Child Mode API implementation by apps, app‑store enforcement, transparency about default youth settings, and country‑level origin for public accounts. This is privacy‑preserving and technically feasible.
+          </p>
+          <a class="cta-button" href="https://c.org/JNS2YPmGCm" target="_blank" rel="noopener noreferrer">Sign the Petition on Change.org</a>
+        </div>
+      </section>
 
-        <p class="card-text">
-          Age Signaling does not send personal data to apps. Apps do not receive
-          identity, birthday, precise location, contacts, or behavioral data. They
-          only receive a simple safety signal: treat this user as a minor and
-          activate protections.
-        </p>
-
-        <p class="card-text-muted">
-          This is safer than the current system, which relies on self‑reported age
-          — the least private and least reliable method. Age Signaling is a
-          privacy‑preserving safety signal, not a data‑sharing mechanism.
-        </p>
-      </div>
-
-      <!-- FIRST PETITION CTA (after Child Mode API section) -->
-      <div class="card cta-card">
-        <div class="card-header teal">
-          <span class="card-header-pill"></span>
-          <span>Support the Child Mode API</span>
+      <!-- SECTION 2: IMPLEMENTATION, ENFORCEMENT, PRIVACY (provided earlier) -->
+      <section class="page-section" id="implementation-enforcement" aria-labelledby="implementationTitle">
+        <div class="section-label">
+          <span class="section-label-dot"></span>
+          <span>Implementation · Enforcement · Privacy</span>
         </div>
 
-        <p class="cta-title">Sign the Petition</p>
+        <h2 class="section-title" id="implementationTitle">How Age Signaling Works — Practical, Private, Enforceable</h2>
 
-        <p class="cta-text">
-          When parents approve an app for their child, their child’s age should
-          matter — and protections should turn on automatically. We’re calling on
-          Apple, Google, major apps, and lawmakers to adopt and require a universal
-          Child Mode API.
+        <p class="section-subtitle">
+          Age Signaling is not a theory — it is a simple, privacy‑preserving connection between the parent‑verified device and the protections apps already have. Below is how it works in practice, what apps must do, and how enforcement and liability change the incentives for platforms.
         </p>
 
-        <a
-          class="cta-button"
-          href="https://c.org/JNS2YPmGCm"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Sign the Petition on Change.org
-        </a>
-      </div>
-    </section>
-
-    <!-- OBSTACLES / ACCOUNTABILITY GAP -->
-    <section class="page-section">
-      <div class="section-label">
-        <span class="section-label-dot"></span>
-        <span>Obstacles · Accountability Gap</span>
-      </div>
-
-      <h2 class="section-title">Why a Child Mode API Is Not a Big Ask</h2>
-
-      <p class="section-subtitle">
-        The biggest obstacles are not technical. They are about incentives,
-        standards, and accountability. A Child Mode API would pull everyone
-        together — OS vendors, app stores, apps, and families — to protect the
-        younger generation.
-      </p>
-
-      <div class="card">
-        <div class="card-header steel">
-          <span class="card-header-pill"></span>
-          <span>Where the Obstacles Really Are</span>
+        <div class="card">
+          <div class="card-header ice"><span class="card-header-pill"></span><span>How It Works — The Simple Flow</span></div>
+          <p class="card-text">
+            1) A parent creates a child account using Apple Family Sharing or Google Family Link and verifies the child at the OS level.<br />
+            2) The operating system exposes a single, non‑identifying safety flag to apps when that child account is active: <strong><code>child = true</code></strong>.<br />
+            3) Apps receive the flag and automatically activate the protections they already support (child/teen modes, restricted DMs, limited discovery, content filters, spending limits, parental notifications).
+          </p>
+          <p class="card-text-muted">This flow verifies the device/account relationship — not the child’s identity — and it requires no new personal data to be shared with third‑party apps.</p>
         </div>
 
-        <p class="card-text">
-          <strong>Obstacle 1 — Business incentives.</strong> Teen engagement drives
-          revenue. Automatic child mode reduces engagement and time on platform.
-        </p>
-
-        <p class="card-text">
-          <strong>Obstacle 2 — No shared standard.</strong> Every app has different
-          defaults, settings, and risks. There is no common baseline for how
-          minors should be treated.
-        </p>
-
-        <p class="card-text">
-          <strong>Obstacle 3 — No regulatory requirement.</strong> Until states or
-          federal law require OS‑level age signaling and app‑level enforcement,
-          platforms are unlikely to adopt it voluntarily.
-        </p>
-
-        <p class="card-text">
-          <strong>Obstacle 4 — No accountability layer.</strong> This is the most
-          important obstacle — and the one parents need to understand.
-        </p>
-
-        <ul class="card-list">
-          <li>OS vendors assume apps will handle youth safety.</li>
-          <li>Apps assume parents will handle youth safety.</li>
-              <!-- LOCATION TRANSPARENCY -->
-    <section class="page-section">
-      <div class="section-label">
-        <span class="section-label-dot"></span>
-        <span>Location Transparency · Authenticity</span>
-      </div>
-
-      <h2 class="section-title">Location Transparency: A Basic Safety Signal Everyone Deserves</h2>
-
-      <p class="section-subtitle">
-        One of the most important digital‑literacy skills — for kids, teens,
-        adults, and seniors — is learning how to verify who you’re interacting
-        with online. Country‑level location for public accounts is a basic
-        authenticity signal, not a privacy violation.
-      </p>
-
-      <div class="card">
-        <div class="card-header ice">
-          <span class="card-header-pill"></span>
-          <span>Why Country‑Level Location Matters</span>
+        <div class="card">
+          <div class="card-header teal"><span class="card-header-pill"></span><span>Privacy Guarantee — What Is and Is Not Shared</span></div>
+          <p class="card-text">The Child Mode API sends one thing only: a yes/no safety signal. It does <strong>not</strong> share any personally identifying information with apps.</p>
+          <ul class="card-list">
+            <li><strong>Not shared:</strong> name; birthday; contacts; photos; precise location; browsing history; behavioral data.</li>
+            <li><strong>Shared:</strong> a single non‑identifying flag: <strong><code>child = true</code></strong>.</li>
+          </ul>
+          <p class="card-text-muted">The operating system already holds the parent‑verified information. The API simply allows apps to honor that verification without receiving any sensitive data.</p>
         </div>
 
-        <p class="card-text">
-          Many platforms do not provide even the most basic telemetry for public
-          accounts. Meta, for example, shows country‑level location in Kid Mode
-          for chat, but does not show country‑level origin for public posts or
-          creators. This inconsistency removes a critical safety tool.
-        </p>
-
-        <p class="card-text">
-          Country‑level location helps users:
-        </p>
-
-        <ul class="card-list">
-          <li>Verify whether a public creator is who they claim to be.</li>
-          <li>Identify potential misinformation or coordinated influence campaigns.</li>
-          <li>
-            Understand whether someone presenting themselves as a “local peer” is
-            actually located elsewhere.
-          </li>
-          <li>
-            Avoid impersonation scams and social‑engineering attempts, especially
-            for teens, adults, and seniors.
-          </li>
-        </ul>
-
-        <p class="card-text">
-          Country‑level location does not reveal private or sensitive information.
-          It is already public for many creators on other platforms. It is a basic
-          authenticity signal that should be available for public accounts and
-          public figures.
-        </p>
-
-        <p class="card-text-muted">
-          If companies do not allow families to see this minimal telemetry for
-          public accounts, they are removing one of the core skills ReadyOnline
-          teaches: verifying identity and origin before engaging. This is
-          essential for identifying misinformation, avoiding impersonation, and
-          understanding the true source of content.
-        </p>
-      </div>
-    </section>
-
-    <!-- ADVOCACY + SECOND PETITION CTA -->
-    <section class="page-section">
-      <div class="section-label">
-        <span class="section-label-dot"></span>
-        <span>Advocacy · State & Federal</span>
-      </div>
-
-      <h2 class="section-title">Turning Accountability into Action</h2>
-
-      <p class="section-subtitle">
-        We believe the Child Mode API should be required by state and federal law.
-        Connecticut is a perfect place to start — and we intend to advocate for
-        legislation that makes OS‑level age signaling and app‑level enforcement a
-        legal baseline.
-      </p>
-
-      <div class="card">
-        <div class="card-header slate">
-          <span class="card-header-pill"></span>
-          <span>Our Legislative Position</span>
+        <div class="card">
+          <div class="card-header navy"><span class="card-header-pill"></span><span>What Apps Must Do When They Receive the Child Flag</span></div>
+          <p class="card-text">When an app receives <strong><code>child = true</code></strong>, it should automatically:</p>
+          <ul class="card-list">
+            <li>Enable child/teen modes and safe defaults.</li>
+            <li>Disable or restrict direct messaging and friend discovery for minors.</li>
+            <li>Limit algorithmic recommendations and surface content controls.</li>
+            <li>Disable in‑app chat, location sharing, and spending features unless explicitly enabled by a parent.</li>
+            <li>Prevent silent activation of new features for minors.</li>
+            <li>Notify parents when protections are turned off or when high‑risk features are requested.</li>
+          </ul>
+          <p class="card-text-muted">Most major apps already have these controls; the Child Mode API simply ensures they are used for the youngest users by default.</p>
         </div>
 
-        <p class="card-text">
-          We will advocate for laws that require:
-        </p>
-
-        <ul class="card-list">
-          <li>OS‑level Age Signaling for child accounts.</li>
-          <li>App stores to pass age signals through to apps.</li>
-          <li>Apps to honor the Child Mode API and activate protections automatically.</li>
-          <li>Transparent documentation of how apps treat minors by default.</li>
-          <li>
-            Consistent child‑mode defaults for communication, discovery, content,
-            and spending.
-          </li>
-          <li>
-            Country‑level location visibility for public accounts and creators, as
-            a basic authenticity signal.
-          </li>
-        </ul>
-
-        <p class="card-text-muted">
-          This is realistic, achievable, and overdue. It does not require new
-          categories of personal data. It simply connects the age information
-          parents already provide to the protections apps already have.
-        </p>
-      </div>
-
-      <!-- SECOND PETITION CTA -->
-      <div class="card cta-card">
-        <div class="card-header teal">
-          <span class="card-header-pill"></span>
-          <span>Change.org Petition</span>
+        <div class="card">
+          <div class="card-header steel"><span class="card-header-pill"></span><span>Liability, Incentives, and Why This Will Force Change</span></div>
+          <p class="card-text">Today, platforms rely on self‑reported age. If a child lies, platforms can say they had no reason to treat the user as a minor. That creates a structural incentive to avoid reliable age signals and to keep defaults that maximize engagement.</p>
+          <p class="card-text">A universal Child Mode API removes that loophole. Once the OS sends a verified child flag, platforms can no longer claim “the child lied.” That legal clarity changes incentives: platforms must activate protections or face regulatory and legal scrutiny. In short, removing the liability shield forces companies to build effective protections.</p>
+          <p class="card-text-muted">This is the accountability layer the industry has been missing — it aligns legal responsibility with the parent‑verified reality already present on devices.</p>
         </div>
 
-        <p class="cta-title">Support a Universal Child Mode API</p>
+        <div class="card">
+          <div class="card-header slate"><span class="card-header-pill"></span><span>Why Age Verification Alone Has Failed</span></div>
+          <p class="card-text">Recent reporting on platform settlements has made a key point clear: age verification inside apps is brittle and easily bypassed. For example, when Australia implemented a social media ban for under‑16s in 2025, teens found workarounds quickly. Public statements and settlements (including recent coverage of Meta) emphasize that verification promises are only as good as the enforcement mechanism behind them.</p>
+          <p class="card-text">The Child Mode API addresses this exact failure: it does not rely on a user typing an age into an app. It relies on the parent‑verified account at the OS level — a signal apps cannot reasonably dispute.</p>
+          <p class="card-text-muted">Age verification tries to guess who the user is. Age signaling knows the device is a child account.</p>
+        </div>
 
-        <p class="cta-text">
-          We’ve launched a Change.org petition calling on Apple, Google, major
-          apps, and lawmakers to adopt and require a universal Child Mode API.
-          When you approve an app for your child, their age should matter — and
-          protections should turn on automatically.
+        <div class="card">
+          <div class="card-header steel"><span class="card-header-pill"></span><span>Enforcement, Transparency, and Compliance</span></div>
+          <p class="card-text">We recommend a three‑part enforcement approach:</p>
+          <ul class="card-list">
+            <li><strong>App‑store rules:</strong> Require apps to honor the child flag as a condition of listing and updates.</li>
+            <li><strong>Transparency reporting:</strong> Require apps to publish default settings for minors and a short, plain‑language explanation of protections activated by the child flag.</li>
+            <li><strong>Regulatory oversight:</strong> Allow state enforcement (AG or consumer protection) to audit compliance and require corrective action when defaults are not honored.</li>
+          </ul>
+          <p class="card-text-muted">These mechanisms are consistent with existing app‑store and consumer‑protection frameworks and are technically straightforward to implement.</p>
+        </div>
+
+        <div class="card cta-card">
+          <div class="card-header teal"><span class="card-header-pill"></span><span>Technical Appendix</span></div>
+          <p class="cta-title">Read the Technical Details</p>
+          <p class="cta-text">For legislative staff and technical reviewers, we provide a concise appendix describing the API payload, privacy model, and sample enforcement language. This appendix explains why the flag is one bit, how apps should implement conditional logic, and how app stores can verify compliance.</p>
+          <a class="cta-button" href="/assets/child-mode-api-technical-appendix.pdf" target="_blank" rel="noopener noreferrer">Download Technical Appendix</a>
+        </div>
+
+      </section>
+
+      <!-- SECTION 3: ACCOUNTABILITY, METRICS, ROADMAP (provided earlier) -->
+      <section class="page-section" id="accountability-roadmap" aria-labelledby="accountabilityTitle">
+        <div class="section-label">
+          <span class="section-label-dot"></span>
+          <span>Accountability · Metrics · Roadmap</span>
+        </div>
+
+        <h2 class="section-title" id="accountabilityTitle">Holding Platforms Accountable — Clear Commitments, Measurable Outcomes</h2>
+
+        <p class="section-subtitle">
+          A Child Mode API only protects children if companies use it, regulators enforce it, and families can see the results. This section defines the commitments we expect, the metrics that prove progress, and the enforcement roadmap Connecticut can adopt to make Age Signaling real.
         </p>
 
-        <a
-          class="cta-button"
-          href="https://c.org/JNS2YPmGCm"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Sign the Petition on Change.org
-        </a>
+        <div class="card">
+          <div class="card-header teal"><span class="card-header-pill"></span><span>Company Commitments — What We Expect from Apps and Platforms</span></div>
+          <p class="card-text">When the OS exposes <strong><code>child = true</code></strong>, companies should commit to:</p>
+          <ul class="card-list">
+            <li>Honor the child flag immediately and by default for all parent‑managed accounts.</li>
+            <li>Document and publish default youth settings in plain language (communication, discovery, content, spending).</li>
+            <li>Provide a parental control dashboard that shows which protections are active and how to change them.</li>
+            <li>Log and report when protections are turned off and require parental re‑authorization for high‑risk changes.</li>
+            <li>Design product roadmaps that prioritize safety improvements for child accounts and publish timelines for delivery.</li>
+          </ul>
+          <p class="card-text-muted">These are operational commitments — not aspirational statements. They must be auditable and time‑bound.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header navy"><span class="card-header-pill"></span><span>Metrics & Reporting — How Progress Is Measured</span></div>
+          <p class="card-text">To demonstrate compliance and progress, platforms should publish quarterly reports with the following metrics:</p>
+          <ul class="card-list">
+            <li>Percentage of active child accounts that received and honored <strong><code>child = true</code></strong>.</li>
+            <li>Number and type of high‑risk features disabled by default for child accounts (DMs, discovery, location, spending).</li>
+            <li>Counts of parental notifications sent and parental re‑authorizations requested/approved.</li>
+            <li>Incidents involving minors escalated to safety teams and outcomes (redacted for privacy).</li>
+            <li>Time to remediate reported failures to honor child defaults.</li>
+          </ul>
+          <p class="card-text-muted">Reports should be published in machine‑readable and human‑readable formats and made available to regulators and independent auditors.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header steel"><span class="card-header-pill"></span><span>Audit & Enforcement — Practical Mechanisms</span></div>
+          <p class="card-text">We recommend a layered enforcement model that fits existing consumer‑protection frameworks:</p>
+          <ul class="card-list">
+            <li><strong>App‑store compliance:</strong> Require proof of Child Mode API support as part of app review and updates.</li>
+            <li><strong>Regulatory audits:</strong> Allow state consumer protection or AG offices to audit compliance, request logs, and require corrective action.</li>
+            <li><strong>Independent audits:</strong> Require periodic third‑party audits for large platforms with public summaries of findings.</li>
+            <li><strong>Remedies:</strong> Noncompliance should trigger graduated remedies: notices, fines, removal from app stores for repeated violations, and mandatory remediation plans.</li>
+          </ul>
+          <p class="card-text-muted">Enforcement should focus on outcomes (did the child flag result in protections?) rather than internal implementation details.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header slate"><span class="card-header-pill"></span><span>Sample Statutory Language (Draft for Staff)</span></div>
+          <p class="card-text">The following is a short, staff‑friendly draft to illustrate how Age Signaling and enforcement could be codified:</p>
+          <pre class="card-code">
+Section X. OS‑Level Age Signaling.
+Operating system vendors shall provide an API that indicates when a device user is a minor under a parent‑managed account. The API shall expose a non‑identifying flag (e.g., child = true) and shall not transmit personal identifying information to third‑party applications.
+
+Section Y. App Obligations.
+Applications receiving the child flag shall automatically enable youth‑appropriate defaults for communication, discovery, content, and spending. Applications shall publish default settings for minors and provide parental notification when protections are disabled.
+
+Section Z. Enforcement.
+App stores shall require applications to honor the child flag as a condition of listing. The Attorney General may audit compliance, require corrective action, and impose civil penalties for repeated violations.
+          </pre>
+          <p class="card-text-muted">Staff may adapt this language to fit existing statutory frameworks and enforcement authorities.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header ice"><span class="card-header-pill"></span><span>Roles & Responsibilities — Who Does What</span></div>
+          <p class="card-text">Clear roles make enforcement practical:</p>
+          <ul class="card-list">
+            <li><strong>Operating system vendors (Apple, Google):</strong> Expose Age Signaling API; document privacy model; provide developer guidance.</li>
+            <li><strong>App stores:</strong> Enforce API usage as part of app review and updates.</li>
+            <li><strong>App developers:</strong> Implement Child Mode API; publish youth defaults; provide parental controls and notifications.</li>
+            <li><strong>State regulators / AG:</strong> Audit compliance; enforce remedies; publish enforcement actions.</li>
+            <li><strong>Independent auditors / NGOs:</strong> Monitor outcomes; publish independent assessments; assist families with transparency tools.</li>
+          </ul>
+          <p class="card-text-muted">Collaboration across these actors ensures the system is practical, transparent, and enforceable.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header navy"><span class="card-header-pill"></span><span>FAQ — Quick Answers for Families and Staff</span></div>
+          <p class="card-text"><strong>Q: Does the Child Mode API share my child’s personal data with apps?</strong><br />A: No. The API shares a single non‑identifying flag (<strong><code>child = true</code></strong>). Apps do not receive names, birthdays, contacts, photos, precise location, or browsing history.</p>
+
+          <p class="card-text"><strong>Q: Will this break parental choice?</strong><br />A: No. Parents retain control. The API reflects the parent‑verified account and apps should provide parental dashboards and re‑authorization flows for high‑risk changes.</p>
+
+          <p class="card-text"><strong>Q: Can teens bypass this?</strong><br />A: The API ties protections to the parent‑managed device/account. Teens can still access other devices, but the policy makes it harder to create a persistent, unprotected child account on the same device.</p>
+
+          <p class="card-text-muted">For more detailed technical and legal FAQs, download the Technical Appendix.</p>
+        </div>
+
+        <div class="card cta-card">
+          <div class="card-header teal"><span class="card-header-pill"></span><span>Take Action</span></div>
+          <p class="cta-title">Help Make This Law</p>
+          <p class="cta-text">Sign the petition, share this page with your state representative, and ask your lawmakers to sponsor legislation requiring OS‑level Age Signaling and app enforcement. The technical appendix and draft statutory language are available for staff review.</p>
+          <a class="cta-button" href="https://c.org/JNS2YPmGCm" target="_blank" rel="noopener noreferrer">Sign the Petition on Change.org</a>
+          <a class="cta-button" href="/assets/child-mode-api-technical-appendix.pdf" target="_blank" rel="noopener noreferrer" style="margin-left:12px;">Download Technical Appendix</a>
+        </div>
+
+      </section>
+
+      <!-- INLINE TECHNICAL APPENDIX (expanded for page length and staff review) -->
+      <section class="page-section" id="technical-appendix" aria-labelledby="techTitle">
+        <div class="section-label">
+          <span class="section-label-dot"></span>
+          <span>Technical Appendix · Developer Notes</span>
+        </div>
+
+        <h2 class="section-title" id="techTitle">Technical Appendix — API, Payload, and Implementation Notes</h2>
+
+        <p class="section-subtitle">This appendix is intended for engineers and legislative technical staff. It explains the minimal payload, privacy model, sample SDK usage, and audit hooks.</p>
+
+        <div class="card">
+          <div class="card-header ice"><span class="card-header-pill"></span><span>API Payload — Minimal and Private</span></div>
+          <p class="card-text">The Child Mode API is intentionally minimal. The OS exposes a single boolean flag to apps when a parent‑managed child account is active:</p>
+          <pre class="card-code">
+{
+  "child": true,
+  "version": "1.0"
+}
+          </pre>
+          <p class="card-text-muted">No PII, no timestamps, no device identifiers beyond what the app already receives from the OS. Versioning allows future extensions while preserving the one‑bit safety signal.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header teal"><span class="card-header-pill"></span><span>SDK Usage — Example Pseudocode</span></div>
+          <p class="card-text">Example pseudocode for app developers (illustrative):</p>
+          <pre class="card-code">
+// Pseudocode: check OS child flag at app startup
+if (OS.getChildFlag() === true) {
+  App.enableChildDefaults();
+  App.disableDirectMessaging();
+  App.limitDiscovery();
+  App.showParentalDashboard();
+} else {
+  App.runStandardFlow();
+}
+          </pre>
+          <p class="card-text-muted">Apps should implement idempotent logic and fail‑safe defaults: if the flag is present, protections must be active; if the flag is absent, apps continue normal behavior.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header navy"><span class="card-header-pill"></span><span>Audit Hooks & Logging</span></div>
+          <p class="card-text">To support enforcement, apps should log events related to child defaults. Logs must be privacy‑preserving and redact PII. Suggested event types:</p>
+          <ul class="card-list">
+            <li>child_flag_received (timestamp, app_version)</li>
+            <li>child_defaults_activated (timestamp, features_enabled)</li>
+            <li>parental_notification_sent (timestamp, notification_type)</li>
+            <li>child_defaults_disabled_by_parent (timestamp, reason)</li>
+          </ul>
+          <p class="card-text-muted">Logs should be retained for a limited period (e.g., 90 days) and made available to auditors under appropriate legal process.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header steel"><span class="card-header-pill"></span><span>Security & Abuse Considerations</span></div>
+          <p class="card-text">Security design must prevent spoofing of the child flag. Recommendations:</p>
+          <ul class="card-list">
+            <li>OS vendors sign the flag with a platform key; apps verify signature.</li>
+            <li>Flag access requires app entitlement or permission declared in app manifest.</li>
+            <li>Rate limits and telemetry to detect anomalous flag requests.</li>
+          </ul>
+          <p class="card-text-muted">These measures ensure the flag cannot be forged by malicious apps or scripts and that only authorized apps can read the flag.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header slate"><span class="card-header-pill"></span><span>Interoperability & Versioning</span></div>
+          <p class="card-text">Versioning allows incremental rollout and backward compatibility. Example policy:</p>
+          <ul class="card-list">
+            <li>v1.0: boolean flag only.</li>
+            <li>v1.1: optional metadata for audit (non‑PII) such as platform_version and api_version.</li>
+            <li>v2.0+: reserved for future features after public review and privacy assessment.</li>
+          </ul>
+          <p class="card-text-muted">Legislation should require OS vendors to publish a developer guide and a deprecation schedule for API changes.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header ice"><span class="card-header-pill"></span><span>Sample Compliance Checklist for App Stores</span></div>
+          <p class="card-text">App stores can verify compliance during review using a short checklist:</p>
+          <ul class="card-list">
+            <li>Does the app read the OS child flag when present?</li>
+            <li>Does the app enable child defaults when the flag is present?</li>
+            <li>Does the app publish a youth defaults page in its privacy settings?</li>
+            <li>Does the app provide parental notification and re‑authorization flows?</li>
+            <li>Are audit logs available for review under legal process?</li>
+          </ul>
+          <p class="card-text-muted">Failure to meet checklist items should require remediation before listing or trigger conditional listing with monitoring.</p>
+        </div>
+
+      </section>
+
+    </main>
+
+    <footer role="contentinfo">
+      <div>
+        ReadyOnline · Building digital instincts, not just settings. · New Canaan, Connecticut<br />
+        Accountability · Apps & Platforms · Child Mode API · Advocacy · <a href="https://c.org/JNS2YPmGCm" target="_blank" rel="noopener noreferrer">Sign the Petition</a>
       </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <div>
-      ReadyOnline · Building digital instincts, not just settings.<br />
-      Accountability · Apps & Platforms · Child Mode API · Advocacy.
-    </div>
-  </footer>
-
+    </footer>
+  </div>
 </body>
 </html>
