@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Child Mode API Technical Appendix — Implementation & Audit Guide</title>
+  <meta name="description" content="Technical appendix: minimal, privacy-preserving Child Mode API spec, audit guide, and compliance checklist." />
+  <meta name="author" content="ReadyOnline" />
+  <style>
+    :root{
+      --bg:#f7f8fb;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --accent:#0ea5a4;
+      --slate:#334155;
+      --navy:#0f172a;
+      --pill:#e6eef0;
+      --maxw:980px;
+      --radius:10px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color:var(--slate);
+    }
+    html,body{height:100%;}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,#fbfdff 0%,var(--bg) 100%);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      padding:28px;
+    }
+    .container{max-width:var(--maxw);margin:0 auto;}
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
+    .brand{display:flex;align-items:center;gap:12px;}
+    .logo{width:48px;height:48px;border-radius:8px;background:linear-gradient(135deg,#0ea5a4,#2563eb);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;}
+    h1{font-size:20px;margin:0;color:var(--navy);}
+    .small{font-size:13px;color:var(--muted);}
+    main{background:transparent;padding:6px 0 40px;}
+    .page-section{margin:18px 0;padding:18px;border-radius:12px;background:var(--card);box-shadow:0 6px 18px rgba(16,24,40,0.04);}
+    h2{font-size:18px;margin:0 0 8px;color:var(--navy);}
+    p.lead{color:var(--muted);margin:0 0 12px;}
+    .card{background:transparent;padding:12px 0;border-bottom:1px solid #eef2f7;}
+    pre.code{background:#0f172a;color:#fff;padding:12px;border-radius:8px;overflow:auto;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;font-size:13px;}
+    ul{margin:8px 0 12px 18px;}
+    table{width:100%;border-collapse:collapse;margin:12px 0;}
+    th,td{border:1px solid #eef2f7;padding:8px;text-align:left;font-size:13px;}
+    .cta{display:inline-block;background:var(--accent);color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:600;margin-top:12px;}
+    footer{margin-top:28px;padding:18px;text-align:center;color:var(--muted);font-size:13px;}
+    @media (max-width:720px){body{padding:18px}}
+  </style>
+</head>
+<body>
+  <div class="container" role="main" aria-labelledby="pageTitle">
+    <header>
+      <div class="brand" aria-hidden="false">
+        <div class="logo" aria-hidden="true">RO</div>
+        <div>
+          <h1 id="pageTitle">Child Mode API Technical Appendix — Implementation & Audit Guide</h1>
+          <div class="small">Minimal, privacy-preserving spec and compliance checklist for OS vendors, apps, and regulators</div>
+        </div>
+      </div>
+      <div class="small">ReadyOnline</div>
+    </header>
+
+    <main>
+
+      <section class="page-section" aria-labelledby="overviewTitle">
+        <h2 id="overviewTitle">Overview</h2>
+        <p class="lead">
+          This appendix specifies a minimal, privacy‑preserving Child Mode API that operating systems expose to third‑party apps to indicate when a parent‑managed child account is active. The goal: reliable protections, auditability, and enforceability without sharing personal identifying information with apps.
+        </p>
+
+        <div class="card" aria-hidden="false">
+          <strong>Core principles</strong>
+          <ul>
+            <li><strong>One‑bit safety signal:</strong> apps receive a single non‑identifying flag indicating parent‑managed child status.</li>
+            <li><strong>No PII:</strong> the API transmits no names, birthdays, contacts, photos, precise location, browsing history, or behavioral data.</li>
+            <li><strong>Signed, versioned tokens:</strong> every signal is cryptographically signed by the OS and includes versioning and short TTLs.</li>
+            <li><strong>Immediate change events:</strong> the OS emits signed change events on lifecycle changes (creation, parental toggle, age out, transfer).</li>
+            <li><strong>Push + pull delivery:</strong> the OS pushes change events and exposes a secure pull API for startup and periodic refresh.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="page-section" aria-labelledby="goalsTitle">
+        <h2 id="goalsTitle">Goals and Scope</h2>
+        <div class="card">
+          <ul>
+            <li>Provide a practical, low‑risk mechanism apps can implement quickly.</li>
+            <li>Ensure protections are applied and removed reliably when parent‑managed status changes.</li>
+            <li>Create audit hooks and logs for enforcement without exposing PII.</li>
+            <li>Keep the design simple so app stores and regulators can verify compliance.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="page-section" aria-labelledby="apiTitle">
+        <h2 id="apiTitle">API Specification (Minimal)</h2>
+
+        <div class="card">
+          <p><strong>Minimal payload (illustrative)</strong></p>
+          <pre class="code" aria-hidden="false">
+{
+  "child": true,
+  "version": "1.0",
+  "issued_at": "2026-08-29T12:00:00Z",
+  "expires_at": "2026-08-30T12:00:00Z",
+  "signature": "base64-signed-by-os"
+}
+          </pre>
+
+          <p><strong>Field semantics</strong></p>
+          <ul>
+            <li><strong>child</strong>: boolean; <code>true</code> when parent‑managed child account is active, <code>false</code> otherwise.</li>
+            <li><strong>version</strong>: API version string.</li>
+            <li><strong>issued_at</strong>: ISO 8601 timestamp when token was issued.</li>
+            <li><strong>expires_at</strong>: ISO 8601 timestamp; token TTL must be short (recommend ≤ 24 hours).</li>
+            <li><strong>signature</strong>: cryptographic signature of the payload by the OS platform key.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="page-section" aria-labelledby="securityTitle">
+        <h2 id="securityTitle">Token Semantics & Security</h2>
+        <div class="card">
+          <ul>
+            <li><strong>Signed tokens:</strong> OS signs the payload with a platform key; apps must verify the signature before acting.</li>
+            <li><strong>Short TTL:</strong> <code>expires_at</code> should be no longer than 24 hours to limit stale state.</li>
+            <li><strong>Revocation:</strong> OS maintains a revocation mechanism or uses short TTLs so revocations are authoritative.</li>
+            <li><strong>Entitlements:</strong> apps must declare entitlement/permission in their manifest to read the flag.</li>
+            <li><strong>Signature verification:</strong> apps must verify signature chain and <code>version</code> to prevent spoofing.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="page-section" aria-labelledby="lifecycleTitle">
+        <h2 id="lifecycleTitle">Lifecycle Events & Delivery Model</h2>
+        <div class="card">
+          <p><strong>Events to emit</strong>: <code>child_created</code>, <code>child_status_changed</code>, <code>child_revoked</code>, <code>parent_toggle</code>.</p>
+          <p><strong>When to emit</strong>: on account creation, parental toggle, age out (e.g., turns 18), account transfer, or parental removal.</p>
+          <p><strong>Delivery</strong>:</p>
+          <ul>
+            <li><strong>Push:</strong> OS pushes change events to installed apps for near‑real‑time updates.</li>
+            <li><strong>Pull:</strong> OS exposes a secure API apps query at startup and periodically as a fallback.</li>
+            <li><strong>Recommended refresh:</strong> at least once every 24 hours; high‑risk features should refresh every 6–12 hours.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="page-section" aria-labelledby="appBehaviorTitle">
+        <h2 id="appBehaviorTitle">App Behavior Requirements</h2>
+        <div class="card">
+          <ul>
+            <li><strong>Immediate reaction:</strong> on <code>child = true</code>, enable child defaults; on <code>child = false</code>, revert to adult defaults only after verifying the signed change.</li>
+            <li><strong>Startup check:</strong> query OS flag at every cold start.</li>
+            <li><strong>Periodic refresh:</strong> refresh at least every 24 hours.</li>
+            <li><strong>Fail‑safe default:</strong> if verification fails or token is missing for an account previously treated as a child, keep safer defaults until OS confirms otherwise.</li>
+            <li><strong>Parental re‑auth:</strong> require OS parental re‑authorization flow for disabling protections.</li>
+            <li><strong>Feature gating:</strong> disable or restrict high‑risk features by default for child accounts (DMs, friend discovery, location sharing, in‑app purchases, algorithmic recommendations).</li>
+            <li><strong>Idempotency:</strong> app logic must be idempotent so repeated events do not cause inconsistent states.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="page-section" aria-labelledby="auditTitle">
+        <h2 id="auditTitle">Auditability & Logging</h2>
+        <div class="card">
+          <p><strong>Event logs (privacy‑preserving)</strong></p>
+          <pre class="code" aria-hidden="false">
+{
+  "event": "child_defaults_activated",
+  "timestamp": "2026-08-28T12:34:56Z",
+  "app_version": "5.2.1",
+  "features_enabled": ["dm_restricted","discovery_limited"],
+  "redacted_user_id": "hash-xxxx"
+}
+          </pre>
+          <ul>
+            <li><strong>Redaction:</strong> logs must redact PII and use hashed identifiers for correlation.</li>
+            <li><strong>Retention:</strong> retain logs for a limited period (recommend 90 days) and make them available to auditors under appropriate legal process.</li>
+            <li><strong>Machine‑readable reports:</strong> quarterly reports with metrics (percent of child accounts honored, features disabled by default, parental notifications sent, remediation times).</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="page-section" aria-labelledby="enforcementTitle">
+        <h2 id="enforcementTitle">Enforcement Checklist for App Stores & Regulators</h2>
+        <div class="card">
+          <table aria-label="Enforcement checklist">
+            <thead>
+              <tr><th>Requirement</th><th>Why it matters</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Signature verification</td><td>Prevents spoofing</td></tr>
+              <tr><td>Push + pull handling</td><td>Ensures timely updates</td></tr>
+              <tr><td>TTL ≤ 24 hours</td><td>Prevents stale protections</td></tr>
+              <tr><td>Fail‑safe behavior</td><td>Protects children when verification fails</td></tr>
+              <tr><td>Parental re‑auth</td><td>Prevents in‑app circumvention</td></tr>
+              <tr><td>Audit logs</td><td>Enables regulator review</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="page-section" aria-labelledby="versioningTitle">
+        <h2 id="versioningTitle">Versioning & Interoperability</h2>
+        <div class="card">
+          <ul>
+            <li><strong>v1.0:</strong> boolean flag only.</li>
+            <li><strong>v1.1:</strong> optional non‑PII metadata for audit (platform_version, api_version).</li>
+            <li><strong>v2.0+:</strong> reserved for future features after public review and privacy assessment.</li>
+            <li><strong>Deprecation:</strong> OS vendors publish deprecation schedules and migration guides.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="page-section" aria-labelledby="pseudocodeTitle">
+        <h2 id="pseudocodeTitle">Sample Pseudocode (Illustrative)</h2>
+        <div class="card">
+          <pre class="code" aria-hidden="false">
+// Pseudocode: app startup and event handling
+function onAppStart() {
+  const token = OS.getChildFlag(); // returns signed token or null
+  if (token && verifySignature(token.signature)) {
+    if (token.child === true) {
+      App.enableChildDefaults();
+    } else {
+      App.disableChildDefaults();
+    }
+  } else {
+    // fail-safe: keep child defaults if previously active
+    if (App.previousState === 'child') {
+      App.enableChildDefaults();
+    }
+  }
+}
+
+// Event handler for push change events
+OS.on('child_status_changed', (token) => {
+  if (verifySignature(token.signature) && tokenNotExpired(token)) {
+    if (token.child === true) App.enableChildDefaults();
+    else App.disableChildDefaults();
+  }
+});
+          </pre>
+        </div>
+      </section>
+
+      <section class="page-section" aria-labelledby="metricsTitle">
+        <h2 id="metricsTitle">Sample Compliance Metrics (Quarterly)</h2>
+        <div class="card">
+          <ul>
+            <li><strong>% child accounts honored</strong> — percentage of active parent‑managed accounts where <code>child = true</code> was received and honored.</li>
+            <li><strong>Disabled features count</strong> — counts of high‑risk features disabled by default for child accounts.</li>
+            <li><strong>Parental notifications</strong> — number of parental notifications sent and re‑authorizations requested/approved.</li>
+            <li><strong>Incidents escalated</strong> — counts of incidents involving minors escalated to safety teams and outcomes (redacted).</li>
+            <li><strong>Remediation time</strong> — median time to remediate failures to honor child defaults.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="page-section" aria-labelledby="statutoryTitle">
+        <h2 id="statutoryTitle">Sample Statutory Language (Staff Draft)</h2>
+        <div class="card">
+          <pre class="code" aria-hidden="false">
+Section X. OS‑Level Age Signaling.
+Operating system vendors shall provide an API that indicates when a device user is a minor under a parent‑managed account. The API shall expose a non‑identifying flag (e.g., child = true) and shall not transmit personal identifying information to third‑party applications. The API shall provide signed, versioned tokens and emit signed change events when parent‑managed status changes.
+
+Section Y. App Obligations.
+Applications receiving the child flag shall verify the OS signature, enable youth‑appropriate defaults for communication, discovery, content, and spending, check the flag at startup, subscribe to OS change events, and refresh the flag at least once every 24 hours. Applications shall publish default settings for minors and provide parental notification when protections are disabled.
+
+Section Z. Enforcement.
+App stores shall require applications to honor the child flag as a condition of listing. The Attorney General may audit compliance, require corrective action, and impose civil penalties for repeated violations.
+          </pre>
+        </div>
+      </section>
+
+      <section class="page-section" aria-labelledby="qaTitle">
+        <h2 id="qaTitle">Developer QA Checklist & FAQ (Technical)</h2>
+        <div class="card">
+          <p><strong>Developer QA checklist</strong></p>
+          <ul>
+            <li>Test with parent‑managed child accounts on iOS and Android test devices.</li>
+            <li>Verify signature validation and TTL handling.</li>
+            <li>Simulate parental toggle and age out events.</li>
+            <li>Validate fail‑safe behavior when tokens are missing or invalid.</li>
+            <li>Confirm audit logs are generated and redacted.</li>
+          </ul>
+
+          <p><strong>FAQ</strong></p>
+          <ul>
+            <li><strong>Q: What happens when a child turns 18?</strong><br />A: The OS emits a signed change event with <code>child = false</code>. Apps verify the signature and remove child defaults. Apps also check the flag at startup and refresh at least every 24 hours to catch missed events.</li>
+            <li><strong>Q: Can the flag be spoofed?</strong><br />A: Not if apps verify the OS signature and the OS enforces entitlements and signing keys. Platform signing and entitlement checks prevent spoofing.</li>
+            <li><strong>Q: Does this create new PII flows?</strong><br />A: No. The API transmits only a boolean flag and versioning metadata. No personal data is shared with apps.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="page-section" aria-labelledby="contactTitle">
+        <h2 id="contactTitle">Contact & Governance</h2>
+        <div class="card">
+          <p class="small">For technical questions and governance requests, OS vendors should publish developer guides, test harnesses, and a deprecation schedule. ReadyOnline maintains a public contact for coordination and can provide sample test tokens and audit templates on request.</p>
+          <a class="cta" href="/contact">Request developer materials</a>
+        </div>
+      </section>
+
+    </main>
+
+    <footer role="contentinfo">
+      <div class="small">
+        ReadyOnline · Child Mode API Technical Appendix · Privacy‑first design · New Canaan, CT
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
