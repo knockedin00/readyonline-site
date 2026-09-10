@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ReadyOnline – Digital Street Sense</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #050816;
+      --panel: #0b1020;
+      --accent-yellow: #ffd54f;
+      --accent-blue: #4fc3f7;
+      --accent-pink: #ff80ab;
+      --accent-green: #81c784;
+      --text-main: #e3f2fd;
+      --text-muted: #90a4ae;
+      --danger: #ff5252;
+      --border-soft: #1c2540;
+      --chip-bg: #111827;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1a237e 0%, #050816 55%, #000000 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .app-shell {
+      width: 100%;
+      max-width: 960px;
+      background: linear-gradient(135deg, #050816 0%, #0b1020 40%, #050816 100%);
+      border-radius: 24px;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+      padding: 24px 28px;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 800px) {
+      .app-shell {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: conic-gradient(from 180deg, #4fc3f7, #ff80ab, #ffd54f, #81c784, #4fc3f7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 700;
+      color: #050816;
+    }
+
+    .brand-text {
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      font-size: 14px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .tagline {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-blue);
+      background: rgba(15, 23, 42, 0.8);
+    }
+
+    .title-block h1 {
+      font-size: 28px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .title-block h1 span {
+      color: var(--accent-yellow);
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 420px;
+      line-height: 1.4;
+    }
+
+    .left-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .modules-card {
+      background: rgba(11, 17, 32, 0.9);
+      border-radius: 18px;
+      border: 1px solid var(--border-soft);
+      padding: 18px 18px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .modules-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .modules-header h2 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+    }
+
+    .modules-header span {
+      font-size: 11px;
+      color: var(--accent-blue);
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 10px;
+      align-items: center;
+      margin-top: 8px;
+    }
+
+    .timeline-column {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .timeline-line {
+      width: 2px;
+      height: 100%;
+      background-image: linear-gradient(
+        to bottom,
+        rgba(255, 213, 79, 0.1),
+        rgba(255, 213, 79, 0.9),
+        rgba(255, 213, 79, 0.1)
+      );
+      border-radius: 999px;
+      position: relative;
+    }
+
+    .timeline-line::before,
+    .timeline-line::after {
+      content: "";
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: 2px solid var(--accent-yellow);
+      background: #050816;
+    }
+
+    .timeline-line::before {
+      top: -4px;
+    }
+
+    .timeline-line::after {
+      bottom: -4px;
+    }
+
+    .module {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    .module-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #050816;
+      font-weight: 700;
+    }
+
+    .module-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .module-title {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .module-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+    }
+
+    .module-1 .module-icon {
+      background: var(--accent-yellow);
+    }
+
+    .module-2 .module-icon {
+      background: var(--accent-pink);
+    }
+
+    .module-3 .module-icon {
+      background: var(--accent-blue);
+    }
+
+    .module-4 .module-icon {
+      background: var(--accent-green);
+    }
+
+    .module-5 .module-icon {
+      background: var(--danger);
+    }
+
+    .stats-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .stat-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--chip-bg);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .stat-label {
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 10px;
+      color: var(--accent-blue);
+    }
+
+    .stat-value {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .threat-banner {
+      margin-top: 14px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(127, 29, 29, 0.7);
+      border: 1px solid rgba(248, 113, 113, 0.8);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .threat-banner strong {
+      color: #ffebee;
+    }
+
+    .right-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .info-card {
+      background: rgba(11, 17, 32, 0.9);
+      border-radius: 18px;
+      border: 1px solid var(--border-soft);
+      padding: 16px 16px 18px;
+    }
+
+    .info-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .info-body {
+      font-size: 13px;
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    .info-body em {
+      color: var(--accent-yellow);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .bullets {
+      margin-top: 10px;
+      list-style: none;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .bullets li {
+      margin-bottom: 6px;
+      display: flex;
+      gap: 6px;
+      align-items: flex-start;
+    }
+
+    .bullets li::before {
+      content: "•";
+      color: var(--accent-blue);
+      margin-top: 1px;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 12px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      background: none;
+      color: var(--text-main);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #4fc3f7, #81c784);
+      color: #050816;
+      font-weight: 600;
+      border-color: rgba(148, 163, 184, 0.4);
+    }
+
+    .btn-secondary {
+      border-color: rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-muted);
+    }
+
+    .btn span.icon {
+      font-size: 14px;
+    }
+
+    .footnote {
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .work-in-progress {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--accent-yellow);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <div class="left-panel">
+      <div class="header">
+        <div class="brand">
+          <div class="brand-logo">R</div>
+          <div>
+            <div class="brand-text">ReadyOnline</div>
+            <div class="tagline">Digital Street Sense · Awareness Mini‑Games</div>
+          </div>
+        </div>
+        <div class="pill">Teen Reflex Training</div>
+      </div>
+
+      <div class="title-block">
+        <h1><span>Digital Street Sense</span></h1>
+        <p class="subtitle">
+          Learn to navigate the digital world safely—one skill at a time. Each zone is a quick reflex
+          challenge based on what real teens reported in the Growing Up Online survey.
+        </p>
+      </div>
+
+      <div class="modules-card">
+        <div class="modules-header">
+          <h2>Zones</h2>
+          <span>Start anywhere · 3–5 minutes each</span>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-column">
+            <div class="module module-1">
+              <div class="module-icon">A</div>
+              <div class="module-text">
+                <div class="module-title">Full Street Sense</div>
+                <div class="module-tag">Algorithm awareness</div>
+              </div>
+            </div>
+
+            <div class="module module-3">
+              <div class="module-icon">D</div>
+              <div class="module-text">
+                <div class="module-title">Read Your Env</div>
+                <div class="module-tag">Deepfake lab</div>
+              </div>
+            </div>
+
+            <div class="module module-5">
+              <div class="module-icon">S</div>
+              <div class="module-text">
+                <div class="module-title">Look Both Ways</div>
+                <div class="module-tag">Spam radar</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-line"></div>
+
+          <div class="timeline-column">
+            <div class="module module-2">
+              <div class="module-icon">M</div>
+              <div class="module-text">
+                <div class="module-title">Watch the People</div>
+                <div class="module-tag">Manipulation patterns</div>
+              </div>
+            </div>
+
+            <div class="module module-4">
+              <div class="module-icon">F</div>
+              <div class="module-text">
+                <div class="module-title">Check the Ground</div>
+                <div class="module-tag">Fake detector</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-strip">
+          <div class="stat-chip">
+            <span class="stat-label">Zones</span>
+            <span class="stat-value">0 / 5</span>
+          </div>
+          <div class="stat-chip">
+            <span class="stat-label">XP</span>
+            <span class="stat-value">0</span>
+          </div>
+          <div class="stat-chip">
+            <span class="stat-label">Streak</span>
+            <span class="stat-value">0 days</span>
+          </div>
+        </div>
+
+        <div class="threat-banner">
+          <strong>70%+ of teens reported fake accounts as their #1 experienced threat.</strong>
+          This mini‑game series turns those survey results into quick practice rounds so you can spot
+          red flags faster in real life.
+        </div>
+      </div>
+    </div>
+
+    <div class="right-panel">
+      <div class="info-card">
+        <div class="info-title">What this page is</div>
+        <div class="info-body">
+          This is a <em>work‑in‑progress prototype</em> for the Digital Street Sense hub. It doesn’t
+          track real progress yet, but it shows the zones and language that will connect to your
+          survey‑driven mini‑games.
+        </div>
+        <div class="work-in-progress">Work in progress · Visual concept only</div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-title">Next steps for ReadyOnline</div>
+        <div class="info-body">
+          As you build out the full experience, this hub can:
+        </div>
+        <ul class="bullets">
+          <li>Link each zone to its own reflex challenge page.</li>
+          <li>Use survey stats (like “fake accounts” and “FOMO”) as in‑game prompts.</li>
+          <li>Mirror a parent‑side guide that explains the same patterns from their perspective.</li>
+          <li>Later, save progress using browser storage so teens can pick up where they left off.</li>
+        </ul>
+
+        <div class="cta-row">
+          <button class="btn btn-primary">
+            <span class="icon">▶</span>
+            Make this my Street Sense hub
+          </button>
+          <button class="btn btn-secondary">
+            <span class="icon">★</span>
+            Add parent companion later
+          </button>
+        </div>
+
+        <div class="footnote">
+          When you’re ready, each button can become a real link to other ReadyOnline pages.
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
