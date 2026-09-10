@@ -16,19 +16,29 @@
       justify-content: center;
       min-height: 100vh;
       overflow-x: hidden;
+      padding-top: 70px;
     }
 
-    header {
-      position: absolute;
-      top: 20px;
-      left: 40px;
-      font-size: 20px;
-      font-weight: 600;
-      letter-spacing: 0.05em;
+    .top-nav {
+      width: 100%;
+      padding: 12px 24px;
+      background: rgba(11, 17, 32, 0.85);
+      border-bottom: 1px solid #1c2540;
+      display: flex;
+      gap: 24px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      backdrop-filter: blur(10px);
     }
 
-    header span {
+    .top-nav a {
       color: #4fc3f7;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
     }
 
     main {
@@ -95,58 +105,19 @@
     }
 
     footer {
-      position: absolute;
-      bottom: 20px;
+      margin-top: 40px;
       font-size: 12px;
       color: #90a4ae;
     }
-
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.3;
-      animation: float 8s infinite ease-in-out;
-    }
-
-    .orb:nth-child(1) {
-      width: 120px;
-      height: 120px;
-      background: #4fc3f7;
-      top: 10%;
-      left: 15%;
-      animation-delay: 0s;
-    }
-
-    .orb:nth-child(2) {
-      width: 180px;
-      height: 180px;
-      background: #ff80ab;
-      bottom: 10%;
-      right: 10%;
-      animation-delay: 2s;
-    }
-
-    .orb:nth-child(3) {
-      width: 100px;
-      height: 100px;
-      background: #ffd54f;
-      top: 60%;
-      left: 70%;
-      animation-delay: 4s;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-    }
   </style>
 </head>
-<body>
-  <div class="orb"></div>
-  <div class="orb"></div>
-  <div class="orb"></div>
 
-  <header>Ready <span>Online</span></header>
+<body>
+  <header class="top-nav">
+    <a href="index.html">Home</a>
+    <a href="digital-street-sense.html">Street Sense</a>
+    <a href="parent-guide.html">Parents</a>
+  </header>
 
   <main>
     <h1>Navigate the Digital World.<br /><span>Fearless!</span></h1>
