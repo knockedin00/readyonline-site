@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ReadyOnline – About Us</title>
+  <style>
+    :root {
+      --bg:#050816;
+      --card:#0b1220;
+      --accent:#38bdf8;
+      --accent-soft:#22c55e;
+      --text-main:#e5e7eb;
+      --text-muted:#9ca3af;
+      --font:system-ui,-apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{
+      font-family:var(--font);
+      background:radial-gradient(circle at top,#0f172a 0,#020617 40%,#000 100%);
+      color:var(--text-main);
+      min-height:100vh;
+      padding:32px;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      overflow-x:hidden;
+    }
+    body::before,body::after{
+      content:"";
+      position:fixed;inset:0;
+      pointer-events:none;
+      background-image:
+        radial-gradient(circle,rgba(255,255,255,0.18) 1px,transparent 0),
+        radial-gradient(circle,rgba(255,255,255,0.12) 1px,transparent 0);
+      background-size:120px 120px,200px 200px;
+      opacity:0.35;
+      mix-blend-mode:screen;
+    }
+    .page{
+      max-width:1080px;width:100%;
+      background:linear-gradient(145deg,rgba(15,23,42,0.96),rgba(2,6,23,0.98));
+      border-radius:24px;
+      border:1px solid rgba(148,163,184,0.35);
+      box-shadow:0 40px 80px rgba(15,23,42,0.9);
+      padding:28px 32px 32px;
+      backdrop-filter:blur(18px);
+      position:relative;
+      overflow:hidden;
+    }
+    .page::before{
+      content:"";
+      position:absolute;inset:-120px;
+      background:
+        radial-gradient(circle at 10% 0%,rgba(56,189,248,0.18),transparent 55%),
+        radial-gradient(circle at 90% 100%,rgba(34,197,94,0.18),transparent 55%);
+      opacity:0.9;pointer-events:none;z-index:-1;
+    }
+    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;}
+    .logo{display:flex;align-items:center;gap:10px;}
+    .logo-mark{
+      width:32px;height:32px;border-radius:999px;
+      background:radial-gradient(circle at 30% 0%,#38bdf8 0,#22c55e 40%,#0ea5e9 100%);
+      box-shadow:0 0 18px rgba(56,189,248,0.7);
+    }
+    .logo-text{font-weight:600;letter-spacing:0.04em;font-size:0.95rem;text-transform:uppercase;}
+    nav{display:flex;gap:12px;font-size:0.9rem;}
+    .nav-link{
+      padding:6px 12px;border-radius:999px;border:1px solid transparent;
+      color:var(--text-muted);cursor:pointer;transition:all 0.18s ease;
+    }
+    .nav-link:hover{color:var(--text-main);border-color:rgba(148,163,184,0.6);background:rgba(15,23,42,0.7);}
+    .nav-link.primary{
+      color:var(--text-main);border-color:rgba(56,189,248,0.7);
+      background:radial-gradient(circle at 0 0,rgba(56,189,248,0.25),rgba(15,23,42,0.9));
+      box-shadow:0 0 18px rgba(56,189,248,0.5);
+    }
+    h1{font-size:2.2rem;margin-bottom:10px;background:linear-gradient(120deg,#38bdf8,#22c55e);
+      -webkit-background-clip:text;color:transparent;}
+    p{font-size:0.95rem;color:var(--text-muted);margin-bottom:18px;max-width:720px;}
+    .section{margin-top:28px;}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:16px;}
+    .card{
+      background:rgba(15,23,42,0.9);border-radius:16px;border:1px solid rgba(148,163,184,0.5);
+      padding:16px;position:relative;overflow:hidden;
+    }
+    .card::before{content:"";position:absolute;inset:-40px;
+      background:radial-gradient(circle at 0 0,rgba(56,189,248,0.18),transparent 60%);}
+    .card-title{font-weight:600;margin-bottom:6px;}
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <div class="logo">
+        <div class="logo-mark"></div>
+        <div class="logo-text">ReadyOnline</div>
+      </div>
+      <nav>
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="overview.html">Overview</a>
+        <a class="nav-link" href="parents.html">Parents</a>
+        <a class="nav-link" href="teens.html">Teens</a>
+        <a class="nav-link primary" href="about.html">About Us</a>
+        <a class="nav-link" href="accountability.html">Accountability</a>
+      </nav>
+    </header>
+
+    <h1>Our Story</h1>
+    <p>
+      ReadyOnline began as a family project — built from real experiences, real conversations, and real gaps in digital safety.
+      We saw kids navigating adult-level digital risks with almost no guidance, and parents trying to help without the right tools.
+      So we created a system that teaches instincts, not rules.
+    </p>
+
+    <div class="section">
+      <h2>Why We Built This</h2>
+      <div class="grid">
+        <div class="card"><div class="card-title">Real Experiences</div><p>Our kids tested every module. Their feedback shaped every lesson.</p></div>
+        <div class="card"><div class="card-title">Real Gaps</div><p>Apps give kids adult accounts with no protections. We fill the gap.</p></div>
+        <div class="card"><div class="card-title">Real Skills</div><p>We teach instincts that work across every app, every platform, every situation.</p></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Our Mission</h2>
+      <p>
+        To build digital instincts for life — empowering kids, teens, and families to navigate online spaces with confidence, clarity, and connection.
+      </p>
+<div class="cta" style="margin-top:20px;">
+  <a class="nav-link primary" 
+     href="https://forms.cloud.microsoft/r/yKYN515r8L" 
+     target="_blank"
+     style="padding:10px 18px; border-radius:999px; 
+            border:1px solid rgba(56,189,248,0.8); 
+            background:radial-gradient(circle at 0 0,
+            rgba(56,189,248,0.25),rgba(15,23,42,0.9)); 
+            color:#38bdf8; 
+            text-decoration:none;">
+    Give Feedback
+  </a>
+</div>
+    </div>
+  </div>
+</body>
+</html>
