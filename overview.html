@@ -125,9 +125,8 @@
       box-shadow: 0 0 18px rgba(56,189,248,0.5);
     }
 
-    h1 {
-      font-size: 2.2rem;
-      margin-bottom: 10px;
+    /* UNIVERSAL GREEN GRADIENT HEADERS */
+    h1, h2 {
       background: linear-gradient(120deg, #38bdf8, #22c55e);
       -webkit-background-clip: text;
       color: transparent;
@@ -184,6 +183,27 @@
       font-weight: 600;
       margin-bottom: 6px;
       color: var(--text-main);
+    }
+
+    /* FOOTER */
+    .instinct-footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      text-align: center;
+      font-size: 1rem;
+      color: var(--accent-soft);
+      opacity: 0.9;
+      letter-spacing: 0.05em;
+      border-top: 1px solid rgba(148,163,184,0.35);
+    }
+
+    #instinct-typing {
+      background: linear-gradient(120deg, #38bdf8, #22c55e);
+      -webkit-background-clip: text;
+      color: transparent;
+      font-weight: 600;
+      text-shadow: 0 0 12px rgba(34,197,94,0.6);
+      white-space: nowrap;
     }
   </style>
 </head>
@@ -260,6 +280,11 @@
       </div>
     </div>
 
+    <!-- FOOTER -->
+    <footer class="instinct-footer">
+      <span id="instinct-typing"></span>
+    </footer>
+
   </div>
 
   <script>
@@ -269,6 +294,21 @@
         window.location.href = `${target}.html`;
       });
     });
+
+    const instinctText = "Pause – Think – Act";
+    let idx = 0;
+
+    function typeInstinct() {
+      const el = document.getElementById("instinct-typing");
+      el.textContent = instinctText.slice(0, idx);
+      idx++;
+
+      if (idx <= instinctText.length) {
+        setTimeout(typeInstinct, 120);
+      }
+    }
+
+    typeInstinct();
   </script>
 </body>
 </html>
