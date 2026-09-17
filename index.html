@@ -507,17 +507,61 @@ document.querySelectorAll('nav a').forEach(link => {
       </nav>
     </header>
 
-    <section class="hero">
-      <div class="hero-text">
-        <div class="hero-pill">
-          <span class="hero-pill-dot"></span>
-          Digital instincts for kids, teens, parents, and seniors.
-        </div>
-        <h1><span>Digital instincts for life.</span></h1>
-<pre style="font-family: inherit; font-size: inherit; color: inherit;">
-ReadyOnline helps families build the instincts they need to navigate the online world –
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-pill">
+      <span class="hero-pill-dot"></span>
+      Digital instincts for kids, teens, parents, and seniors.
+    </div>
 
-<br>&nbsp;&nbsp;&nbsp;&nbsp;Just like learning to cross a street: guidance → practice → confidence → independence.
+    <h1><span>Digital instincts for life.</span></h1>
 
-It’s about reading the environment, knowing what’s safe, what feels off, and when to ask for help.
-</pre>
+    <p>
+      ReadyOnline helps families build the instincts they need to navigate the online world –
+      <br><span id="typeLine"></span>
+      <br>It’s about reading the environment, knowing what’s safe, what feels off, and when to ask for help.
+    </p>
+  </div>
+</section>
+
+<script>
+  // 🧭 Navigation buttons
+  document.querySelectorAll('nav button').forEach(button => {
+    button.addEventListener('click', e => {
+      e.preventDefault();
+      const target = button.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+      window.location.href = `${target}.html`;
+    });
+  });
+
+  // ✨ Typing animation
+  const text = "just like learning to cross a street: guidance → practice → confidence → independence.";
+  let i = 0;
+  const speed = 60; // typing speed in ms
+  const typeLine = document.getElementById("typeLine");
+
+  function typeWriter() {
+    if (i < text.length) {
+      typeLine.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typeWriter, speed);
+    } else {
+      // Loop effect: clear and restart after a pause
+      setTimeout(() => {
+        typeLine.innerHTML = "";
+        i = 0;
+        typeWriter();
+      }, 2500);
+    }
+  }
+
+  window.onload = typeWriter;
+</script>
+
+<style>
+  #typeLine {
+    font-style: italic;
+    color: #7fffd4;
+    text-shadow: 0 0 8px #7fffd4;
+  }
+</style>
