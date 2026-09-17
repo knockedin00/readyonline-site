@@ -480,6 +480,16 @@
   </script>
 </head>
 
+<script>
+document.querySelectorAll('nav a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = link.getAttribute('href');
+    window.location.href = target; // navigates to the page
+  });
+});
+</script>
+
 <body>
   <div class="page">
     <header>
