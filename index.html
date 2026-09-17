@@ -162,16 +162,6 @@
       overflow: hidden;
       border-right: 2px solid var(--accent-soft);
       width: 0;
-      animation: typing 4s steps(40, end) forwards, blink 0.8s step-end infinite;
-    }
-
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-
-    @keyframes blink {
-      50% { border-color: transparent; }
     }
 
     /* FOOTER */
@@ -251,4 +241,60 @@
     };
 
     document.querySelectorAll('nav button').forEach(button => {
-      button.addEventListener
+      button.addEventListener('click', () => {
+        const label = button.textContent.trim();
+        const target = navMap[label];
+        if (target) window.location.href = target;
+      });
+    });
+
+    /* LOOPED TYPING EFFECT FOR HERO */
+    const phrases = [
+      "Digital instincts for kids.",
+      "Digital instincts for teens.",
+      "Digital instincts for parents.",
+      "Digital instincts for families.",
+      "Digital instincts for life."
+    ];
+
+    const el = document.getElementById("typing-text");
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    function typeLoop() {
+      const currentPhrase = phrases[phraseIndex];
+      if (!deleting) {
+        el.textContent = currentPhrase.slice(0, ++charIndex);
+        if (charIndex === currentPhrase.length) {
+          deleting = true;
+          setTimeout(typeLoop, 1500);
+          return;
+        }
+      } else {
+        el.textContent = currentPhrase.slice(0, --charIndex);
+        if (charIndex === 0) {
+          deleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+        }
+      }
+      setTimeout(typeLoop, deleting ? 50 : 90);
+    }
+
+    typeLoop();
+
+    /* FOOTER TYPING EFFECT */
+    const instinctText = "Pause – Think – Act";
+    let idx = 0;
+
+    function typeInstinct() {
+      const footerEl = document.getElementById("instinct-typing");
+      footerEl.textContent = instinctText.slice(0, idx);
+      idx++;
+      if (idx <= instinctText.length) setTimeout(typeInstinct, 120);
+    }
+
+    typeInstinct();
+  </script>
+</body>
+</html>
