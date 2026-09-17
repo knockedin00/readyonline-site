@@ -11,24 +11,30 @@
       --accent-soft: #22c55e;
       --text-main: #e5e7eb;
       --text-muted: #9ca3af;
+      --danger: #f97316;
       --font: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       font-family: var(--font);
       background: radial-gradient(circle at top, #0f172a 0, #020617 40%, #000 100%);
       color: var(--text-main);
       min-height: 100vh;
-      padding: 32px;
       display: flex;
       justify-content: center;
       align-items: flex-start;
+      padding: 32px;
       position: relative;
       overflow-x: hidden;
     }
 
+    /* floating dots / stars */
     body::before,
     body::after {
       content: "";
@@ -49,7 +55,9 @@
       background: linear-gradient(145deg, rgba(15,23,42,0.96), rgba(2,6,23,0.98));
       border-radius: 24px;
       border: 1px solid rgba(148,163,184,0.35);
-      box-shadow: 0 40px 80px rgba(15,23,42,0.9);
+      box-shadow:
+        0 40px 80px rgba(15,23,42,0.9),
+        0 0 0 1px rgba(15,23,42,0.8);
       padding: 28px 32px 32px;
       backdrop-filter: blur(18px);
       position: relative;
@@ -61,8 +69,8 @@
       position: absolute;
       inset: -120px;
       background:
-        radial-gradient(circle at 10% 0%, rgba(56,189,248,0.18), transparent 55%),
-        radial-gradient(circle at 90% 100%, rgba(34,197,94,0.18), transparent 55%);
+        radial-gradient(circle at 10% 0%, rgba(56,189,248,0.18) 0, transparent 55%),
+        radial-gradient(circle at 90% 100%, rgba(34,197,94,0.18) 0, transparent 55%);
       opacity: 0.9;
       pointer-events: none;
       z-index: -1;
@@ -86,7 +94,18 @@
       height: 32px;
       border-radius: 999px;
       background: radial-gradient(circle at 30% 0%, #38bdf8 0, #22c55e 40%, #0ea5e9 100%);
-      box-shadow: 0 0 18px rgba(56,189,248,0.7);
+      box-shadow:
+        0 0 18px rgba(56,189,248,0.7),
+        0 0 32px rgba(34,197,94,0.5);
+      position: relative;
+    }
+
+    .logo-mark::after {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border-radius: inherit;
+      border: 2px solid rgba(15,23,42,0.85);
     }
 
     .logo-text {
@@ -94,6 +113,7 @@
       letter-spacing: 0.04em;
       font-size: 0.95rem;
       text-transform: uppercase;
+      color: var(--text-main);
     }
 
     nav {
@@ -125,21 +145,6 @@
       box-shadow: 0 0 18px rgba(56,189,248,0.5);
     }
 
-    /* UNIVERSAL GREEN GRADIENT HEADERS */
-    h1, h2 {
-      background: linear-gradient(120deg, #38bdf8, #22c55e);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    p {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      margin-bottom: 18px;
-      max-width: 720px;
-    }
-
-    /* HERO SECTION */
     .hero {
       display: grid;
       grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
@@ -154,41 +159,337 @@
       margin-bottom: 10px;
     }
 
-    #typing-text {
-      font-size: 0.98rem;
-      color: var(--accent-soft);
-      text-shadow: 0 0 12px rgba(34,197,94,0.6);
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: 2px solid var(--accent-soft);
-      width: 0;
-    }
-
-    /* FOOTER */
-    .instinct-footer {
-      position: fixed;
-      bottom: 20px;
-      left: 0;
-      right: 0;
-      text-align: center;
-      font-size: 1rem;
-      color: var(--accent-soft);
-      opacity: 0.9;
-      letter-spacing: 0.05em;
-      pointer-events: none;
-    }
-
-    #instinct-typing {
+    .hero-text h1 span {
       background: linear-gradient(120deg, #38bdf8, #22c55e);
       -webkit-background-clip: text;
       color: transparent;
+    }
+
+    .hero-text p {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      max-width: 520px;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      background: rgba(15,23,42,0.85);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .hero-pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34,197,94,0.8);
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .hero-cta button {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.9);
+      color: var(--text-main);
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .hero-cta button.primary {
+      border-color: rgba(56,189,248,0.8);
+      background: radial-gradient(circle at 0 0, rgba(56,189,248,0.3), rgba(15,23,42,0.95));
+      box-shadow: 0 0 18px rgba(56,189,248,0.6);
+    }
+
+    .hero-cta button:hover {
+      transform: translateY(-1px);
+      border-color: rgba(148,163,184,0.9);
+    }
+
+    .hero-visual {
+      position: relative;
+      height: 220px;
+      border-radius: 20px;
+      background: radial-gradient(circle at 20% 0%, rgba(56,189,248,0.25), rgba(15,23,42,0.95));
+      border: 1px solid rgba(56,189,248,0.4);
+      box-shadow:
+        0 0 26px rgba(56,189,248,0.6),
+        0 0 40px rgba(15,23,42,0.9);
+      overflow: hidden;
+    }
+
+    .hero-orbit {
+      position: absolute;
+      inset: 18px;
+      border-radius: 18px;
+      border: 1px dashed rgba(148,163,184,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-core {
+      width: 72px;
+      height: 72px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0%, #38bdf8 0, #22c55e 40%, #0ea5e9 100%);
+      box-shadow:
+        0 0 24px rgba(56,189,248,0.8),
+        0 0 40px rgba(34,197,94,0.7);
+      position: relative;
+    }
+
+    .hero-core::after {
+      content: "Family";
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
       font-weight: 600;
-      text-shadow: 0 0 12px rgba(34,197,94,0.6);
-      white-space: nowrap;
+      color: #0b1120;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .hero-node {
+      position: absolute;
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.95);
+      border: 1px solid rgba(148,163,184,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-node.kids { top: 18px; left: 26px; }
+    .hero-node.teens { top: 18px; right: 26px; }
+    .hero-node.parents { bottom: 22px; left: 40px; }
+    .hero-node.seniors { bottom: 22px; right: 40px; }
+
+    .hero-node span {
+      display: block;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .section {
+      margin-bottom: 24px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 12px;
+    }
+
+    .section-header h2 {
+      font-size: 1.1rem;
+    }
+
+    .section-header p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .value-card {
+      background: rgba(15,23,42,0.9);
+      border-radius: 14px;
+      border: 1px solid rgba(148,163,184,0.5);
+      padding: 10px 10px 12px;
+      font-size: 0.85rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .value-card::before {
+      content: "";
+      position: absolute;
+      inset: -40px;
+      background: radial-gradient(circle at 0 0, rgba(56,189,248,0.18), transparent 60%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .value-label {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .value-desc {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    .why {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 720px;
+    }
+
+    .nav-footer {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .nav-footer button {
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.9);
+      color: var(--text-main);
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .nav-footer button:hover {
+      transform: translateY(-1px);
+      border-color: rgba(148,163,184,0.9);
+    }
+
+    .nav-footer button.highlight {
+      border-color: rgba(56,189,248,0.8);
+      color: var(--accent);
+    }
+
+    /* Practice Question */
+    .practice {
+      margin-top: 32px;
+      padding: 20px;
+      border-radius: 16px;
+      background: rgba(15,23,42,0.85);
+      border: 1px solid rgba(56,189,248,0.4);
+      box-shadow: 0 0 18px rgba(56,189,248,0.3);
+    }
+
+    .practice h3 {
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+
+    .practice-options {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .practice-btn {
+      padding: 10px;
+      border-radius: 12px;
+      background: rgba(2,6,23,0.9);
+      border: 1px solid rgba(148,163,184,0.5);
+      color: var(--text-main);
+      cursor: pointer;
+      transition: all 0.18s ease;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+
+    .practice-btn:hover {
+      border-color: rgba(56,189,248,0.8);
+      transform: translateY(-1px);
+    }
+
+    .correct {
+      background: rgba(34,197,94,0.25) !important;
+      border-color: rgba(34,197,94,0.8) !important;
+      box-shadow: 0 0 12px rgba(34,197,94,0.6);
+    }
+
+    .incorrect {
+      background: rgba(249,115,22,0.25) !important;
+      border-color: rgba(249,115,22,0.8) !important;
+      box-shadow: 0 0 12px rgba(249,115,22,0.6);
+    }
+
+    @media (max-width: 840px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-visual {
+        order: -1;
+        height: 200px;
+      }
+      .values-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .practice-options {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        padding: 22px 18px 24px;
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      nav {
+        flex-wrap: wrap;
+      }
+      .hero-text h1 {
+        font-size: 2rem;
+      }
+      .values-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
   </style>
-</head>
 
+  <script>
+    function checkAnswer(btn, correct) {
+      if (correct) {
+        btn.classList.add("correct");
+      } else {
+        btn.classList.add("incorrect");
+      }
+    }
+  </script>
+
+<script>
+document.querySelectorAll('nav a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = link.getAttribute('href');
+    window.location.href = target; // navigates to the page
+  });
+});
+</script>
+
+</head>
 <body>
   <div class="page">
     <header>
@@ -199,102 +500,68 @@
       <nav>
         <button class="nav-link primary">Home</button>
         <button class="nav-link">Overview</button>
-        <button class="nav-link">Adults/Parents</button>
+        <button class="nav-link">Parents</button>
         <button class="nav-link">Teens</button>
         <button class="nav-link">About Us</button>
         <button class="nav-link">Accountability</button>
       </nav>
     </header>
 
-    <div class="hero">
-      <div class="hero-text">
-        <h1><span>Digital instincts for life.</span></h1>
-        <p id="typing-text"></p>
-      </div>
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-pill">
+      <span class="hero-pill-dot"></span>
+      Digital instincts for kids, teens, parents, and seniors.
     </div>
 
-    <p>
-      ReadyOnline helps families build the instincts they need to navigate the online world —
-      <span style="color: var(--accent-soft); font-weight: 600; text-shadow: 0 0 12px rgba(34,197,94,0.6);">
-        just like learning to cross a street: guidance → practice → confidence → independence.
-      </span>
-    </p>
-    <p>
-      It’s about reading the environment, knowing what’s safe, what feels off, and when to ask for help.
-    </p>
+    <h1><span>Digital instincts for life.</span></h1>
 
-    <!-- FOOTER -->
-    <footer class="instinct-footer">
-      <span id="instinct-typing"></span>
-    </footer>
-  </div>
+<p>
+  ReadyOnline helps families build the instincts they need to navigate the online world –
+  <br><span id="typeLine"></span>
+  <br>It’s about reading the environment, knowing what’s safe, what feels off, and when to ask for help.
+</p>
+</div>
+</section>
 
-  <script>
-    /* FIXED NAVIGATION */
-    const navMap = {
-      "Home": "/readyonline-site/",
-      "Overview": "overview.html",
-      "Adults/Parents": "parents.html",
-      "Teens": "teens.html",
-      "About Us": "about.html",
-      "Accountability": "accountability.html"
-    };
-
-    document.querySelectorAll('nav button').forEach(button => {
-      button.addEventListener('click', () => {
-        const label = button.textContent.trim();
-        const target = navMap[label];
-        if (target) window.location.href = target;
-      });
+<script>
+  // 🧭 Navigation buttons
+  document.querySelectorAll('nav button').forEach(button => {
+    button.addEventListener('click', e => {
+      e.preventDefault();
+      const target = button.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+      window.location.href = `${target}.html`;
     });
+  });
 
-    /* LOOPED TYPING EFFECT FOR HERO */
-    const phrases = [
-      "Digital instincts for kids.",
-      "Digital instincts for teens.",
-      "Digital instincts for parents.",
-      "Digital instincts for families.",
-      "Digital instincts for life."
-    ];
+  // ✨ Typing animation
+  const text = "just like learning to cross a street: guidance → practice → confidence → independence.";
+  let i = 0;
+  const speed = 60; // typing speed in ms
+  const typeLine = document.getElementById("typeLine");
 
-    const el = document.getElementById("typing-text");
-    let phraseIndex = 0;
-    let charIndex = 0;
-    let deleting = false;
-
-    function typeLoop() {
-      const currentPhrase = phrases[phraseIndex];
-      if (!deleting) {
-        el.textContent = currentPhrase.slice(0, ++charIndex);
-        if (charIndex === currentPhrase.length) {
-          deleting = true;
-          setTimeout(typeLoop, 1500);
-          return;
-        }
-      } else {
-        el.textContent = currentPhrase.slice(0, --charIndex);
-        if (charIndex === 0) {
-          deleting = false;
-          phraseIndex = (phraseIndex + 1) % phrases.length;
-        }
-      }
-      setTimeout(typeLoop, deleting ? 50 : 90);
+  function typeWriter() {
+    if (i < text.length) {
+      typeLine.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typeWriter, speed);
+    } else {
+      // Loop effect: clear and restart after a pause
+      setTimeout(() => {
+        typeLine.innerHTML = "";
+        i = 0;
+        typeWriter();
+      }, 2500);
     }
+  }
 
-    typeLoop();
+  window.onload = typeWriter;
+</script>
 
-    /* FOOTER TYPING EFFECT */
-    const instinctText = "Pause – Think – Act";
-    let idx = 0;
-
-    function typeInstinct() {
-      const footerEl = document.getElementById("instinct-typing");
-      footerEl.textContent = instinctText.slice(0, idx);
-      idx++;
-      if (idx <= instinctText.length) setTimeout(typeInstinct, 120);
-    }
-
-    typeInstinct();
-  </script>
-</body>
-</html>
+<style>
+  #typeLine {
+    font-style: italic;
+    color: #7fffd4;
+    text-shadow: 0 0 8px #7fffd4;
+  }
+</style>
