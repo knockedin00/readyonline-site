@@ -140,6 +140,12 @@
       max-width: 720px;
     }
 
+    .glow {
+      color: var(--accent-soft);
+      font-weight: 600;
+      text-shadow: 0 0 12px rgba(34,197,94,0.6);
+    }
+
     .section {
       margin-top: 28px;
     }
@@ -158,6 +164,13 @@
       padding: 16px;
       position: relative;
       overflow: hidden;
+      transition: all 0.25s ease;
+    }
+
+    .card:hover {
+      border-color: var(--accent-soft);
+      box-shadow: 0 0 18px rgba(34,197,94,0.4);
+      transform: translateY(-2px);
     }
 
     .card::before {
@@ -170,34 +183,7 @@
     .card-title {
       font-weight: 600;
       margin-bottom: 6px;
-    }
-
-    .cta {
-      margin-top: 28px;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .cta button {
-      padding: 10px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.6);
-      background: rgba(15,23,42,0.9);
       color: var(--text-main);
-      cursor: pointer;
-      transition: all 0.18s ease;
-      font-size: 0.85rem;
-    }
-
-    .cta button:hover {
-      transform: translateY(-1px);
-      border-color: rgba(148,163,184,0.9);
-    }
-
-    .cta button.primary {
-      border-color: rgba(56,189,248,0.8);
-      color: var(--accent);
     }
   </style>
 </head>
@@ -212,7 +198,7 @@
       <nav>
         <button class="nav-link">Home</button>
         <button class="nav-link primary">Overview</button>
-        <button class="nav-link">Parents</button>
+        <button class="nav-link">Adults/Parents</button>
         <button class="nav-link">Teens</button>
         <button class="nav-link">About Us</button>
         <button class="nav-link">Accountability</button>
@@ -220,10 +206,16 @@
     </header>
 
     <h1>How ReadyOnline Works</h1>
+
     <p>
       ReadyOnline teaches families how to build digital instincts — the same way we learn real‑world safety.
-      Kids, teens, parents, and seniors all move through the same four stages:
-      <strong>Guidance → Practice → Confidence → Independence</strong>.
+      Kids, teens, adults, and seniors all move through the same four stages:
+      <span class="glow">Guidance → Practice → Confidence → Independence</span>.
+    </p>
+
+    <p>
+      Across every module, we reinforce one instinct that applies everywhere:
+      <span class="glow">Pause – Think – Act</span>.
     </p>
 
     <div class="section">
@@ -268,20 +260,15 @@
       </div>
     </div>
 
-    <div class="section">
-      <h2>For Seniors</h2>
-      <p>
-        ReadyOnline includes simple, clear modules for older adults who want to stay connected
-        without feeling overwhelmed by scams, pressure, or confusing technology.
-      </p>
-    </div>
-
-    <div class="cta">
-      <button class="primary">Start Learning</button>
-      <button>View Modules</button>
-      <button>For Parents</button>
-      <button>For Teens</button>
-    </div>
   </div>
+
+  <script>
+    document.querySelectorAll('nav button').forEach(button => {
+      button.addEventListener('click', () => {
+        const target = button.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        window.location.href = `${target}.html`;
+      });
+    });
+  </script>
 </body>
 </html>
