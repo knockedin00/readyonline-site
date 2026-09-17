@@ -1,219 +1,287 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ReadyOnline | Overview</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>ReadyOnline – Overview</title>
   <style>
+    :root {
+      --bg: #050816;
+      --card: #0b1220;
+      --accent: #38bdf8;
+      --accent-soft: #22c55e;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --font: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      background: radial-gradient(circle at top left, #001f2f, #000);
-      color: #e0e0e0;
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 0;
+      font-family: var(--font);
+      background: radial-gradient(circle at top, #0f172a 0, #020617 40%, #000 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      padding: 32px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* floating dots */
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,0.18) 1px, transparent 0),
+        radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 0);
+      background-size: 120px 120px, 200px 200px;
+      opacity: 0.35;
+      mix-blend-mode: screen;
+    }
+
+    .page {
+      max-width: 1080px;
+      width: 100%;
+      background: linear-gradient(145deg, rgba(15,23,42,0.96), rgba(2,6,23,0.98));
+      border-radius: 24px;
+      border: 1px solid rgba(148,163,184,0.35);
+      box-shadow: 0 40px 80px rgba(15,23,42,0.9);
+      padding: 28px 32px 32px;
+      backdrop-filter: blur(18px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: -120px;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(56,189,248,0.18), transparent 55%),
+        radial-gradient(circle at 90% 100%, rgba(34,197,94,0.18), transparent 55%);
+      opacity: 0.9;
+      pointer-events: none;
+      z-index: -1;
     }
 
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 2rem;
-      background: rgba(0, 10, 20, 0.9);
-      border-bottom: 1px solid rgba(127, 255, 212, 0.3);
+      margin-bottom: 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0%, #38bdf8 0, #22c55e 40%, #0ea5e9 100%);
+      box-shadow: 0 0 18px rgba(56,189,248,0.7);
     }
 
     .logo-text {
-      color: #00ff99;
-      font-weight: bold;
-      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      font-size: 0.95rem;
+      text-transform: uppercase;
     }
 
-    nav a {
-      text-decoration: none;
-      color: #e0e0e0;
-      margin-left: 1rem;
-      padding: 0.4rem 0.8rem;
-      border-radius: 20px;
-      transition: all 0.3s ease;
+    nav {
+      display: flex;
+      gap: 12px;
+      font-size: 0.9rem;
     }
 
-    nav a:hover, nav a.active {
-      color: #00ff99;
-      box-shadow: 0 0 10px #00ff99;
-      background: rgba(0, 255, 153, 0.1);
+    .nav-link {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.18s ease;
     }
 
-    .hero {
-      padding: 3rem 2rem;
-      text-align: left;
-      max-width: 900px;
-      margin: auto;
+    .nav-link:hover {
+      color: var(--text-main);
+      border-color: rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.7);
+    }
+
+    .nav-link.primary {
+      color: var(--text-main);
+      border-color: rgba(56,189,248,0.7);
+      background: radial-gradient(circle at 0 0, rgba(56,189,248,0.25), rgba(15,23,42,0.9));
+      box-shadow: 0 0 18px rgba(56,189,248,0.5);
     }
 
     h1 {
-      color: #00ff99;
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      background: linear-gradient(120deg, #38bdf8, #22c55e);
+      -webkit-background-clip: text;
+      color: transparent;
     }
 
-    .glow-text {
-      color: #00ff99;
-      font-weight: bold;
-      text-shadow: 0 0 8px #00ff99;
-      animation: pulse 3s infinite;
+    p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+      max-width: 720px;
     }
 
-    @keyframes pulse {
-      0%, 100% { text-shadow: 0 0 8px #00ff99; }
-      50% { text-shadow: 0 0 16px #00ffff; }
+    .section {
+      margin-top: 28px;
     }
 
-    .tiles {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      justify-content: center;
-      margin-top: 2rem;
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
     }
 
-    .flip-tile {
-      perspective: 1000px;
-      width: 250px;
-      height: 150px;
-    }
-
-    .flip-inner {
+    .card {
+      background: rgba(15,23,42,0.9);
+      border-radius: 16px;
+      border: 1px solid rgba(148,163,184,0.5);
+      padding: 16px;
       position: relative;
-      width: 100%;
-      height: 100%;
-      transition: transform 0.6s;
-      transform-style: preserve-3d;
+      overflow: hidden;
     }
 
-    .flip-tile:hover .flip-inner {
-      transform: rotateY(180deg);
-    }
-
-    .flip-front, .flip-back {
+    .card::before {
+      content: "";
       position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border: 1px solid #00ff99;
-      border-radius: 8px;
+      inset: -40px;
+      background: radial-gradient(circle at 0 0, rgba(56,189,248,0.18), transparent 60%);
+    }
+
+    .card-title {
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .cta {
+      margin-top: 28px;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-      box-sizing: border-box;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
-    .flip-front {
-      color: #00ff99;
-      font-weight: bold;
-      background-color: rgba(0, 31, 47, 0.8);
+    .cta button {
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.9);
+      color: var(--text-main);
+      cursor: pointer;
+      transition: all 0.18s ease;
+      font-size: 0.85rem;
     }
 
-    .flip-back {
-      background-color: rgba(0, 10, 20, 0.9);
-      color: #e0e0e0;
-      transform: rotateY(180deg);
+    .cta button:hover {
+      transform: translateY(-1px);
+      border-color: rgba(148,163,184,0.9);
     }
 
-    footer {
-      text-align: center;
-      padding: 2rem;
-      color: #7fffd4;
-      font-size: 0.9rem;
-      border-top: 1px solid rgba(127, 255, 212, 0.3);
-      margin-top: 3rem;
+    .cta button.primary {
+      border-color: rgba(56,189,248,0.8);
+      color: var(--accent);
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="logo-text">READYONLINE</div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="overview.html" class="active">Overview</a>
-      <a href="parents.html">Adults/Parents</a>
-      <a href="teens.html">Teens</a>
-      <a href="about.html">About Us</a>
-      <a href="accountability.html">Accountability</a>
-    </nav>
-  </header>
+  <div class="page">
+    <header>
+      <div class="logo">
+        <div class="logo-mark"></div>
+        <div class="logo-text">ReadyOnline</div>
+      </div>
+      <nav>
+        <button class="nav-link">Home</button>
+        <button class="nav-link primary">Overview</button>
+        <button class="nav-link">Parents</button>
+        <button class="nav-link">Teens</button>
+        <button class="nav-link">About Us</button>
+        <button class="nav-link">Accountability</button>
+      </nav>
+    </header>
 
-  <section class="hero">
-    <h1>Overview</h1>
+    <h1>How ReadyOnline Works</h1>
     <p>
       ReadyOnline teaches families how to build digital instincts — the same way we learn real‑world safety.
-      Kids, teens, and adults all move through the same four stages:
-      <span class="glow-text">Guidance → Practice → Confidence → Independence</span>.
-    </p>
-    <p>
-      Across every module, we reinforce one instinct that applies everywhere:
-      <span class="glow-text">Pause – Think – Act</span>.
+      Kids, teens, parents, and seniors all move through the same four stages:
+      <strong>Guidance → Practice → Confidence → Independence</strong>.
     </p>
 
-    <div class="tiles">
-      <div class="flip-tile">
-        <div class="flip-inner">
-          <div class="flip-front">Guidance</div>
-          <div class="flip-back">Learn to recognize online cues, ask questions, and seek help when unsure.</div>
+    <div class="section">
+      <h2>The Four Stages</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="card-title">Guidance</div>
+          <p>Adults model calm, clear digital behavior and explain what’s safe and what’s not.</p>
         </div>
-      </div>
-
-      <div class="flip-tile">
-        <div class="flip-inner">
-          <div class="flip-front">Practice</div>
-          <div class="flip-back">Apply safety habits through interactive examples and real‑life scenarios.</div>
+        <div class="card">
+          <div class="card-title">Practice</div>
+          <p>Kids and teens try things with support — not restriction — so instincts can form.</p>
         </div>
-      </div>
-
-      <div class="flip-tile">
-        <div class="flip-inner">
-          <div class="flip-front">Confidence</div>
-          <div class="flip-back">Build trust in your instincts and decision‑making online and offline.</div>
+        <div class="card">
+          <div class="card-title">Confidence</div>
+          <p>They begin to recognize red flags, pressure, and manipulation on their own.</p>
         </div>
-      </div>
-
-      <div class="flip-tile">
-        <div class="flip-inner">
-          <div class="flip-front">Independence</div>
-          <div class="flip-back">Navigate digital spaces responsibly, helping others do the same.</div>
+        <div class="card">
+          <div class="card-title">Independence</div>
+          <p>They navigate digital spaces with clarity, calm, and strong instincts.</p>
         </div>
       </div>
     </div>
 
-    <h2 style="color:#00ff99; margin-top:3rem;">What You’ll Learn</h2>
-    <div class="tiles">
-      <div class="flip-tile">
-        <div class="flip-inner">
-          <div class="flip-front">Protect Yourself</div>
-          <div class="flip-back">Privacy, passwords, identity safety, and data awareness.</div>
-        </div>
-      </div>
+    <div class="section">
+      <h2>Reading the Digital Environment</h2>
+      <p>
+        Just like crossing a street, digital safety is about reading the environment:
+        what feels normal, what feels off, and when to pause or ask for help.
+      </p>
+    </div>
 
-      <div class="flip-tile">
-        <div class="flip-inner">
-          <div class="flip-front">Handle Pressure</div>
-          <div class="flip-back">Social pressure, cyberbullying, FOMO, and influencer expectations.</div>
-        </div>
-      </div>
-
-      <div class="flip-tile">
-        <div class="flip-inner">
-          <div class="flip-front">Stay Calm</div>
-          <div class="flip-back">How to respond instead of react — online and offline.</div>
-        </div>
+    <div class="section">
+      <h2>What You’ll Learn</h2>
+      <div class="grid">
+        <div class="card"><div class="card-title">Spot Red Flags</div><p>Scams, pressure, manipulation, impersonation, unsafe chats.</p></div>
+        <div class="card"><div class="card-title">Support Friends</div><p>How to help someone who’s struggling online.</p></div>
+        <div class="card"><div class="card-title">Know What’s Real</div><p>Misinformation, fake accounts, deepfakes, AI content.</p></div>
+        <div class="card"><div class="card-title">Protect Yourself</div><p>Privacy, passwords, identity safety, data awareness.</p></div>
+        <div class="card"><div class="card-title">Handle Pressure</div><p>Social pressure, cyberbullying, FOMO, influencer expectations.</p></div>
+        <div class="card"><div class="card-title">Stay Calm</div><p>How to respond instead of react — online and offline.</p></div>
       </div>
     </div>
-  </section>
 
-  <footer>
-    © 2026 ReadyOnline | Building Digital Instincts for Life
-  </footer>
+    <div class="section">
+      <h2>For Seniors</h2>
+      <p>
+        ReadyOnline includes simple, clear modules for older adults who want to stay connected
+        without feeling overwhelmed by scams, pressure, or confusing technology.
+      </p>
+    </div>
+
+    <div class="cta">
+      <button class="primary">Start Learning</button>
+      <button>View Modules</button>
+      <button>For Parents</button>
+      <button>For Teens</button>
+    </div>
+  </div>
 </body>
 </html>
