@@ -288,13 +288,25 @@
   </div>
 
   <script>
+    /* FIXED NAVIGATION */
+    const navMap = {
+      "Home": "index.html",
+      "Overview": "overview.html",
+      "Adults/Parents": "parents.html",
+      "Teens": "teens.html",
+      "About Us": "about.html",
+      "Accountability": "accountability.html"
+    };
+
     document.querySelectorAll('nav button').forEach(button => {
       button.addEventListener('click', () => {
-        const target = button.textContent.trim().toLowerCase().replace(/\s+/g, '-');
-        window.location.href = `${target}.html`;
+        const label = button.textContent.trim();
+        const target = navMap[label];
+        if (target) window.location.href = target;
       });
     });
 
+    /* FOOTER TYPING EFFECT */
     const instinctText = "Pause – Think – Act";
     let idx = 0;
 
