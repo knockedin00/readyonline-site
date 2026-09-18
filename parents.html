@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ReadyOnline – Parent Guide</title>
+  <title>ReadyOnline – Adults/Parents Guide</title>
+
   <style>
     :root {
       --bg:#050816;
@@ -13,7 +14,9 @@
       --text-muted:#9ca3af;
       --font:system-ui,-apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif;
     }
+
     *{box-sizing:border-box;margin:0;padding:0;}
+
     body{
       font-family:var(--font);
       background:radial-gradient(circle at top,#0f172a 0,#020617 40%,#000 100%);
@@ -24,7 +27,9 @@
       justify-content:center;
       align-items:flex-start;
       overflow-x:hidden;
+      position:relative;
     }
+
     body::before,body::after{
       content:"";
       position:fixed;inset:0;
@@ -36,6 +41,7 @@
       opacity:0.35;
       mix-blend-mode:screen;
     }
+
     .page{
       max-width:1080px;width:100%;
       background:linear-gradient(145deg,rgba(15,23,42,0.96),rgba(2,6,23,0.98));
@@ -47,6 +53,7 @@
       position:relative;
       overflow:hidden;
     }
+
     .page::before{
       content:"";
       position:absolute;inset:-120px;
@@ -55,49 +62,205 @@
         radial-gradient(circle at 90% 100%,rgba(34,197,94,0.18),transparent 55%);
       opacity:0.9;pointer-events:none;z-index:-1;
     }
-    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;}
-    .logo{display:flex;align-items:center;gap:10px;}
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:24px;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
     .logo-mark{
       width:32px;height:32px;border-radius:999px;
       background:radial-gradient(circle at 30% 0%,#38bdf8 0,#22c55e 40%,#0ea5e9 100%);
-      box-shadow:0 0 18px rgba(56,189,248,0.7);
+      box-shadow:0 0 18px rgba(56,189,248,0.7),0 0 32px rgba(34,197,94,0.5);
+      position:relative;
     }
-    .logo-text{font-weight:600;letter-spacing:0.04em;font-size:0.95rem;text-transform:uppercase;}
-    nav{display:flex;gap:12px;font-size:0.9rem;}
+
+    .logo-mark::after{
+      content:"";
+      position:absolute;
+      inset:7px;
+      border-radius:inherit;
+      border:2px solid rgba(15,23,42,0.85);
+    }
+
+    .logo-text{
+      font-weight:600;
+      letter-spacing:0.04em;
+      font-size:0.95rem;
+      text-transform:uppercase;
+    }
+
+    nav{
+      display:flex;
+      gap:12px;
+      font-size:0.9rem;
+    }
+
     .nav-link{
-      padding:6px 12px;border-radius:999px;border:1px solid transparent;
-      color:var(--text-muted);cursor:pointer;transition:all 0.18s ease;
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid transparent;
+      color:var(--text-muted);
+      cursor:pointer;
+      transition:all 0.18s ease;
     }
-    .nav-link:hover{color:var(--text-main);border-color:rgba(148,163,184,0.6);background:rgba(15,23,42,0.7);}
+
+    .nav-link:hover{
+      color:var(--text-main);
+      border-color:rgba(148,163,184,0.6);
+      background:rgba(15,23,42,0.7);
+    }
+
     .nav-link.primary{
-      color:var(--text-main);border-color:rgba(56,189,248,0.7);
+      color:var(--text-main);
+      border-color:rgba(56,189,248,0.7);
       background:radial-gradient(circle at 0 0,rgba(56,189,248,0.25),rgba(15,23,42,0.9));
       box-shadow:0 0 18px rgba(56,189,248,0.5);
     }
-    h1{font-size:2.2rem;margin-bottom:10px;background:linear-gradient(120deg,#38bdf8,#22c55e);
-      -webkit-background-clip:text;color:transparent;}
-    p{font-size:0.95rem;color:var(--text-muted);margin-bottom:18px;max-width:720px;}
-    .section{margin-top:28px;}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:16px;}
+
+    /* HERO */
+    .hero{
+      margin-bottom:28px;
+    }
+
+    .hero h1{
+      font-size:2.4rem;
+      background:linear-gradient(120deg,#38bdf8,#22c55e);
+      -webkit-background-clip:text;
+      color:transparent;
+      margin-bottom:10px;
+    }
+
+    #heroType{
+      font-style:italic;
+      color:#7fffd4;
+      text-shadow:0 0 8px #7fffd4;
+    }
+
+    p{
+      font-size:0.95rem;
+      color:var(--text-muted);
+      margin-bottom:18px;
+      max-width:720px;
+    }
+
+    .section{
+      margin-top:32px;
+    }
+
+    .section h2{
+      font-size:1.3rem;
+      margin-bottom:6px;
+    }
+
+    .section-sub{
+      font-size:0.9rem;
+      color:var(--text-muted);
+      margin-bottom:14px;
+      max-width:760px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:16px;
+      margin-top:16px;
+    }
+
     .card{
-      background:rgba(15,23,42,0.9);border-radius:16px;border:1px solid rgba(148,163,184,0.5);
-      padding:16px;position:relative;overflow:hidden;
+      background:rgba(15,23,42,0.9);
+      border-radius:16px;
+      border:1px solid rgba(148,163,184,0.5);
+      padding:16px;
+      position:relative;
+      overflow:hidden;
+      transition:all 0.18s ease;
     }
-    .card::before{content:"";position:absolute;inset:-40px;
-      background:radial-gradient(circle at 0 0,rgba(56,189,248,0.18),transparent 60%);}
-    .card-title{font-weight:600;margin-bottom:6px;}
-    .cta{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;}
+
+    .card:hover{
+      border-color:rgba(56,189,248,0.8);
+      box-shadow:0 0 18px rgba(56,189,248,0.4);
+      transform:translateY(-2px);
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-40px;
+      background:radial-gradient(circle at 0 0,rgba(56,189,248,0.18),transparent 60%);
+    }
+
+    .card-title{
+      font-weight:600;
+      margin-bottom:6px;
+    }
+
+    .cta{
+      margin-top:28px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
     .cta button{
-      padding:10px 16px;border-radius:999px;border:1px solid rgba(148,163,184,0.6);
-      background:rgba(15,23,42,0.9);color:var(--text-main);cursor:pointer;transition:all 0.18s ease;font-size:0.85rem;
+      padding:10px 16px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.6);
+      background:rgba(15,23,42,0.9);
+      color:var(--text-main);
+      cursor:pointer;
+      transition:all 0.18s ease;
+      font-size:0.85rem;
     }
-    .cta button:hover{transform:translateY(-1px);border-color:rgba(148,163,184,0.9);}
-    .cta button.primary{border-color:rgba(56,189,248,0.8);color:var(--accent);}
+
+    .cta button:hover{
+      transform:translateY(-1px);
+      border-color:rgba(148,163,184,0.9);
+    }
+
+    .cta button.primary{
+      border-color:rgba(56,189,248,0.8);
+      color:var(--accent);
+      box-shadow:0 0 18px rgba(56,189,248,0.4);
+    }
+
+    /* FOOTER */
+    .instinct-footer{
+      position:fixed;
+      bottom:20px;
+      left:0;
+      right:0;
+      text-align:center;
+      font-size:1rem;
+      color:var(--accent-soft);
+      opacity:0.9;
+      letter-spacing:0.05em;
+      pointer-events:none;
+    }
+
+    #instinct-typing{
+      background:linear-gradient(120deg,#38bdf8,#22c55e);
+      -webkit-background-clip:text;
+      color:transparent;
+      font-weight:600;
+      text-shadow:0 0 12px rgba(34,197,94,0.6);
+      white-space:nowrap;
+    }
   </style>
 </head>
 
 <body>
   <div class="page">
+
+    <!-- HEADER -->
     <header>
       <div class="logo">
         <div class="logo-mark"></div>
@@ -106,40 +269,140 @@
       <nav>
         <button class="nav-link">Home</button>
         <button class="nav-link">Overview</button>
-        <button class="nav-link primary">Parents</button>
+        <button class="nav-link primary">Adults/Parents</button>
         <button class="nav-link">Teens</button>
         <button class="nav-link">About Us</button>
         <button class="nav-link">Accountability</button>
       </nav>
     </header>
 
-    <h1>Parent Dashboard & Guide</h1>
-    <p>
-      ReadyOnline gives parents a clear dashboard to assign modules, track progress, and start meaningful conversations.
-      It’s not about control — it’s about connection. Each module helps families build instincts together.
-    </p>
+    <!-- HERO -->
+    <section class="hero">
+      <h1>Adults/Parents Guide</h1>
+      <p><span id="heroType"></span></p>
+    </section>
 
+    <!-- WHAT YOU CAN DO -->
     <div class="section">
       <h2>What You Can Do</h2>
+      <p class="section-sub">
+        Right now, you can assign modules and use the Follow‑Up Guides — all without creating an account or sharing any personal data.
+        In our upcoming app, you’ll also be able to add family profiles, track progress, and receive updated trainings.
+      </p>
+
       <div class="grid">
-        <div class="card"><div class="card-title">Assign Modules</div><p>Choose modules based on your child’s apps or interests. Each module builds instincts for that environment.</p></div>
-        <div class="card"><div class="card-title">View Progress</div><p>See which modules are complete and where your child feels confident or unsure.</p></div>
-        <div class="card"><div class="card-title">Follow Up</div><p>After each module, use the suggested conversation prompts to reinforce instincts and confidence.</p></div>
-        <div class="card"><div class="card-title">Compare Insights</div><p>View teen survey data showing what kids wish parents understood about online life.</p></div>
+        <div class="card">
+          <div class="card-title">Assign Modules</div>
+          <p>Choose modules based on your child’s apps or interests. Build instincts for the environments they use most.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Follow‑Up Guides</div>
+          <p>Use simple conversation prompts to reinforce instincts, confidence, and shared understanding.</p>
+        </div>
       </div>
     </div>
 
+    <!-- WHAT TEENS SAY -->
     <div class="section">
       <h2>What Teens Say</h2>
-      <p>
-        Surveys show teens feel safest when parents listen first, explain calmly, and share their own experiences online.
-        They want guidance, not judgment — and they value honesty about mistakes.
-      </p>
+      <p class="section-sub">We surveyed 14–22‑year‑olds, and here’s what they told us.</p>
+
+      <div class="grid">
+        <div class="card">
+          <div class="card-title">What I Wish I Knew</div>
+          <p>Teens wish they’d learned how to spot scams, protect privacy, and recognize manipulation before they got their first smartphones.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Skills I Want Now</div>
+          <p>Identity fraud awareness, protecting privacy & financial accounts, and setting healthy boundaries — because suspicious messages are constant.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-title">When I Ask for Help</div>
+          <p>Teens feel safest when adults listen calmly, don’t judge, and share their own experiences. They want guidance, not punishment.</p>
+        </div>
+      </div>
+
+      <div class="cta">
+        <button class="primary">View More Survey Insights</button>
+      </div>
     </div>
 
+    <!-- SENIORS -->
     <div class="section">
-      <h2>Suggested Follow‑Up Conversations</h2>
+      <h2>What Seniors/Retirees Need</h2>
+      <p class="section-sub">
+        Seniors are a targeted demographic — not because they’re naïve, but because they’re trusted, experienced, and financially stable.
+        Modern scams use tools that didn’t exist when they were working. These trainings help them stay independent and in control.
+      </p>
+
       <div class="grid">
-        <div class="card"><div class="card-title">After “Spot Red Flags”</div><p>Ask: “What made that example feel off to you?” → listen → share your own instincts.</p></div>
-        <div class="card"><div class="card-title">After “Handle Pressure”</div><p>Ask: “What helps you pause before reacting?” → connect it to real‑world pressure moments.</p></div>
-        <div class="card"><div class="card-title">After “Know What’s Real”</div><p>Ask: “How do you decide
+        <div class="card">
+          <div class="card-title">Spot Modern Scams</div>
+          <p>Learn how today’s fraudsters use technology — from fake tech‑support calls to AI‑generated voices — and how to verify what’s real.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Protect Accounts & Devices</div>
+          <p>Understand how to secure online banking, email, and smartphones against unauthorized access and data theft.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Stay Confident Online</div>
+          <p>Build comfort with new tools while keeping privacy intact — learning red flags that preserve independence.</p>
+        </div>
+      </div>
+
+      <div class="cta">
+        <button class="primary">Review Training Modules Now</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="instinct-footer">
+    <span id="instinct-typing"></span>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    // Navigation
+    document.querySelectorAll('nav button').forEach(button => {
+      button.addEventListener('click', () => {
+        const target = button.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+        window.location.href = `${target}.html`;
+      });
+    });
+
+    // Hero typing loop
+    const heroText = "Digital instincts for families.";
+    let h = 0;
+    const heroEl = document.getElementById("heroType");
+
+    function typeHero() {
+      if (h < heroText.length) {
+        heroEl.textContent += heroText.charAt(h);
+        h++;
+        setTimeout(typeHero, 60);
+      }
+    }
+    typeHero();
+
+    // Footer typing loop
+    const instinctText = "Pause – Think – Act";
+    let idx = 0;
+
+    function typeFooter() {
+      const footerEl = document.getElementById("instinct-typing");
+      footerEl.textContent = instinctText.slice(0, idx);
+      idx++;
+      if (idx <= instinctText.length) setTimeout(typeFooter, 120);
+    }
+    typeFooter();
+  </script>
+
+</body>
+</html>
