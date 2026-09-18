@@ -2,282 +2,153 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ReadyOnline – Adults/Parents Guide</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adults/Parents Guide | ReadyOnline</title>
   <style>
-    :root {
-      --bg:#050816;
-      --card:#0b1220;
-      --accent:#38bdf8;
-      --accent-soft:#22c55e;
-      --text-main:#e5e7eb;
-      --text-muted:#9ca3af;
-      --font:system-ui,-apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif;
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at top left, #0f172a, #020617);
+      color: #e2e8f0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
     }
 
-    *{box-sizing:border-box;margin:0;padding:0;}
-
-    body{
-      font-family:var(--font);
-      background:radial-gradient(circle at top,#0f172a 0,#020617 40%,#000 100%);
-      color:var(--text-main);
-      min-height:100vh;
-      padding:32px;
-      display:flex;
-      justify-content:center;
-      align-items:flex-start;
-      overflow-x:hidden;
-      position:relative;
+    .page {
+      width: 90%;
+      max-width: 1200px;
+      background: rgba(15, 23, 42, 0.8);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 0 40px rgba(56, 189, 248, 0.2);
+      position: relative;
     }
 
-    body::before,body::after{
-      content:"";
-      position:fixed;inset:0;
-      pointer-events:none;
-      background-image:
-        radial-gradient(circle,rgba(255,255,255,0.18) 1px,transparent 0),
-        radial-gradient(circle,rgba(255,255,255,0.12) 1px,transparent 0);
-      background-size:120px 120px,200px 200px;
-      opacity:0.35;
-      mix-blend-mode:screen;
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
     }
 
-    .page{
-      max-width:1080px;width:100%;
-      background:linear-gradient(145deg,rgba(15,23,42,0.96),rgba(2,6,23,0.98));
-      border-radius:24px;
-      border:1px solid rgba(148,163,184,0.35);
-      box-shadow:0 40px 80px rgba(15,23,42,0.9);
-      padding:28px 32px 32px;
-      backdrop-filter:blur(18px);
-      position:relative;
-      overflow:hidden;
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .page::before{
-      content:"";
-      position:absolute;inset:-120px;
-      background:
-        radial-gradient(circle at 10% 0%,rgba(56,189,248,0.18),transparent 55%),
-        radial-gradient(circle at 90% 100%,rgba(34,197,94,0.18),transparent 55%);
-      opacity:0.9;pointer-events:none;z-index:-1;
+    .logo-mark {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #34d399, #0ea5e9);
+      box-shadow: 0 0 12px rgba(34,197,94,0.6);
     }
 
-    header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      margin-bottom:24px;
+    .logo-text {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #e2e8f0;
     }
 
-    .logo{
-      display:flex;
-      align-items:center;
-      gap:10px;
+    nav {
+      display: flex;
+      gap: 12px;
     }
 
-    .logo-mark{
-      width:32px;height:32px;border-radius:999px;
-      background:radial-gradient(circle at 30% 0%,#38bdf8 0,#22c55e 40%,#0ea5e9 100%);
-      box-shadow:0 0 18px rgba(56,189,248,0.7),0 0 32px rgba(34,197,94,0.5);
-      position:relative;
+    .nav-link {
+      background: #f1f5f9;
+      color: #0f172a;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s ease;
     }
 
-    .logo-mark::after{
-      content:"";
-      position:absolute;
-      inset:7px;
-      border-radius:inherit;
-      border:2px solid rgba(15,23,42,0.85);
+    .nav-link:hover {
+      background: #bae6fd;
     }
 
-    .logo-text{
-      font-weight:600;
-      letter-spacing:0.04em;
-      font-size:0.95rem;
-      text-transform:uppercase;
+    .nav-link.primary {
+      background: #0ea5e9;
+      color: #fff;
+      box-shadow: 0 0 12px rgba(56,189,248,0.6);
     }
 
-    nav{
-      display:flex;
-      gap:12px;
-      font-size:0.9rem;
+    h1 {
+      font-size: 2.4rem;
+      color: #38bdf8;
+      margin-bottom: 8px;
     }
 
-    .nav-link{
-      padding:6px 12px;
-      border-radius:999px;
-      border:1px solid transparent;
-      color:var(--text-muted);
-      cursor:pointer;
-      transition:all 0.18s ease;
+    h2 {
+      font-size: 1.6rem;
+      color: #38bdf8;
+      margin-top: 40px;
     }
 
-    .nav-link:hover{
-      color:var(--text-main);
-      border-color:rgba(148,163,184,0.6);
-      background:rgba(15,23,42,0.7);
+    p {
+      line-height: 1.6;
+      color: #cbd5e1;
     }
 
-    .nav-link.primary{
-      color:var(--text-main);
-      border-color:rgba(56,189,248,0.7);
-      background:radial-gradient(circle at 0 0,rgba(56,189,248,0.25),rgba(15,23,42,0.9));
-      box-shadow:0 0 18px rgba(56,189,248,0.5);
+    .highlight {
+      color: #22c55e;
+      font-style: italic;
     }
 
-    /* HERO */
-    .hero{
-      margin-bottom:28px;
+    .card {
+      background: rgba(30,41,59,0.8);
+      border-radius: 12px;
+      padding: 16px;
+      margin: 12px 0;
+      box-shadow: 0 0 12px rgba(56,189,248,0.2);
     }
 
-    .hero h1{
-      font-size:2.4rem;
-      background:linear-gradient(120deg,#38bdf8,#22c55e);
-      -webkit-background-clip:text;
-      color:transparent;
-      margin-bottom:10px;
+    .button-primary {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      border-radius: 20px;
+      background: #0ea5e9;
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 0 16px rgba(56,189,248,0.6);
+      transition: background 0.3s ease;
     }
 
-    #heroType{
-      font-style:italic;
-      color:#7fffd4;
-      text-shadow:0 0 8px #7fffd4;
+    .button-primary:hover {
+      background: #38bdf8;
     }
 
-    p{
-      font-size:0.95rem;
-      color:var(--text-muted);
-      margin-bottom:18px;
-      max-width:720px;
+    footer.instinct-footer {
+      position: relative;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 1rem;
+      color: #22c55e;
+      opacity: 0.9;
+      letter-spacing: 0.05em;
+      border-top: 1px solid rgba(148,163,184,0.3);
+      padding-top: 12px;
+      margin-top: 40px;
     }
 
-    .section{
-      margin-top:32px;
-    }
-
-    .section h2{
-      font-size:1.3rem;
-      margin-bottom:6px;
-      background:linear-gradient(120deg,#38bdf8,#22c55e);
-      -webkit-background-clip:text;
-      color:transparent;
-    }
-
-    .section-sub{
-      font-size:0.9rem;
-      color:var(--text-muted);
-      margin-bottom:14px;
-      max-width:760px;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:16px;
-      margin-top:16px;
-    }
-
-    .card{
-      background:rgba(15,23,42,0.9);
-      border-radius:16px;
-      border:1px solid rgba(148,163,184,0.5);
-      padding:16px;
-      position:relative;
-      overflow:hidden;
-      transition:all 0.18s ease;
-    }
-
-    .card:hover{
-      border-color:rgba(56,189,248,0.8);
-      box-shadow:0 0 18px rgba(56,189,248,0.4);
-      transform:translateY(-2px);
-    }
-
-    .card::before{
-      content:"";
-      position:absolute;
-      inset:-40px;
-      background:radial-gradient(circle at 0 0,rgba(56,189,248,0.18),transparent 60%);
-    }
-
-    .card-title{
-      font-weight:600;
-      margin-bottom:6px;
-    }
-
-    .cta{
-      margin-top:28px;
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-
-    .cta button{
-      padding:10px 16px;
-      border-radius:999px;
-      border:1px solid rgba(148,163,184,0.6);
-      background:rgba(15,23,42,0.9);
-      color:var(--text-main);
-      cursor:pointer;
-      transition:all 0.18s ease;
-      font-size:0.85rem;
-    }
-
-    .cta button:hover{
-      transform:translateY(-1px);
-      border-color:rgba(148,163,184,0.9);
-    }
-
-    .cta button.primary{
-      border-color:rgba(56,189,248,0.8);
-      color:var(--accent);
-      box-shadow:0 0 18px rgba(56,189,248,0.4);
-    }
-
-.instinct-footer {
-  position: relative;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-size: 1rem;
-  color: var(--accent-soft);
-  opacity: 0.9;
-  letter-spacing: 0.05em;
-  border-top: 1px solid rgba(148,163,184,0.3);
-  padding-top: 12px;
-  margin-top: 32px;
-}
-
-    
-    #instinct-typing{
-      background:linear-gradient(120deg,#38bdf8,#22c55e);
-      -webkit-background-clip:text;
-      color:transparent;
-      font-weight:600;
-      text-shadow:0 0 12px rgba(34,197,94,0.6);
-      white-space:nowrap;
+    #instinct-typing {
+      text-shadow: 0 0 8px rgba(34,197,94,0.4);
     }
   </style>
 </head>
 
 <body>
   <div class="page">
-    <!-- HEADER -->
-    <header>...</header>
-
-    <!-- MAIN CONTENT -->
-    <section>...</section>
-
-    <!-- FOOTER -->
-    <footer class="instinct-footer">
-      <span id="instinct-typing"></span>
-    </footer>
-  </div> <!-- closes .page -->
-</body>
-
-
     <!-- HEADER -->
     <header>
       <div class="logo">
@@ -289,7 +160,7 @@
         <button class="nav-link">Overview</button>
         <button class="nav-link primary">Adults/Parents</button>
         <button class="nav-link">Teens</button>
-        <button class="nav-link">About Us</button>
+        <button class="nav-link">About Us</button>
         <button class="nav-link">Accountability</button>
       </nav>
     </header>
@@ -297,97 +168,34 @@
     <!-- HERO -->
     <section class="hero">
       <h1>Adults/Parents Guide</h1>
-      <p><span id="heroType"></span></p>
+      <p class="highlight">Digital instincts for families.</p>
     </section>
 
-    <!-- WHAT YOU CAN DO -->
-    <div class="section">
+    <!-- CONTENT -->
+    <section>
       <h2>What You Can Do</h2>
-      <p class="section-sub">
-        Right now, you can assign modules and use the Follow‑Up Guides — all without creating an account or sharing any personal data.
-        In our upcoming app, you’ll have a Family Dashboard where you’ll be able to add profiles, track progress, and receive updated trainings.
+      <p>
+        Right now, you can assign modules and use the Follow-Up Guides — all without creating an account or sharing any personal data. In our upcoming app, you’ll have a Family Dashboard where you’ll be able to add profiles, track progress, and receive updated trainings.
       </p>
 
-      <div class="grid">
-        <div class="card">
-          <div class="card-title">Assign Modules</div>
-          <p>Choose modules based on your child’s apps or interests. Build instincts for the environments they use most.</p>
-        </div>
-
-        <div class="card">
-          <div class="card-title">Follow‑Up Guides</div>
-          <p>Use simple conversation prompts to reinforce instincts and confidence.</p>
-        </div>
+      <div class="card">
+        <h3>Assign Modules</h3>
+        <p>Choose modules based on your child’s apps or interests. Build instincts for the environments they use most.</p>
       </div>
 
-      <div class="cta">
-        <button class="primary">Review Training Modules Now</button>
-      </div>
-    </div>
-
-    <!-- WHAT TEENS SAY -->
-    <div class="section">
-      <h2>What Teens Say</h2>
-      <p class="section-sub">We surveyed 14–22‑year‑olds, and here’s what they told us.</p>
-
-      <div class="grid">
-        <div class="card">
-          <div class="card-title">What I Wish I Knew</div>
-          <p>Teens wish they’d learned how to spot scams, protect privacy, and recognize manipulation before they got their first smartphones.</p>
-        </div>
-
-        <div class="card">
-          <div class="card-title">Skills I Want Now</div>
-          <p>Identity fraud awareness, protecting privacy & financial accounts, and how to build healthy digital habits.</p>
-        </div>
-
-        <div class="card">
-          <div class="card-title">When I Ask for Help</div>
-          <p>Teens feel safest when adults listen calmly, don’t judge, and know their conversation will remain private.</p>
-        </div>
+      <div class="card">
+        <h3>Follow-Up Guides</h3>
+        <p>Use simple conversation prompts to reinforce instincts and confidence.</p>
       </div>
 
-      <div class="cta">
-        <button class="primary">View More Survey Insights</button>
-      </div>
-    </div>
+      <a href="#" class="button-primary">Review Training Modules Now</a>
+    </section>
 
-    <!-- SENIORS -->
-    <div class="section">
-      <h2>What Seniors/Retirees Need</h2>
-      <p class="section-sub">
-        Seniors are a targeted demographic — not because they’re naïve, but because they’re trusted, experienced, and financially stable.
-        Modern scams use tools that didn’t exist when they were working. These trainings help them stay independent and in control.
-      </p>
-
-      <div class="grid">
-        <div class="card">
-          <div class="card-title">Spot Modern Scams</div>
-          <p>Learn how today’s fraudsters use technology — from fake tech‑support calls to AI‑generated voices — and how to verify what’s real.</p>
-        </div>
-
-        <div class="card">
-          <div class="card-title">Protect Accounts & Devices</div>
-          <p>Understand how to secure online banking, email, and smartphones against unauthorized access and data theft.</p>
-        </div>
-
-        <div class="card">
-          <div class="card-title">Stay Confident Online</div>
-          <p>Build comfort using technology while keeping privacy intact — learning digital instincts that preserve independence.</p>
-        </div>
-      </div>
-
-      <div class="cta">
-        <button class="primary">Review Training Modules Now</button>
-      </div>
-    </div>
-
+    <!-- FOOTER -->
+    <footer class="instinct-footer">
+      <span id="instinct-typing"></span>
+    </footer>
   </div>
-
-  <!-- FOOTER -->
-  <footer class="instinct-footer">
-    <span id="instinct-typing"></span>
-  </footer>
 
   <!-- SCRIPTS -->
   <script>
@@ -399,24 +207,9 @@
       });
     });
 
-    // Hero typing loop
-    const heroText = "Digital instincts for families.";
-    let h = 0;
-    const heroEl = document.getElementById("heroType");
-
-    function typeHero() {
-      if (h < heroText.length) {
-        heroEl.textContent += heroText.charAt(h);
-        h++;
-        setTimeout(typeHero, 60);
-      }
-    }
-    typeHero();
-
     // Footer typing loop
     const instinctText = "Pause – Think – Act";
     let idx = 0;
-
     function typeFooter() {
       const footerEl = document.getElementById("instinct-typing");
       footerEl.textContent = instinctText.slice(0, idx);
@@ -425,6 +218,5 @@
     }
     typeFooter();
   </script>
-
 </body>
 </html>
