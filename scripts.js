@@ -309,3 +309,42 @@ document.addEventListener("click",event=>{if(!event.target.closest(".enter-ready
     }, 0);
   });
 })();
+
+(() => {
+  const typeLoop = element => {
+    const text = element.dataset.typing;
+    if (!text || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let position = 0;
+    let deleting = false;
+    const tick = () => {
+      element.textContent = deleting ? text.slice(0, position--) : text.slice(0, position++);
+      if (!deleting && position > text.length) {
+        deleting = true;
+        window.setTimeout(tick, 1500);
+        return;
+      }
+      if (deleting && position < 0) {
+        deleting = false;
+        position = 0;
+      }
+      window.setTimeout(tick, deleting ? 45 : 90);
+    };
+    tick();
+  };
+
+  document.querySelectorAll(".site-footer p:not([data-typing])").forEach(footerText => {
+    footerText.dataset.typing = footerText.textContent.trim() || "Pause · Think · Act";
+  });
+  document.querySelectorAll("[data-typing]").forEach(typeLoop);
+
+  document.querySelectorAll("[data-companion-gallery]").forEach(gallery => {
+    const status = document.querySelector("[data-companion-status]");
+    gallery.addEventListener("click", event => {
+      const card = event.target.closest("[data-companion]");
+      if (!card) return;
+      gallery.querySelectorAll("[data-companion]").forEach(item => item.classList.toggle("is-selected", item === card));
+      if (status) status.textContent = `${card.dataset.companion} is ready with a ${card.dataset.power}.`;
+    });
+  });
+})();
