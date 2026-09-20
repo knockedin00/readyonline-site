@@ -2,609 +2,570 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ReadyOnline – Digital Instincts for Life</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ReadyOnline helps families build lifelong digital instincts through real stories, practice, and confidence." />
+  <title>ReadyOnline | Digital instincts for life</title>
   <style>
     :root {
-      --bg: #050816;
-      --card: #0b1220;
-      --accent: #38bdf8;
-      --accent-soft: #22c55e;
-      --text-main: #e5e7eb;
-      --text-muted: #9ca3af;
-      --danger: #f97316;
-      --font: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      --ink: #eaf7ff;
+      --muted: #9cb2ca;
+      --night: #030817;
+      --navy: #07132d;
+      --panel: rgba(10, 27, 59, 0.72);
+      --line: rgba(126, 185, 255, 0.22);
+      --cyan: #43d9ff;
+      --violet: #9a7dff;
+      --lime: #b8ff6a;
+      --coral: #ff9375;
+      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
 
     body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--ink);
       font-family: var(--font);
-      background: radial-gradient(circle at top, #0f172a 0, #020617 40%, #000 100%);
-      color: var(--text-main);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 32px;
-      position: relative;
+      background:
+        radial-gradient(circle at 12% 5%, rgba(67, 217, 255, 0.16), transparent 26rem),
+        radial-gradient(circle at 87% 28%, rgba(154, 125, 255, 0.17), transparent 28rem),
+        var(--night);
       overflow-x: hidden;
     }
 
-    /* floating dots / stars */
-    body::before,
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        radial-gradient(circle, rgba(255,255,255,0.18) 1px, transparent 0),
-        radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 0);
-      background-size: 120px 120px, 200px 200px;
-      opacity: 0.35;
-      mix-blend-mode: screen;
-    }
+    a { color: inherit; text-decoration: none; }
 
-    .page {
-      max-width: 1080px;
-      width: 100%;
-      background: linear-gradient(145deg, rgba(15,23,42,0.96), rgba(2,6,23,0.98));
-      border-radius: 24px;
-      border: 1px solid rgba(148,163,184,0.35);
-      box-shadow:
-        0 40px 80px rgba(15,23,42,0.9),
-        0 0 0 1px rgba(15,23,42,0.8);
-      padding: 28px 32px 32px;
-      backdrop-filter: blur(18px);
+    .site-shell {
       position: relative;
+      isolation: isolate;
       overflow: hidden;
     }
 
-    .page::before {
+    .site-shell::before {
       content: "";
       position: absolute;
-      inset: -120px;
-      background:
-        radial-gradient(circle at 10% 0%, rgba(56,189,248,0.18) 0, transparent 55%),
-        radial-gradient(circle at 90% 100%, rgba(34,197,94,0.18) 0, transparent 55%);
-      opacity: 0.9;
-      pointer-events: none;
-      z-index: -1;
+      z-index: -2;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(109, 164, 246, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(109, 164, 246, 0.055) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: linear-gradient(to bottom, black, transparent 72%);
     }
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-    }
+    .container { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo-mark {
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 0%, #38bdf8 0, #22c55e 40%, #0ea5e9 100%);
-      box-shadow:
-        0 0 18px rgba(56,189,248,0.7),
-        0 0 32px rgba(34,197,94,0.5);
-      position: relative;
-    }
-
-    .logo-mark::after {
-      content: "";
-      position: absolute;
-      inset: 7px;
-      border-radius: inherit;
-      border: 2px solid rgba(15,23,42,0.85);
-    }
-
-    .logo-text {
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      font-size: 0.95rem;
-      text-transform: uppercase;
-      color: var(--text-main);
-    }
-
-    nav {
-      display: flex;
-      gap: 12px;
-      font-size: 0.9rem;
-    }
-
-    .nav-link {
-      padding: 6px 12px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: all 0.18s ease;
-      background: transparent;
-    }
-
-    .nav-link:hover {
-      color: var(--text-main);
-      border-color: rgba(148,163,184,0.6);
-      background: rgba(15,23,42,0.7);
-    }
-
-    .nav-link.primary {
-      color: var(--text-main);
-      border-color: rgba(56,189,248,0.7);
-      background: radial-gradient(circle at 0 0, rgba(56,189,248,0.25), rgba(15,23,42,0.9));
-      box-shadow: 0 0 18px rgba(56,189,248,0.5);
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-      gap: 24px;
-      align-items: center;
-      margin-bottom: 28px;
-    }
-
-    .hero-text h1 {
-      font-size: 2.4rem;
-      line-height: 1.1;
-      margin-bottom: 10px;
-    }
-
-    .hero-text h1 span {
-      background: linear-gradient(120deg, #38bdf8, #22c55e);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .hero-text p {
-      font-size: 0.98rem;
-      color: var(--text-muted);
-      max-width: 520px;
-    }
-
-    .hero-pill {
+    .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 12px;
+      padding: 7px 11px;
+      color: #d5f9ff;
+      border: 1px solid rgba(67, 217, 255, 0.3);
       border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.5);
-      background: rgba(15,23,42,0.85);
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-bottom: 10px;
+      background: rgba(67, 217, 255, 0.08);
+      font-size: 0.73rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
     }
 
-    .hero-pill-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 10px rgba(34,197,94,0.8);
+    .eyebrow::before {
+      width: 7px;
+      height: 7px;
+      content: "";
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 12px var(--lime);
     }
 
-    .hero-cta {
+    .site-header {
       display: flex;
-      gap: 10px;
-      margin-top: 14px;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 92px;
+      gap: 24px;
     }
 
-    .hero-cta button {
-      padding: 8px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.6);
-      background: rgba(15,23,42,0.9);
-      color: var(--text-main);
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: all 0.18s ease;
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 1.08rem;
+      font-weight: 850;
+      letter-spacing: -0.04em;
     }
 
-    .hero-cta button.primary {
-      border-color: rgba(56,189,248,0.8);
-      background: radial-gradient(circle at 0 0, rgba(56,189,248,0.3), rgba(15,23,42,0.95));
-      box-shadow: 0 0 18px rgba(56,189,248,0.6);
+    .brand-mark {
+      position: relative;
+      display: grid;
+      width: 35px;
+      height: 35px;
+      place-items: center;
+      border: 1px solid rgba(67, 217, 255, 0.6);
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(67, 217, 255, 0.25), rgba(154, 125, 255, 0.35));
+      box-shadow: 0 0 24px rgba(67, 217, 255, 0.25);
     }
 
-    .hero-cta button:hover {
-      transform: translateY(-1px);
-      border-color: rgba(148,163,184,0.9);
+    .brand-mark::before, .brand-mark::after {
+      position: absolute;
+      content: "";
+      border: 2px solid var(--cyan);
+      border-radius: 50%;
     }
+
+    .brand-mark::before { width: 15px; height: 15px; }
+    .brand-mark::after { width: 5px; height: 5px; background: var(--lime); border-color: var(--lime); }
+
+    .site-nav { display: flex; align-items: center; gap: 26px; }
+    .site-nav a { color: var(--muted); font-size: 0.9rem; font-weight: 650; transition: color 180ms ease; }
+    .site-nav a:hover { color: var(--ink); }
+
+    .nav-cta, .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 46px;
+      padding: 0 18px;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      font: inherit;
+      font-size: 0.9rem;
+      font-weight: 800;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .nav-cta, .button.primary {
+      color: #03101e;
+      background: var(--cyan);
+      box-shadow: 0 0 28px rgba(67, 217, 255, 0.27);
+    }
+
+    .nav-cta:hover, .button.primary:hover { transform: translateY(-2px); box-shadow: 0 0 35px rgba(67, 217, 255, 0.45); }
+    .button.secondary { color: var(--ink); border-color: var(--line); background: rgba(255, 255, 255, 0.04); }
+    .button.secondary:hover { transform: translateY(-2px); border-color: rgba(67, 217, 255, 0.7); background: rgba(67, 217, 255, 0.09); }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.03fr) minmax(400px, 0.97fr);
+      gap: 44px;
+      align-items: center;
+      min-height: 620px;
+      padding: 60px 0 82px;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      max-width: 700px;
+      margin: 18px 0;
+      font-size: clamp(3.2rem, 6vw, 5.75rem);
+      line-height: 0.96;
+      letter-spacing: -0.07em;
+    }
+
+    .gradient-text {
+      color: transparent;
+      background: linear-gradient(100deg, var(--cyan), #90e6ff 45%, var(--lime));
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .hero-copy {
+      max-width: 585px;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.7vw, 1.16rem);
+      line-height: 1.7;
+    }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .hero-note { margin: 17px 0 0; color: #738ba7; font-size: 0.82rem; }
 
     .hero-visual {
       position: relative;
-      height: 220px;
-      border-radius: 20px;
-      background: radial-gradient(circle at 20% 0%, rgba(56,189,248,0.25), rgba(15,23,42,0.95));
-      border: 1px solid rgba(56,189,248,0.4);
-      box-shadow:
-        0 0 26px rgba(56,189,248,0.6),
-        0 0 40px rgba(15,23,42,0.9);
+      min-height: 448px;
+      padding: 23px;
+      border: 1px solid rgba(105, 185, 255, 0.26);
+      border-radius: 25px;
+      background: linear-gradient(145deg, rgba(16, 47, 96, 0.86), rgba(7, 16, 46, 0.8));
+      box-shadow: inset 0 1px rgba(255, 255, 255, 0.08), 0 25px 70px rgba(0, 0, 0, 0.3);
       overflow: hidden;
     }
 
-    .hero-orbit {
+    .hero-visual::before {
       position: absolute;
-      inset: 18px;
-      border-radius: 18px;
-      border: 1px dashed rgba(148,163,184,0.5);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero-core {
-      width: 72px;
-      height: 72px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 0%, #38bdf8 0, #22c55e 40%, #0ea5e9 100%);
-      box-shadow:
-        0 0 24px rgba(56,189,248,0.8),
-        0 0 40px rgba(34,197,94,0.7);
-      position: relative;
-    }
-
-    .hero-core::after {
-      content: "Family";
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: #0b1120;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-
-    .hero-node {
-      position: absolute;
-      width: 52px;
-      height: 52px;
-      border-radius: 999px;
-      background: rgba(15,23,42,0.95);
-      border: 1px solid rgba(148,163,184,0.7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      backdrop-filter: blur(10px);
-    }
-
-    .hero-node.kids { top: 18px; left: 26px; }
-    .hero-node.teens { top: 18px; right: 26px; }
-    .hero-node.parents { bottom: 22px; left: 40px; }
-    .hero-node.seniors { bottom: 22px; right: 40px; }
-
-    .hero-node span {
-      display: block;
-      text-align: center;
-      line-height: 1.2;
-    }
-
-    .section {
-      margin-bottom: 24px;
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 12px;
-    }
-
-    .section-header h2 {
-      font-size: 1.1rem;
-    }
-
-    .section-header p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    .values-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .value-card {
-      background: rgba(15,23,42,0.9);
-      border-radius: 14px;
-      border: 1px solid rgba(148,163,184,0.5);
-      padding: 10px 10px 12px;
-      font-size: 0.85rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .value-card::before {
+      inset: -35%;
       content: "";
+      background: conic-gradient(from 130deg, transparent, rgba(67, 217, 255, 0.14), transparent 35%, rgba(154, 125, 255, 0.14), transparent 70%);
+      animation: spin 18s linear infinite;
+    }
+
+    .dashboard { position: relative; height: 100%; min-height: 399px; }
+    .visual-label { position: absolute; top: 0; left: 0; color: #c9dcf3; font-size: 0.76rem; font-weight: 750; letter-spacing: 0.08em; text-transform: uppercase; }
+
+    .radar {
       position: absolute;
-      inset: -40px;
-      background: radial-gradient(circle at 0 0, rgba(56,189,248,0.18), transparent 60%);
-      opacity: 0.9;
-      pointer-events: none;
-    }
-
-    .value-label {
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .value-desc {
-      color: var(--text-muted);
-      font-size: 0.8rem;
-    }
-
-    .why {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      max-width: 720px;
-    }
-
-    .nav-footer {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 10px;
-    }
-
-    .nav-footer button {
-      padding: 7px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.6);
-      background: rgba(15,23,42,0.9);
-      color: var(--text-main);
-      font-size: 0.8rem;
-      cursor: pointer;
-      transition: all 0.18s ease;
-    }
-
-    .nav-footer button:hover {
-      transform: translateY(-1px);
-      border-color: rgba(148,163,184,0.9);
-    }
-
-    .nav-footer button.highlight {
-      border-color: rgba(56,189,248,0.8);
-      color: var(--accent);
-    }
-
-    /* Practice Question */
-    .practice {
-      margin-top: 32px;
-      padding: 20px;
-      border-radius: 16px;
-      background: rgba(15,23,42,0.85);
-      border: 1px solid rgba(56,189,248,0.4);
-      box-shadow: 0 0 18px rgba(56,189,248,0.3);
-    }
-
-    .practice h3 {
-      margin-bottom: 12px;
-      font-size: 1rem;
-    }
-
-    .practice-options {
+      top: 57px;
+      left: 50%;
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
+      width: 210px;
+      height: 210px;
+      place-items: center;
+      border: 1px solid rgba(67, 217, 255, 0.34);
+      border-radius: 50%;
+      transform: translateX(-50%);
+      background: repeating-radial-gradient(circle, transparent 0 35px, rgba(67, 217, 255, 0.11) 36px 37px);
+      box-shadow: 0 0 44px rgba(67, 217, 255, 0.16), inset 0 0 42px rgba(67, 217, 255, 0.12);
     }
 
-    .practice-btn {
-      padding: 10px;
-      border-radius: 12px;
-      background: rgba(2,6,23,0.9);
-      border: 1px solid rgba(148,163,184,0.5);
-      color: var(--text-main);
-      cursor: pointer;
-      transition: all 0.18s ease;
+    .radar::before {
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      content: "";
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      transform: rotate(-35deg);
+      box-shadow: 0 0 13px var(--cyan);
+    }
+
+    .radar-core {
+      display: grid;
+      width: 78px;
+      height: 78px;
+      place-items: center;
+      border: 8px solid rgba(3, 8, 23, 0.8);
+      border-radius: 50%;
+      color: #051321;
+      background: var(--lime);
+      box-shadow: 0 0 30px rgba(184, 255, 106, 0.65);
+      font-size: 0.67rem;
+      font-weight: 950;
+      letter-spacing: 0.06em;
       text-align: center;
-      font-size: 0.85rem;
+      text-transform: uppercase;
     }
 
-    .practice-btn:hover {
-      border-color: rgba(56,189,248,0.8);
-      transform: translateY(-1px);
+    .signal {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border: 1px solid rgba(155, 195, 244, 0.27);
+      border-radius: 9px;
+      color: #d8eaff;
+      background: rgba(4, 14, 38, 0.82);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.23);
+      font-size: 0.72rem;
+      font-weight: 750;
     }
 
-    .correct {
-      background: rgba(34,197,94,0.25) !important;
-      border-color: rgba(34,197,94,0.8) !important;
-      box-shadow: 0 0 12px rgba(34,197,94,0.6);
+    .signal i { width: 8px; height: 8px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
+    .signal.one { top: 63px; left: 0; }
+    .signal.two { top: 197px; right: 0; }
+    .signal.two i { background: var(--violet); box-shadow: 0 0 10px var(--violet); }
+    .signal.three { bottom: 17px; left: 19px; }
+    .signal.three i { background: var(--lime); box-shadow: 0 0 10px var(--lime); }
+
+    .status-card {
+      position: absolute;
+      right: 0;
+      bottom: 16px;
+      width: 211px;
+      padding: 14px;
+      border: 1px solid rgba(67, 217, 255, 0.25);
+      border-radius: 12px;
+      background: rgba(6, 20, 50, 0.86);
     }
 
-    .incorrect {
-      background: rgba(249,115,22,0.25) !important;
-      border-color: rgba(249,115,22,0.8) !important;
-      box-shadow: 0 0 12px rgba(249,115,22,0.6);
+    .status-card span { display: block; color: var(--muted); font-size: 0.68rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+    .status-card strong { display: block; margin: 5px 0 8px; font-size: 0.91rem; }
+    .progress { height: 5px; border-radius: 5px; background: #1b355c; overflow: hidden; }
+    .progress::after { display: block; width: 73%; height: 100%; content: ""; border-radius: inherit; background: linear-gradient(90deg, var(--cyan), var(--lime)); }
+
+    .trust-bar {
+      display: grid;
+      grid-template-columns: 1.25fr repeat(3, 1fr);
+      gap: 2px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: var(--line);
+      overflow: hidden;
     }
 
-    @media (max-width: 840px) {
-      .hero {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      .hero-visual {
-        order: -1;
-        height: 200px;
-      }
-      .values-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-      .practice-options {
-        grid-template-columns: minmax(0, 1fr);
-      }
+    .trust-item { min-height: 92px; padding: 19px 24px; background: rgba(5, 15, 38, 0.78); }
+    .trust-item strong { display: block; margin-bottom: 3px; color: var(--cyan); font-size: 1.02rem; }
+    .trust-item span { color: var(--muted); font-size: 0.78rem; line-height: 1.35; }
+    .trust-intro { color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+    .trust-intro b { color: var(--ink); }
+
+    .section { padding: 116px 0; }
+    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 38px; }
+    .section-heading h2 { max-width: 630px; margin: 13px 0 0; font-size: clamp(2rem, 4vw, 3.55rem); line-height: 1; letter-spacing: -0.055em; }
+    .section-heading p { max-width: 375px; margin: 0; color: var(--muted); line-height: 1.6; }
+
+    .framework { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(8, 25, 55, 0.36); }
+    .layer-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 17px; overflow: hidden; }
+    .layer { min-height: 218px; padding: 22px; background: #081937; transition: background 180ms ease, transform 180ms ease; }
+    .layer:hover { position: relative; z-index: 1; background: #0c2550; transform: translateY(-5px); }
+    .layer-number { display: block; margin-bottom: 27px; color: var(--cyan); font-size: 0.75rem; font-weight: 900; letter-spacing: 0.1em; }
+    .layer:nth-child(2) .layer-number { color: var(--violet); }
+    .layer:nth-child(3) .layer-number { color: var(--lime); }
+    .layer:nth-child(4) .layer-number { color: var(--coral); }
+    .layer h3 { margin-bottom: 9px; font-size: 1.06rem; letter-spacing: -0.025em; }
+    .layer p { margin: 0; color: var(--muted); font-size: 0.84rem; line-height: 1.55; }
+
+    .module-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .module {
+      position: relative;
+      display: flex;
+      min-height: 232px;
+      padding: 24px;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: linear-gradient(145deg, rgba(18, 45, 88, 0.76), rgba(5, 15, 38, 0.84));
+      overflow: hidden;
+      transition: transform 180ms ease, border-color 180ms ease;
     }
 
-    @media (max-width: 640px) {
-      .page {
-        padding: 22px 18px 24px;
-      }
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
-      nav {
-        flex-wrap: wrap;
-      }
-      .hero-text h1 {
-        font-size: 2rem;
-      }
-      .values-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
+    .module:hover { border-color: rgba(67, 217, 255, 0.65); transform: translateY(-4px); }
+    .module::after { position: absolute; right: -35px; bottom: -45px; width: 140px; height: 140px; content: ""; border: 1px solid rgba(67, 217, 255, 0.25); border-radius: 50%; box-shadow: 0 0 0 18px rgba(67, 217, 255, 0.04), 0 0 0 38px rgba(67, 217, 255, 0.035); }
+    .module:nth-child(2)::after { border-color: rgba(154, 125, 255, 0.3); box-shadow: 0 0 0 18px rgba(154, 125, 255, 0.04), 0 0 0 38px rgba(154, 125, 255, 0.035); }
+    .module:nth-child(3)::after { border-color: rgba(184, 255, 106, 0.3); box-shadow: 0 0 0 18px rgba(184, 255, 106, 0.04), 0 0 0 38px rgba(184, 255, 106, 0.035); }
+    .module-code { color: var(--cyan); font-size: 0.74rem; font-weight: 850; letter-spacing: 0.11em; }
+    .module:nth-child(2) .module-code { color: #c5b5ff; }
+    .module:nth-child(3) .module-code { color: var(--lime); }
+    .module h3 { position: relative; z-index: 1; max-width: 240px; margin: 0 0 9px; font-size: 1.27rem; letter-spacing: -0.04em; }
+    .module p { position: relative; z-index: 1; margin: 0; color: var(--muted); font-size: 0.87rem; line-height: 1.55; }
+    .module-link { position: relative; z-index: 1; color: var(--ink); font-size: 0.84rem; font-weight: 800; }
+    .module-link::after { content: "  →"; color: var(--cyan); }
+
+    .family-section { padding-top: 0; }
+    .family-panel {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 0.92fr;
+      gap: 35px;
+      padding: 54px;
+      border: 1px solid rgba(184, 255, 106, 0.24);
+      border-radius: 24px;
+      background: linear-gradient(125deg, rgba(20, 65, 78, 0.66), rgba(14, 26, 66, 0.76) 54%, rgba(49, 35, 96, 0.58));
+      overflow: hidden;
+    }
+
+    .family-panel::before { position: absolute; top: -160px; right: -80px; width: 420px; height: 420px; content: ""; border: 1px solid rgba(184, 255, 106, 0.12); border-radius: 50%; box-shadow: 0 0 0 45px rgba(184, 255, 106, 0.025), 0 0 0 110px rgba(184, 255, 106, 0.02); }
+    .family-panel h2 { position: relative; max-width: 585px; margin: 13px 0 17px; font-size: clamp(2rem, 4vw, 3.35rem); line-height: 1.02; letter-spacing: -0.06em; }
+    .family-panel p { position: relative; max-width: 590px; color: #c5d7e8; line-height: 1.65; }
+    .family-card { position: relative; align-self: center; padding: 24px; border: 1px solid rgba(206, 246, 255, 0.25); border-radius: 15px; background: rgba(3, 14, 37, 0.58); backdrop-filter: blur(9px); }
+    .family-card h3 { margin: 0 0 18px; color: var(--lime); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; }
+    .family-rule { display: flex; gap: 14px; align-items: flex-start; margin-top: 15px; }
+    .family-rule b { display: grid; flex: 0 0 auto; width: 27px; height: 27px; place-items: center; color: #061320; border-radius: 50%; background: var(--lime); font-size: 0.75rem; }
+    .family-rule span { color: #d2e1ef; font-size: 0.87rem; line-height: 1.45; }
+
+    .site-footer { padding: 30px 0 38px; border-top: 1px solid var(--line); }
+    .footer-content { display: flex; align-items: center; justify-content: space-between; gap: 22px; }
+    .footer-content p { margin: 0; color: #7187a1; font-size: 0.8rem; }
+    .footer-links { display: flex; gap: 18px; color: var(--muted); font-size: 0.81rem; }
+    .footer-links a:hover { color: var(--cyan); }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 980px) {
+      .site-nav { gap: 15px; }
+      .hero { grid-template-columns: 1fr; padding-top: 50px; }
+      .hero-copy { max-width: 650px; }
+      .hero-visual { max-width: 620px; width: 100%; }
+      .layer-grid { grid-template-columns: repeat(3, 1fr); }
+      .module-grid { grid-template-columns: repeat(2, 1fr); }
+      .family-panel { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 700px) {
+      .container { width: min(100% - 32px, 1180px); }
+      .site-header { min-height: 82px; }
+      .site-nav a { display: none; }
+      .nav-cta { min-height: 40px; padding: 0 13px; font-size: 0.78rem; }
+      .hero { gap: 30px; min-height: unset; padding: 42px 0 55px; }
+      .hero-visual { min-height: 390px; padding: 17px; border-radius: 18px; }
+      .dashboard { min-height: 355px; }
+      .radar { top: 66px; width: 185px; height: 185px; }
+      .signal { font-size: 0.65rem; }
+      .signal.one { top: 34px; }
+      .signal.two { top: 208px; }
+      .signal.three { bottom: 5px; left: 0; }
+      .status-card { right: 0; bottom: 0; width: 185px; }
+      .trust-bar, .layer-grid, .module-grid { grid-template-columns: 1fr; }
+      .trust-item { min-height: auto; padding: 16px 18px; }
+      .section { padding: 74px 0; }
+      .section-heading { display: block; margin-bottom: 27px; }
+      .section-heading p { margin-top: 18px; }
+      .layer { min-height: 0; padding: 20px; }
+      .layer-number { margin-bottom: 14px; }
+      .module { min-height: 205px; }
+      .family-panel { gap: 25px; padding: 31px 24px; border-radius: 18px; }
+      .footer-content { align-items: flex-start; flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
     }
   </style>
-
-  <script>
-    function checkAnswer(btn, correct) {
-      if (correct) {
-        btn.classList.add("correct");
-      } else {
-        btn.classList.add("incorrect");
-      }
-    }
-  </script>
-
-<script>
-document.querySelectorAll('nav a').forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    const target = link.getAttribute('href');
-    window.location.href = target; // navigates to the page
-  });
-});
-</script>
-
 </head>
 <body>
-  <div class="page">
-    <header>
-      <div class="logo">
-        <div class="logo-mark"></div>
-        <div class="logo-text">ReadyOnline</div>
-      </div>
-      <nav>
-        <button class="nav-link primary">Home</button>
-        <button class="nav-link">Overview</button>
-        <button class="nav-link">Adults/Parents</button>
-        <button class="nav-link">Teens</button>
-        <button class="nav-link">About Us</button>
-        <button class="nav-link">Accountability</button>
+  <div class="site-shell">
+    <header class="container site-header">
+      <a class="brand" href="index.html" aria-label="ReadyOnline home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>ReadyOnline</span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="#how-it-works">How it works</a>
+        <a href="#modules">Modules</a>
+        <a href="parents.html">For families</a>
+        <a href="about.html">About</a>
+        <a class="nav-cta" href="catalogue.html">Explore training <span aria-hidden="true">→</span></a>
       </nav>
     </header>
 
-<section class="hero">
-  <div class="hero-text">
-    <div class="hero-pill">
-      <span class="hero-pill-dot"></span>
-      Digital instincts for kids, teens, parents, and seniors.
-    </div>
+    <main>
+      <section class="container hero">
+        <div>
+          <span class="eyebrow">Digital safety, built for real life</span>
+          <h1>Build <span class="gradient-text">digital instincts</span> for life.</h1>
+          <p class="hero-copy">ReadyOnline is a living, gamified curriculum that helps every generation spot pressure, pause before reacting, and know exactly what to do next—online and off.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="catalogue.html">See the learning path <span aria-hidden="true">→</span></a>
+            <a class="button secondary" href="#how-it-works">How it works</a>
+          </div>
+          <p class="hero-note">No fear. No shame. Just practical confidence for the whole family.</p>
+        </div>
 
-    <h1><span>Digital instincts for life.</span></h1>
+        <div class="hero-visual" aria-label="A visual representation of ReadyOnline's digital safety training">
+          <div class="dashboard">
+            <span class="visual-label">Instinct training active</span>
+            <div class="radar"><span class="radar-core">Ready<br>to act</span></div>
+            <span class="signal one"><i></i>Spot the pattern</span>
+            <span class="signal two"><i></i>Pause the pressure</span>
+            <span class="signal three"><i></i>Choose your move</span>
+            <div class="status-card">
+              <span>Family progress</span>
+              <strong>Instincts in motion</strong>
+              <div class="progress" aria-label="Training progress: 73 percent"></div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<p>
-  ReadyOnline helps families build the instincts they need to navigate the online world –
-  <br><span id="typeLine"></span>
-  <br>It’s about reading the environment, knowing what’s safe, what feels off, and when to ask for help.
-</p>
-</div>
-</section>
+      <div class="container trust-bar" aria-label="ReadyOnline at a glance">
+        <div class="trust-item trust-intro"><b>One shared goal:</b> a calmer, more confident response when something online feels off.</div>
+        <div class="trust-item"><strong>6–11</strong><span>Learn through story and play</span></div>
+        <div class="trust-item"><strong>12–22</strong><span>Practice with real-world scenarios</span></div>
+        <div class="trust-item"><strong>Parents + seniors</strong><span>Protect independence together</span></div>
+      </div>
 
-<script>
-  // 🧭 Navigation buttons
-  document.querySelectorAll('nav button').forEach(button => {
-    button.addEventListener('click', e => {
-      e.preventDefault();
-      const target = button.textContent.trim().toLowerCase().replace(/\s+/g, '-');
-      window.location.href = `${target}.html`;
-    });
-  });
+      <section class="section framework" id="how-it-works">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">How it works</span>
+              <h2>Not more rules.<br><span class="gradient-text">Real instincts.</span></h2>
+            </div>
+            <p>Knowing a rule is not enough in a high-pressure moment. Repeated practice turns good judgment into a response you can actually use.</p>
+          </div>
+          <div class="layer-grid">
+            <article class="layer">
+              <span class="layer-number">01 / NOTICE</span>
+              <h3>The Gut Check</h3>
+              <p>Learn to trust that feeling before you can explain it.</p>
+            </article>
+            <article class="layer">
+              <span class="layer-number">02 / RECOGNIZE</span>
+              <h3>The Pattern</h3>
+              <p>See the manipulation, not just the message in front of you.</p>
+            </article>
+            <article class="layer">
+              <span class="layer-number">03 / SLOW DOWN</span>
+              <h3>The Pause</h3>
+              <p>Create space between receiving something and reacting to it.</p>
+            </article>
+            <article class="layer">
+              <span class="layer-number">04 / CHECK</span>
+              <h3>The Test</h3>
+              <p>Use a simple filter to find direction—not false certainty.</p>
+            </article>
+            <article class="layer">
+              <span class="layer-number">05 / RESPOND</span>
+              <h3>The Move</h3>
+              <p>Use a pre-rehearsed action instead of improvising under pressure.</p>
+            </article>
+          </div>
+        </div>
+      </section>
 
-  // ✨ Typing animation
-  const text = "just like learning to cross a street: guidance → practice → confidence → independence.";
-  let i = 0;
-  const speed = 60; // typing speed in ms
-  const typeLine = document.getElementById("typeLine");
+      <section class="container section" id="modules">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">Learn where life happens</span>
+            <h2>Practice for the platforms you use <span class="gradient-text">every day.</span></h2>
+          </div>
+          <p>Each module pairs real-world patterns with interactive decisions, practical moves, and a family-ready brief.</p>
+        </div>
+        <div class="module-grid">
+          <a class="module" href="catalogue.html">
+            <span class="module-code">ROL-000 / FOUNDATION</span>
+            <div><h3>Scams have always existed.</h3><p>Understand the timeless tricks behind excitement, urgency, and fear of missing out.</p></div>
+            <span class="module-link">Start here</span>
+          </a>
+          <a class="module" href="digital-street-sense.html">
+            <span class="module-code">ROL-Q01 / DAILY PRACTICE</span>
+            <div><h3>Build your daily reflex.</h3><p>Short, repeatable challenges turn awareness into confidence—one decision at a time.</p></div>
+            <span class="module-link">Try a scenario</span>
+          </a>
+          <a class="module" href="catalogue.html">
+            <span class="module-code">ROL-P01–P12 / PLATFORMS</span>
+            <div><h3>Navigate your real digital world.</h3><p>From texts and gaming chat to social media, email, AI, and emerging platforms.</p></div>
+            <span class="module-link">Explore modules</span>
+          </a>
+        </div>
+      </section>
 
-  function typeWriter() {
-    if (i < text.length) {
-      typeLine.innerHTML += text.charAt(i);
-      i++;
-      setTimeout(typeWriter, speed);
-    } else {
-      // Loop effect: clear and restart after a pause
-      setTimeout(() => {
-        typeLine.innerHTML = "";
-        i = 0;
-        typeWriter();
-      }, 2500);
-    }
-  }
+      <section class="container section family-section">
+        <div class="family-panel">
+          <div>
+            <span class="eyebrow">A whole-family platform</span>
+            <h2>Everyone deserves a safer, more independent online life.</h2>
+            <p>ReadyOnline brings kids, teens, adults, and seniors into the same conversation—with training that respects where each person is and what they need next.</p>
+            <a class="button secondary" href="parents.html">Explore family support <span aria-hidden="true">→</span></a>
+          </div>
+          <aside class="family-card" aria-label="The ReadyOnline three-question filter">
+            <h3>The 3-question filter</h3>
+            <div class="family-rule"><b>1</b><span>Would I be okay if a trusted adult could see this right now?</span></div>
+            <div class="family-rule"><b>2</b><span>Is someone asking me to keep this secret?</span></div>
+            <div class="family-rule"><b>3</b><span>Does this feel different than it did a few weeks ago?</span></div>
+          </aside>
+        </div>
+      </section>
+    </main>
 
-  window.onload = typeWriter;
-</script>
-
-<style>
-  #typeLine {
-    font-style: italic;
-    color: #7fffd4;
-    text-shadow: 0 0 8px #7fffd4;
-  }
-</style>
-
-<!-- FOOTER -->
-<footer class="instinct-footer">
-  <span id="instinct-typing"></span>
-</footer>
-
-<style>
-  .instinct-footer {
-    position: fixed;
-    bottom: 20px;
-    left: 0;
-    right: 0;
-    text-align: center;
-    font-size: 1rem;
-    color: #22c55e;
-    opacity: 0.9;
-    letter-spacing: 0.05em;
-    pointer-events: none;
-  }
-
-  #instinct-typing {
-    background: linear-gradient(120deg, #38bdf8, #22c55e);
-    -webkit-background-clip: text;
-    color: transparent;
-    font-weight: 600;
-    text-shadow: 0 0 12px rgba(34,197,94,0.6);
-    white-space: nowrap;
-  }
-</style>
-
-<script>
-  const instinctText = "Pause – Think – Act";
-  let idx = 0;
-
-  function typeFooter() {
-    const footerEl = document.getElementById("instinct-typing");
-    footerEl.textContent = instinctText.slice(0, idx);
-    idx++;
-    if (idx <= instinctText.length) setTimeout(typeFooter, 120);
-  }
-
-  typeFooter();
-</script>
+    <footer class="site-footer">
+      <div class="container footer-content">
+        <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span><span>ReadyOnline</span></a>
+        <p>Pause · Think · Act</p>
+        <div class="footer-links">
+          <a href="about.html">About us</a>
+          <a href="accountability.html">Accountability</a>
+          <a href="mailto:info@readyonline.org">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
