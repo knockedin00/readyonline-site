@@ -173,6 +173,70 @@ document.addEventListener("click",event=>{if(!event.target.closest(".enter-ready
 })();
 
 (() => {
+  const sharedNavigation = () => {
+    const nav = document.querySelector(".site-nav");
+    if (nav) {
+      const before = nav.querySelector(".nav-cta");
+      [
+        ["about.html", "About Us"],
+        ["contact.html", "Contact"]
+      ].forEach(([href, label]) => {
+        if (!nav.querySelector(`a[href="${href}"]`)) {
+          const link = document.createElement("a");
+          link.href = href;
+          link.textContent = label;
+          nav.insertBefore(link, before);
+        }
+      });
+    }
+
+    document.querySelectorAll(".footer-links").forEach(footer => {
+      [
+        ["about.html", "About Us"],
+        ["contact.html", "Contact"]
+      ].forEach(([href, label]) => {
+        if (!footer.querySelector(`a[href="${href}"]`)) {
+          const link = document.createElement("a");
+          link.href = href;
+          link.textContent = label;
+          footer.append(link);
+        }
+      });
+    });
+  };
+
+  const initializePetExperience = () => {
+    document.querySelectorAll("[data-xp]").forEach(box => {
+      const xp = Number(box.dataset.xp);
+      const bar = box.querySelector(".xp-bar i");
+      if (bar && Number.isFinite(xp)) {
+        bar.style.width = "0%";
+        requestAnimationFrame(() => {
+          bar.style.width = `${xp}%`;
+        });
+      }
+    });
+  };
+
+  const initializeFeedbackForm = () => {
+    const form = document.querySelector("[data-contact-form]");
+    if (!form) return;
+
+    form.addEventListener("submit", event => {
+      event.preventDefault();
+      const status = form.querySelector("[data-form-status]");
+      if (status) {
+        status.textContent = "Thanks for sharing. This feedback form is a placeholder and does not send information yet.";
+      }
+    });
+  };
+
+  sharedNavigation();
+  initializePetExperience();
+  initializeFeedbackForm();
+})();
+
+(() => {
   const cards = document.querySelectorAll('.card, .module, .danger-card, .pet-card, .learning-card, .objective-card, .accountability-card, .technical-document');
   cards.forEach(card => {
     card.classList.add('interactive-card');
