@@ -171,3 +171,58 @@ document.addEventListener("click",event=>{if(!event.target.closest(".enter-ready
   }, { threshold: 0.15 });
   cards.forEach(card => observer.observe(card));
 })();
+
+(() => {
+  const cards = document.querySelectorAll('.card, .module, .danger-card, .pet-card, .learning-card, .objective-card, .accountability-card, .technical-document');
+  cards.forEach(card => {
+    card.classList.add('interactive-card');
+    card.addEventListener('pointerdown', event => {
+      if (event.pointerType !== 'touch') return;
+      card.classList.add('is-tapped');
+      window.setTimeout(() => card.classList.remove('is-tapped'), 300);
+    });
+  });
+
+  const revealTargets = document.querySelectorAll('main .section-heading, main .learn-more-header, main .grid, main .xp, main .learning-section, main .accountability-section, main .learn-more-section');
+  if (!('IntersectionObserver' in window)) {
+    revealTargets.forEach(target => target.classList.add('is-revealed'));
+  } else {
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-revealed');
+        revealObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px' });
+    revealTargets.forEach(target => {
+      target.classList.add('scroll-reveal');
+      revealObserver.observe(target);
+    });
+  }
+
+  document.addEventListener('click', event => {
+    const link = event.target.closest('a[href]');
+    if (!link || link.target || link.hasAttribute('download') || event.defaultPrevented) return;
+    const destination = new URL(link.href, window.location.href);
+    if (destination.origin !== window.location.origin || destination.pathname !== window.location.pathname || destination.hash) return;
+    event.preventDefault();
+    document.body.classList.add('page-leaving');
+    window.setTimeout(() => { window.location.href = destination.href; }, 180);
+  });
+})();
+
+(() => {
+  document.addEventListener('click', event => {
+    const button = event.target.closest('.accordion-button');
+    if (!button) return;
+    const item = button.closest('.accordion-item');
+    const group = button.closest('.accordion');
+    if (!item || !group) return;
+    window.setTimeout(() => {
+      if (!item.classList.contains('open')) return;
+      group.querySelectorAll('.accordion-item.open').forEach(other => {
+        if (other !== item) other.classList.remove('open');
+      });
+    }, 0);
+  });
+})();
