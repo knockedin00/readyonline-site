@@ -117,3 +117,57 @@ const addFeedback=()=>{let footer=$(".site-footer")||$("body > footer");const li
 const addWelcome=()=>{if(sessionStorage.getItem(welcomeKey)||$(".welcome-screen"))return;document.body.insertAdjacentHTML("beforeend",`<section class="welcome-screen" role="dialog" aria-modal="true" aria-labelledby="welcome-title"><div class="welcome-card"><div class="welcome-mark" aria-hidden="true">?</div><span class="eyebrow">Digital instincts for life</span><h1 id="welcome-title">Welcome to ReadyOnline</h1><p>This is a practice space to build digital instincts and explore online safety.</p><p class="session-note">Your progress is saved only for this session. If you close your browser, it resets.</p><p>Take screenshots if you want to keep your pet collection or completed modules.</p><button class="button primary enter-readyonline" type="button">Enter ReadyOnline</button></div></section>`);$(".enter-readyonline")?.focus()};
 addFeedback();addWelcome();
 document.addEventListener("click",event=>{if(!event.target.closest(".enter-readyonline"))return;sessionStorage.setItem(welcomeKey,"seen");document.body.classList.add("page-leave");setTimeout(()=>location.href="index.html",160)});
+
+(() => {
+  const learnMore = document.querySelector('.learn-more-section');
+  if (!learnMore) return;
+
+  const cards = [...learnMore.querySelectorAll('.technical-document')];
+  const closeCard = card => {
+    if (!card.open) return;
+    const summary = card.querySelector('summary');
+    const startHeight = card.offsetHeight;
+    const endHeight = summary.offsetHeight;
+    card.style.overflow = 'hidden';
+    const animation = card.animate(
+      [{ height: `${startHeight}px` }, { height: `${endHeight}px` }],
+      { duration: 300, easing: 'ease-in-out' }
+    );
+    animation.onfinish = () => {
+      card.open = false;
+      card.style.height = '';
+      card.style.overflow = '';
+    };
+  };
+
+  cards.forEach(card => {
+    const summary = card.querySelector('summary');
+    summary.addEventListener('click', event => {
+      if (card.open) {
+        event.preventDefault();
+        closeCard(card);
+      }
+    });
+    card.addEventListener('toggle', () => {
+      if (card.open) cards.filter(other => other !== card).forEach(closeCard);
+    });
+    card.addEventListener('pointerdown', event => {
+      if (event.pointerType !== 'touch') return;
+      card.classList.add('is-tapped');
+      window.setTimeout(() => card.classList.remove('is-tapped'), 350);
+    });
+  });
+
+  if (!('IntersectionObserver' in window)) {
+    cards.forEach(card => card.classList.add('is-visible'));
+    return;
+  }
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.15 });
+  cards.forEach(card => observer.observe(card));
+})();
