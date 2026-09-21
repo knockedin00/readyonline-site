@@ -1,0 +1,12 @@
+{
+  "_context": "ReadyOnline Master Context: Section 14 - Crisis Support Placement",
+  "message": "You do not have to face this alone. Help is available right now.",
+  "resources": [
+    {"name": "988 Suicide & Crisis Lifeline", "contact": "Call or text 988", "href": "tel:988"},
+    {"name": "Crisis Text Line", "contact": "Text HOME to 741741", "href": "sms:741741?body=HOME"},
+    {"name": "NCMEC CyberTipline", "contact": "1-800-843-5678", "href": "tel:18008435678"},
+    {"name": "RAINN Hotline", "contact": "1-800-656-4673", "href": "tel:18006564673"},
+    {"name": "FBI Tips", "contact": "tips.fbi.gov", "href": "https://tips.fbi.gov"},
+    {"name": "Local emergency", "contact": "Call 911", "href": "tel:911"}
+  ]
+}
