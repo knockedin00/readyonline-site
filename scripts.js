@@ -348,3 +348,24 @@ document.addEventListener("click",event=>{if(!event.target.closest(".enter-ready
     });
   });
 })();
+
+// ReadyOnline Master Context: Section 14 - Crisis Support Placement
+(() => {
+  fetch("data/crisis-resources.json")
+    .then(response => response.ok ? response.json() : Promise.reject())
+    .then(data => {
+      const primary = data.resources[0];
+      document.querySelectorAll(".site-nav").forEach(nav => {
+        let control = nav.querySelector(".crisis-link");
+        if (!control) {
+          control = document.createElement("a");
+          control.className = "crisis-link";
+          nav.append(control);
+        }
+        control.href = primary.href;
+        control.textContent = "Get help: " + primary.contact;
+        control.setAttribute("aria-label", primary.name + ": " + primary.contact);
+      });
+    })
+    .catch(() => {});
+})();
