@@ -239,18 +239,7 @@ Youth-facing approach
 Begin from the learner’s lived perspective rather than immediately labeling the interaction. A new relationship may initially feel positive, attentive, exciting, or unusually understanding. Training should gradually introduce changed requests, secrecy, pressure, boundary testing, or conflicting signals, then teach the learner to PAUSE, THINK, and ACT.
 The educational goal is pattern recognition. Avoid graphic content, fear tactics, or implying that friendliness itself is suspicious.
 16. Accountability Page Specification
-Purpose
-Explain that responsibility for digital safety does not rest only on children and families. Present a factual, constructive framework for examining platform design, defaults, safety features, discoverability, privacy, reporting, and transparency.
-Recommended sections
-* What protections exist today?
-* Which protections are defaults and which require users to change settings?
-* How do contact and discovery features affect exposure?
-* How easy are safety, blocking, reporting, and privacy tools to understand?
-* What should parents and users know before relying on an app’s safety labels?
-* What can technology companies improve?
-* What should families reasonably expect from platforms that create digital environments?
-Tone
-Constructive, specific, evidence-based, and not anti-technology. Avoid unverified claims about individual companies. Platform-specific accountability statements should be sourced before publication and reviewed when products change.
+Keep the current content from the master context document but update the look and feel to match the rest of the site. 
 17. About Page Specification
 Required content
 * Mission
