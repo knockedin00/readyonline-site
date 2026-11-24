@@ -1,0 +1,366 @@
+ReadyOnline
+MVP Master Context Document
+Website reset and build specification for Replit / GitHub Copilot
+Version focus: simple public website now, expandable training system next
+
+MVP NORTH STAR
+Digital Instincts for Life: PAUSE ? THINK ? ACT. Notice what deserves attention, rethink what you know, then deliberately Block, Exit, Alter, or Proceed.
+This document is intended to be pasted into an AI coding environment as authoritative product context. It replaces older MVP assumptions when they conflict with this specification.
+
+
+1. Executive Build Brief
+ReadyOnline is being simplified into a clear digital-readiness website for teens and parents. The immediate goal is not to launch a large training library. The immediate goal is to clean up the current site, establish the correct message and navigation, create a stable visual and technical foundation, and clearly mark training areas as “Coming Soon” where content is not yet ready.
+MVP outcome
+* Visitors immediately understand what ReadyOnline is, why it exists, and who it serves.
+* The top navigation is limited to Home, Teens, Parents, Accountability, and About.
+* The central ReadyOnline behavior, PAUSE ? THINK ? ACT, appears throughout the experience.
+* Parents understand that they should learn about apps before granting access and prepare children before and while they begin using them.
+* Teens are addressed respectfully as people building judgment and independence, not as a problem to control.
+* App Training and Concept Training are visible as the future learning architecture, with “Coming Soon” states acceptable for MVP.
+* The site is responsive, accessible, uncluttered, easy to maintain, and ready for future scenario-based modules.
+Explicitly out of MVP
+* Retiree / senior audience pages or training
+* Pet or buddy companions
+* XP, streaks, badges, cosmetic rewards, pet evolution, reward engines
+* A large training catalog before the core website is stable
+* A requirement that teens take responsibility for supporting friends as a core learning pillar
+2. Product Definition
+ReadyOnline is a digital-readiness training platform designed to build practical judgment before people have to learn it through harmful experiences. It is not primarily a monitoring product and should not frame digital safety as restriction alone.
+Core belief
+Kids are not reckless. They are untrained. The product should respond to that gap with preparation, practice, judgment, and calm help-seeking rather than fear or shame.
+The existing ReadyOnline research found early smartphone exposure, repeated online harms, uneven confidence with complex threats, and strong interest in practical skills such as privacy, scam recognition, manipulation awareness, healthy boundaries, identity verification, algorithms, and financial safety.
+3. Mission and Vision
+Mission
+Teach digital readiness early and often, giving young people and the adults who support them the skills, judgment, and confidence to navigate digital life safely and independently.
+Vision
+A future where learning digital safety is a normal part of learning to use technology, beginning before children enter new digital spaces and continuing as technology, platforms, risks, and responsibilities evolve.
+Long-term learning progression
+Guidance ? Practice ? Confidence ? Independence
+The website and future training should make independence the destination. The objective is not permanent parental control. It is stronger judgment.
+4. The Core Digital Instinct: PAUSE ? THINK ? ACT
+This is the instructional architecture of ReadyOnline. It is not simply a slogan. Every future app module, concept module, scenario, parent guide, and decision exercise should reinforce the same three-step instinct.
+PAUSE — What gives you pause?
+Notice when something changes, feels confusing, creates pressure, conflicts with what you expected, crosses a boundary, or deserves a second look. A pause does not automatically mean danger. It means: do not react automatically.
+* Unexpected contact or requests
+* Urgency or pressure to decide quickly
+* A request for personal, financial, location, account, or photo information
+* A change in another person’s tone or requests
+* A request to move a conversation to another channel or platform
+* Conflicting information or an identity that is difficult to verify
+* Something that seems too good to be true
+* Anything that makes the learner uncomfortable or unsure
+THINK — Rethink what you know
+Slow down and examine the situation before deciding. The learner should be taught to interpret context and patterns rather than mechanically memorize a list of red flags.
+* Who is this person or account?
+* What do I actually know, and what am I assuming?
+* Can I verify what I am being told?
+* What are they asking me to do, share, or believe?
+* Why might they be asking?
+* Has the interaction changed over time?
+* Am I being rushed, flattered, pressured, isolated, or asked for secrecy?
+* What information am I about to expose?
+* Do the signals match, or are they mixed?
+* What happens if I wait or do not respond?
+ACT — Choose deliberately
+After pausing and thinking, choose the action that best fits the situation. “Act” does not always mean stop. ReadyOnline is teaching judgment, not teaching that everything online is dangerous.
+ActionMeaningBLOCKStop contact or access when that is the appropriate protective choice.EXITLeave the conversation, digital space, account, or interaction.ALTERChange the conditions: privacy settings, information shared, pace, permissions, channel, or decision. This can also include verifying information or asking for guidance.PROCEEDContinue after considering the situation and deciding it is reasonable to do so.5. Core Tenets
+1. PAUSE ? THINK ? ACT
+The default decision loop across the entire ReadyOnline experience.
+2. Skills over restrictions
+Boundaries can be useful, but restrictions alone do not teach judgment, decision-making, or how to respond when something happens. ReadyOnline should teach the skill underneath the rule.
+3. Learn before exposure
+Whenever possible, a family should understand a device, app, feature, or digital environment before the child has to make an important decision inside it.
+4. You don’t owe anyone anything
+Digital interaction does not create an obligation to continue. Users do not owe another person access, attention, a reply, personal information, location, photos, money, explanations, or continued conversation simply because an interaction has already begun.
+5. Asking for help is a skill
+Recognizing that a situation is larger than what someone should handle alone is part of good judgment. ReadyOnline should teach early help-seeking without shame or automatic punishment.
+Supporting a friend is secondary, not a core tenant
+Friend-related situations may appear naturally in future training, but ReadyOnline should not place responsibility for another person’s safety on a teen learner. The primary job of the training is to help the learner protect, understand, and manage their own digital life.
+6. Signal Framework: Safe, Yellow, Red
+Flags are inputs to PAUSE ? THINK ? ACT. They are not a substitute for reasoning.
+Safe
+Nothing currently creates a meaningful reason for concern. This does not mean permanent trust. It means there is no current signal requiring a different response.
+Yellow / Suspicious
+Something deserves more thought. PAUSE, gather context, verify where appropriate, and resist pressure to react quickly. A yellow flag should not automatically label another person as dangerous.
+Red
+There is a significant reason not to continue normally. PAUSE ? THINK ? ACT. Depending on the context, the next action could involve blocking, exiting, altering the situation, protecting information, or getting appropriate help.
+Mixed-signal rule
+One safe signal does not erase a concerning signal. One strange signal does not automatically establish someone’s intent. When signals conflict, pause and examine the pattern before acting.
+7. Primary Audience
+Teens
+Speak directly, calmly, and intelligently. Avoid babyish language, fear tactics, lectures, or the assumption that teens are careless. The teen experience should reinforce autonomy, boundaries, judgment, and the ability to change course.
+Parents and caregivers
+Give parents a practical way to prepare themselves first, understand the apps their children use or want to use, decide whether the child is ready, then guide the child through appropriate training and conversation.
+8. Global Information Architecture
+The top navigation must be identical across the site and contain only these five primary items:
+* Home
+* Teens
+* Parents
+* Accountability
+* About
+Do not add Retirees, New Users, Pets, Rewards, or training categories to the primary navigation. Training can be reached contextually from Home, Teens, and Parents and can later receive its own navigation treatment if the product grows enough to justify it.
+Global header
+* ReadyOnline wordmark/logo at left
+* Five navigation links
+* One optional restrained CTA such as “Explore Training” or “Training Coming Soon”
+* Mobile menu that exposes the same five destinations
+* No dense utility menus for MVP
+Global footer
+* ReadyOnline name and short mission statement
+* Links: Home, Teens, Parents, Accountability, About
+* Training status link or “Training Coming Soon”
+* Feedback link/form when available
+* Safety/resource disclaimer area
+* Copyright / basic legal links only when actual policy pages exist
+9. Home Page Specification
+Goal
+Explain ReadyOnline in seconds and route the visitor toward the right audience path.
+Hero
+Recommended headline: “Digital Instincts for Life.”
+Recommended supporting copy: “Learn when to pause, how to think through what you’re seeing, and what to do next. ReadyOnline helps teens and families build practical digital judgment before something goes wrong.”
+Primary CTAs: “For Teens” and “For Parents.” Optional secondary CTA: “See How Training Works.”
+Section: The instinct
+Prominently explain PAUSE ? THINK ? ACT using three simple visual steps. Do not bury this framework below long copy.
+Section: What ReadyOnline teaches
+* Notice what deserves attention
+* Protect privacy and identity
+* Recognize pressure, scams, manipulation, and mixed signals
+* Build healthier digital habits and boundaries
+* Course-correct at any point
+* Know when and how to ask for help
+Section: Two ways to learn
+Present two training families: App Training and Concept Training. If modules are not ready, each card may display a clear “Coming Soon” label rather than linking to unfinished experiences.
+Section: Why now
+Use a concise version of the generational story: young people became highly capable technology users before structured digital-safety training kept pace. ReadyOnline exists to bring preparation earlier, before trial-and-error becomes the teacher.
+Section: Final CTA
+Route to Teens and Parents. Keep the page focused. Do not turn the homepage into the complete curriculum or accountability manifesto.
+10. Teens Page Specification
+Page objective
+Show teens that ReadyOnline is a practical skill-building resource, not a surveillance program and not a lecture.
+Suggested hero
+Headline: “You already know how to use the apps. Learn how to read what’s happening inside them.”
+Supporting line: “Build the instinct to PAUSE, THINK, then ACT when something feels off, confusing, pressured, or too good to be true.”
+Core teen sections
+* PAUSE ? THINK ? ACT overview
+* App Training: learn the risks and functions specific to the apps you use
+* Concept Training: privacy, scams, healthy habits, boundaries, toxic environments, help-seeking, flags, and manipulation patterns
+* You can always course-correct: a previous reply, click, friendship, permission, share, or decision does not force you to continue
+* You don’t owe anyone anything: reinforce autonomy and boundaries
+* Training Coming Soon: list planned training categories without pretending unfinished modules exist
+Teen tone rules
+* Direct, not slang-heavy
+* Respectful, not parental
+* Calm, not alarming
+* Never call the learner naïve, reckless, or irresponsible
+* Do not make the learner responsible for rescuing friends
+* Use scenarios from the learner’s point of view when training is added
+11. Parents Page Specification
+Page objective
+Teach parents how to use ReadyOnline as a preparation system. The page should help a parent move from “my child wants this app” to an informed readiness decision and an ongoing conversation.
+Suggested hero
+Headline: “Prepare before you permit. Educate before you react.”
+Supporting line: “Learn the apps, understand the risks and safety features, decide whether your child is ready, and give them skills before they have to learn through experience.”
+Recommended parent flow
+1. Know what your child is using or asking to use.
+2. Learn how that app actually works, including contact, messaging, discovery, privacy, and reporting features.
+3. Take or review the parent-facing app training first.
+4. Decide whether the app and the child are a good readiness match.
+5. Have the child complete the age-appropriate app training before or at the start of use.
+6. Use the Parent Talking Guide to discuss what was learned without turning the conversation into an interrogation.
+7. Revisit training as apps, features, relationships, maturity, and risks change.
+Parent education topics
+* How to respond when a child asks for help
+* Why punishment-first responses can discourage future disclosure
+* How grooming, coercion, manipulation, scams, and pressure can develop in digital spaces
+* How an app’s contact model changes the risk landscape
+* Privacy and financial privacy
+* Healthy digital habits and boundaries
+* Resources for children struggling with digital harm
+* When professional, crisis, emergency, or law-enforcement help may be appropriate, using carefully sourced and maintained guidance
+Parent principle
+Technology speeds up communication, access, and exposure. Training should therefore start before or alongside access, not years after patterns have already formed.
+12. Why ReadyOnline Exists
+This story belongs in full on About and in condensed form on Parents.
+Generation Z and the young people following them entered a rapidly changing smartphone and social-media environment while protections, norms, and training were still catching up. ReadyOnline’s survey synthesis reports first smartphones commonly between ages 8 and 13 and describes early use of messaging, social platforms, gaming, Discord, and AI tools. The same research identifies demand for stronger skills in personal and financial privacy, scams, manipulation and social engineering, AI-generated content, algorithms, boundaries, and healthy habits.
+The ReadyOnline position is not that young people failed. They became experienced users without consistently receiving structured readiness training. The program exists to move more of that learning earlier, so preparation rather than trial-and-error becomes the default.
+Recommended short website copy
+“We taught a generation how to use technology faster than we taught them how to navigate it safely. ReadyOnline is working to change that by making digital readiness something people learn early, practice often, and carry into adulthood.”
+13. Training Architecture
+Training is divided into two families. This distinction must remain explicit in the code and content model.
+A. App Training
+App Training teaches how shared safety concepts appear inside a specific platform. Repeating a concept across apps is intentional when the functions, audiences, privacy controls, discovery systems, or communication patterns differ.
+Example principle: texting a person who already has your phone number creates a different contact environment than an app that allows broader profile discovery or unsolicited contact. The training should explain the function and then apply PAUSE ? THINK ? ACT to realistic situations in that environment.
+Future app-module pattern
+* Getting Started: what the app does and how interaction works
+* Privacy: profile visibility, information exposure, settings, location considerations
+* Messaging & Contact: who can connect, how contact begins, and available controls
+* Pressure & Manipulation: how a normal interaction can change over time
+* Boundaries: what users do not owe other people
+* Course-Correcting: what to do after a choice has already been made
+* Getting Help: when the situation is larger than the user should manage alone
+* Parent Talking Guide: companion prompts for the parent/caregiver
+Historic ReadyOnline planning referenced Instagram, Snapchat, TikTok, Discord, Roblox, and YouTube as candidate app simulations. Treat those as candidates, not a mandate that every one must launch in the first training release.
+B. Concept Training
+Concept Training teaches transferable digital skills independent of any one platform.
+* Digital Privacy
+* Financial Privacy
+* Healthy Digital Habits
+* Recognizing Scams and Fraud
+* Identity and Verification
+* Pressure, Manipulation, and Social Engineering
+* Yellow and Red Flags
+* Mixed Signals
+* Exiting a Toxic Digital Environment
+* Boundaries and “You Don’t Owe Anyone Anything”
+* Course-Correcting
+* Asking for Help
+* AI-Generated or Manipulated Content
+* Algorithms and Influence
+MVP training state
+It is acceptable and preferred to launch the cleaned-up website before these modules are complete. Use honest “Coming Soon” cards with a one-sentence description of what each future training area will teach. Do not create fake completion buttons, scores, progress, or placeholder lessons that look operational.
+14. Future Training Instructional Pattern
+When interactive training is implemented, use the following default structure:
+8. Brief setup: establish the app, context, and immediate goal.
+9. Scenario: show the interaction before explaining the lesson.
+10. PAUSE: ask what deserves attention.
+11. THINK: ask what is known, unknown, assumed, changed, or worth verifying.
+12. ACT: let the learner choose Block, Exit, Alter, or Proceed when those actions fit.
+13. Feedback: explain the signals and likely consequences without shaming the learner.
+14. Course-correct: if the learner chose poorly, show how to recover rather than treating the scenario as failed.
+15. Takeaway: state one short transferable principle.
+16. Optional next scenario: apply the same concept with different signals so recognition becomes more flexible.
+No pet/gamification dependency
+Earlier ReadyOnline planning included pets, XP, badges, streaks, and cosmetic rewards. Those mechanics are deferred. Keep the scenario/data architecture sufficiently modular that an engagement layer could be added later without rewriting educational content, but do not build that layer now.
+15. Manipulation and Grooming Training Approach
+This is a future content requirement and should be reviewed with appropriate safety expertise before publication.
+Parent-facing approach
+Parents may receive direct terminology and education about grooming, coercion, manipulation, escalating requests, secrecy, isolation, and pressure.
+Youth-facing approach
+Begin from the learner’s lived perspective rather than immediately labeling the interaction. A new relationship may initially feel positive, attentive, exciting, or unusually understanding. Training should gradually introduce changed requests, secrecy, pressure, boundary testing, or conflicting signals, then teach the learner to PAUSE, THINK, and ACT.
+The educational goal is pattern recognition. Avoid graphic content, fear tactics, or implying that friendliness itself is suspicious.
+16. Accountability Page Specification
+Purpose
+Explain that responsibility for digital safety does not rest only on children and families. Present a factual, constructive framework for examining platform design, defaults, safety features, discoverability, privacy, reporting, and transparency.
+Recommended sections
+* What protections exist today?
+* Which protections are defaults and which require users to change settings?
+* How do contact and discovery features affect exposure?
+* How easy are safety, blocking, reporting, and privacy tools to understand?
+* What should parents and users know before relying on an app’s safety labels?
+* What can technology companies improve?
+* What should families reasonably expect from platforms that create digital environments?
+Tone
+Constructive, specific, evidence-based, and not anti-technology. Avoid unverified claims about individual companies. Platform-specific accountability statements should be sourced before publication and reviewed when products change.
+17. About Page Specification
+Required content
+* Mission
+* Vision
+* The generational digital-readiness gap
+* Why skills and judgment matter more than restrictions alone
+* The PAUSE ? THINK ? ACT framework
+* Our approach: early, practical, calm, nonjudgmental, continuously updated
+* Survey-driven foundation
+* What ReadyOnline is building next
+Suggested closing
+“People do better when we prepare them. Digital life deserves the same intentional learning we expect in other parts of life.”
+18. Safety, Crisis, and Law-Enforcement Guidance
+This area must be treated as maintained safety content, not generic AI copy.
+* Do not invent legal thresholds, reporting obligations, crisis protocols, or police-contact criteria.
+* Use authoritative, current sources appropriate to the user’s jurisdiction before publishing detailed instructions.
+* Separate immediate-danger guidance from general digital-safety education.
+* Make emergency and crisis information easy to find when a relevant training topic could surface urgent harm.
+* Parent help content should emphasize calm listening and appropriate escalation rather than automatic punishment.
+* Avoid forcing teen learners to diagnose crimes or take responsibility for investigating another person.
+19. MVP Content Inventory
+PageMust have nowMay say Coming SoonDo not includeHomeHero; PAUSE-THINK-ACT; audience paths; why ReadyOnline; training previewIndividual training modulesPets, seniors, XP, streaksTeensTeen positioning; instinct framework; boundaries; course-correction; training categoriesApp and concept modulesFriend-support as core obligationParentsHow to use site; readiness process; parent-first training concept; help-response guidanceApp lessons; Parent Talking GuidesMonitoring-heavy framingAccountabilityConstructive framework; responsibility beyond familiesPlatform-specific scorecards/researchUnsourced platform claimsAboutMission; vision; why this exists; research-informed story; frameworkExpanded research libraryOverlong product roadmap20. Design System and Simplification Rules
+Visual direction
+* Modern, trustworthy, calm, clear, friendly
+* Strong typography and generous spacing
+* Navy/dark-blue foundation with restrained bright-blue accents may be retained from the existing direction
+* Use cards only when they organize choices or concepts
+* Rounded corners are appropriate but should not turn every paragraph into a card
+* Ensure sufficient contrast and visible keyboard focus states
+* Prefer authentic hierarchy over decorative complexity
+Simplification rules
+* One primary purpose per page section
+* No duplicate navigation systems
+* No more than one primary CTA and one secondary CTA in a hero
+* Avoid walls of text; use short sections, bullets, and callouts
+* Do not use icons merely to decorate every heading
+* No autoplay, timed challenges, popups, or attention-grabbing motion for MVP
+* Do not publish broken or placeholder implementation artifacts
+* On narrow screens, everything becomes a natural single column without horizontal scrolling
+Existing screenshots show inconsistent or broken rendering on some pages and an earlier navigation containing “New Users.” The rebuild should standardize the shared shell and remove obsolete navigation elements rather than patch each page independently.
+21. Recommended Technical Foundation for Replit
+This is a suggested implementation approach, not a claim about the current codebase. Preserve working infrastructure if it is cleaner to refactor than replace.
+Build priorities
+17. Create a single shared site shell: Header, Main, Footer.
+18. Define routes/pages for /, /teens, /parents, /accountability, and /about.
+19. Create reusable components for Hero, Section, CTA, TrainingCard, ThreeStepFramework, Callout, and ComingSoonBadge.
+20. Store repeated marketing/training-preview content in structured data rather than copying large blocks across pages.
+21. Create a future-friendly training content model now, but keep training URLs disabled or clearly marked Coming Soon until content exists.
+22. Add responsive layout and accessibility checks.
+23. Remove dead code, obsolete pages, pet/gamification UI, retirees/seniors navigation, and duplicate styles only after confirming they are not required by the five MVP pages.
+Suggested project structure
+Use the closest equivalent supported by the existing framework. Do not migrate frameworks merely to match these folder names.
+src/components/Header
+src/components/Footer
+src/components/Hero
+src/components/ThreeStepFramework
+src/components/TrainingCard
+src/components/ComingSoonBadge
+src/pages/Home
+src/pages/Teens
+src/pages/Parents
+src/pages/Accountability
+src/pages/About
+src/data/trainingCatalog
+src/data/siteContent
+src/styles/tokens
+src/styles/global
+Future training data model
+Prepare for a data-driven structure with fields such as: id, title, audience, trainingType (app or concept), appName, summary, status, modules, parentGuide, safetyReviewStatus, and updatedAt. Do not invent completed training content merely to populate the model.
+22. Build Acceptance Criteria
+Before treating the MVP website cleanup as complete, verify:
+* Only Home, Teens, Parents, Accountability, and About appear in primary navigation.
+* Every navigation link works on desktop and mobile.
+* PAUSE ? THINK ? ACT appears on the homepage and is reinforced on Teens and Parents.
+* Block, Exit, Alter, or Proceed is explained as the possible ACT decision set, not as a required sequence.
+* App Training and Concept Training are clearly differentiated.
+* Unfinished training is labeled Coming Soon and cannot be mistaken for a working module.
+* No retirees/seniors section remains in the MVP experience.
+* No pet, XP, badge, streak, or cosmetic system remains active in the MVP experience.
+* “Support a friend” is not presented as a core learning pillar or responsibility.
+* Parents receive a clear process for educating themselves before deciding on app access.
+* No unverified crisis, legal, police, or platform-specific claim is published.
+* The site works at mobile widths without horizontal scrolling.
+* Headings follow a logical hierarchy, controls are keyboard usable, and color is not the only means of conveying Safe/Yellow/Red states.
+* The shared header/footer/style system is reused across all five pages.
+* The codebase contains no obvious duplicate page shells or competing global style definitions after cleanup.
+23. Instructions to Replit / GitHub Copilot
+Treat this document as the controlling MVP product specification.
+24. First inspect the existing project and identify the current framework, routes, shared components, styles, and obsolete features before changing files.
+25. Do not preserve an old feature simply because it already exists when it conflicts with this MVP.
+26. Keep and refactor useful infrastructure. Remove or isolate obsolete Retiree/Senior and pet/gamification features from the public MVP.
+27. Build the five-page navigation and shared site shell before expanding content.
+28. Centralize PAUSE ? THINK ? ACT as a reusable component and content pattern.
+29. Keep App Training and Concept Training separate in the information/data architecture.
+30. Use Coming Soon states for unfinished training rather than inventing course content.
+31. Do not treat intentional repetition of a safety concept across different apps as accidental duplication. Platform context is part of the lesson.
+32. Keep the website copy concise and scannable even though this context document is detailed.
+33. Do not invent research statistics, app capabilities, crisis guidance, legal rules, or company safety policies. Add placeholders marked for source review when authoritative information is missing.
+34. Prefer simple maintainable components and CSS over a large design system or game engine.
+35. After implementation, check all five routes, navigation, mobile layout, focus states, contrast, empty links, console errors, and Coming Soon behavior.
+36. When an ambiguous implementation choice arises, choose the option that best reinforces Guidance ? Practice ? Confidence ? Independence and PAUSE ? THINK ? ACT.
+24. Source Context Used for This MVP Reset
+The MVP direction draws on existing ReadyOnline materials including the ReadyOnline Homepage, Family Digital Readiness Platform Pitch Deck, Digital Safety & Readiness Briefing, the earlier Gamification Layer Blueprint, and prior site screenshots. The earlier materials support the themes of early digital exposure, skills-based readiness, practical scenario learning, privacy, scams and manipulation, help-seeking, and the progression from guidance toward independence. The gamification blueprint is retained only as historical/post-MVP context; its pet, XP, badge, and streak mechanics are explicitly deferred.
+25. Final North Star
+ReadyOnline should teach one repeatable digital instinct everywhere:
+PAUSE — What gives you pause?
+THINK — What do you know, what do you not know, and what might you need to rethink?
+ACT — Deliberately Block, Exit, Alter, or Proceed.
+
+Then keep learning: Guidance ? Practice ? Confidence ? Independence.
+If a page, feature, or module does not help the user notice earlier, think more clearly, act deliberately, course-correct, protect their boundaries, or ask for appropriate help, it probably does not belong in the MVP.
+ReadyOnline MVP Master Context | Build specification
+
